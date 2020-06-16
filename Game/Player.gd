@@ -8,6 +8,8 @@ var vy
 var chao
 var g = 100
 
+const SPEED = 200
+const JUMP_SPEED = 500
 
 func _ready():
 	if player == 1:
@@ -29,32 +31,32 @@ func _input(event):
 		if event is InputEventKey:
 			if event is InputEventKey:
 				if event.pressed and event.scancode == 68: #definir cada tecla como constante tipo 68 = KEY_D
-					self.linear_velocity.x = 100
+					self.linear_velocity.x = SPEED
 				if !event.pressed and event.scancode == 68:
 					self.linear_velocity.x = 0
 				if event.pressed and event.scancode == 65:#KEY_A
-					self.linear_velocity.x = -100
+					self.linear_velocity.x = -SPEED
 				if !event.pressed and event.scancode == 65:
 					self.linear_velocity.x = 0
 					
 				if event.pressed and event.scancode == 87: #KEY_W
 					if chao != 0:
-						self.linear_velocity.y = -200
+						self.linear_velocity.y = -JUMP_SPEED
 	elif player == 2:
 		if event is InputEventKey:
 			if event is InputEventKey:
 				if event.pressed and event.scancode == 16777233: #KEY_RIGHT
-					self.linear_velocity.x = 100
+					self.linear_velocity.x = SPEED
 				if !event.pressed and event.scancode == 16777233:
 					self.linear_velocity.x = 0
 				if event.pressed and event.scancode == 16777231: #KEY_LEFT
-					self.linear_velocity.x = -100
+					self.linear_velocity.x = -SPEED
 				if !event.pressed and event.scancode == 16777231:
 					self.linear_velocity.x = 0
 	
 				if event.pressed and event.scancode == 16777232: #KEY_UP
 					if chao != 0:
-						self.linear_velocity.y = -200
+						self.linear_velocity.y = -JUMP_SPEED
 						
 	if event is InputEventKey:
 		print(event.scancode)

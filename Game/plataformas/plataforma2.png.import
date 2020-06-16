@@ -2,15 +2,15 @@
 
 importer="texture"
 type="StreamTexture"
-path="res://.import/hiroshiv.bmp-0e6ac035eb8b2d32e2ed7b7d76c460f7.stex"
+path="res://.import/plataforma2.png-d4bd9d1488f066e8a97dbabed26eeb57.stex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://hiroshiv.bmp"
-dest_files=[ "res://.import/hiroshiv.bmp-0e6ac035eb8b2d32e2ed7b7d76c460f7.stex" ]
+source_file="res://plataformas/plataforma2.png"
+dest_files=[ "res://.import/plataforma2.png-d4bd9d1488f066e8a97dbabed26eeb57.stex" ]
 
 [params]
 
