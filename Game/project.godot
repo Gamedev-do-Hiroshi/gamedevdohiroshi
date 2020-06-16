@@ -25,6 +25,11 @@ window/size/width=1280
 window/size/height=720
 window/size/resizable=false
 
+[layer_names]
+
+2d_physics/layer_1="Player"
+2d_physics/layer_2="Plataforma"
+
 [rendering]
 
 quality/2d/use_pixel_snap=true

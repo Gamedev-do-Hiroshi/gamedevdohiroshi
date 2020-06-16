@@ -6,25 +6,25 @@
 [node name="Luta" type="Node2D"]
 
 [node name="Player 1" parent="." instance=ExtResource( 1 )]
-position = Vector2( 277.001, 303.995 )
+position = Vector2( 254.84, 259.674 )
 
 [node name="Player 2" parent="." instance=ExtResource( 1 )]
-position = Vector2( 526.417, 313.736 )
+position = Vector2( 519.918, 262.417 )
 player = 2
 
 [node name="Plataforma" parent="." instance=ExtResource( 2 )]
-position = Vector2( 253.136, 383.119 )
+position = Vector2( 252, 383 )
 tipo = 3
 
 [node name="Plataforma2" parent="." instance=ExtResource( 2 )]
-position = Vector2( 333.945, 383.054 )
+position = Vector2( 333, 383 )
 
 [node name="Plataforma3" parent="." instance=ExtResource( 2 )]
-position = Vector2( 414.975, 383.054 )
+position = Vector2( 414, 383 )
 
 [node name="Plataforma4" parent="." instance=ExtResource( 2 )]
 position = Vector2( 496.006, 383.054 )
 
 [node name="Plataforma5" parent="." instance=ExtResource( 2 )]
-position = Vector2( 576.068, 382.465 )
+position = Vector2( 576, 383 )
 tipo = 2

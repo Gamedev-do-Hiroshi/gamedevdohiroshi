@@ -1,4 +1,4 @@
-extends Area2D
+extends RigidBody2D
 
 export var player = 1
 var x
@@ -15,78 +15,87 @@ func _ready():
 	elif player == 2:
 		$Animacao.animation = "Player 2"
 	pass 
+	
+	self.mode = MODE_CHARACTER
+	
 	x = 0
 	y = 0
 	vx = 0
 	vy = 0
+	chao = 0
 
 func _input(event):
 	if player == 1:
 		if event is InputEventKey:
 			if event is InputEventKey:
 				if event.pressed and event.scancode == 68: #definir cada tecla como constante tipo 68 = KEY_D
-					vx = 100
+					self.linear_velocity.x = 100
 				if !event.pressed and event.scancode == 68:
-					vx = 0
+					self.linear_velocity.x = 0
 				if event.pressed and event.scancode == 65:#KEY_A
-					vx = -100
+					self.linear_velocity.x = -100
 				if !event.pressed and event.scancode == 65:
-					vx = 0
+					self.linear_velocity.x = 0
 					
 				if event.pressed and event.scancode == 87: #KEY_W
-					if chao:
-						vy = -100
+					if chao != 0:
+						self.linear_velocity.y = -200
 	elif player == 2:
 		if event is InputEventKey:
 			if event is InputEventKey:
 				if event.pressed and event.scancode == 16777233: #KEY_RIGHT
-					vx = 100
+					self.linear_velocity.x = 100
 				if !event.pressed and event.scancode == 16777233:
-					vx = 0
+					self.linear_velocity.x = 0
 				if event.pressed and event.scancode == 16777231: #KEY_LEFT
-					vx = -100
+					self.linear_velocity.x = -100
 				if !event.pressed and event.scancode == 16777231:
-					vx = 0
+					self.linear_velocity.x = 0
 	
 				if event.pressed and event.scancode == 16777232: #KEY_UP
-					if chao:
-						vy = -100
-	
+					if chao != 0:
+						self.linear_velocity.y = -200
+						
 	if event is InputEventKey:
 		print(event.scancode)
 	
 	pass
+	
+func _integrate_forces(state):	
+
+	self.angular_velocity = 0
+	self.applied_torque = 0
+	
+
 func _process(delta):
 	
+	if( abs(self.linear_velocity.y) < 1 ):
+		self.linear_velocity.y = -1
 	
-	if !chao:
-		vy += g*delta
-	elif vy > 0:
-		vy = 0
+	#self.rotation_degrees = 0
+	#self.
 	
-	self.position.x += vx * delta;
-	self.position.y += vy * delta;
+#	if !chao:
+#		vy += g*delta
+#	elif vy > 0:
+#		vy = 0
+#
+#	self.position.x += vx * delta;
+#	self.position.y += vy * delta;
 	#self.position.y = y;
-	
-	#print(delta)
-	
 	
 	
 	pass
 
 
 
-func _on_Player_area_entered(area):
+func _on_Pes_area_entered(area):
 	print(area.get_groups()) 
 	if area.get_groups().has("plataforma"):
-		print("AAAAAAAA")
-		chao = 1
-		
+		chao += 1
 
 
-func _on_Player_area_exited(area):
+func _on_Pes_area_exited(area):
 	print(area.get_groups()) 
 	if area.get_groups().has("plataforma"):
-		print("BBBBBB")
-		chao = 0
-	
+		chao -= 1
