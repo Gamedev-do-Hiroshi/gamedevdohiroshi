@@ -7,6 +7,24 @@ const SPEED = 200
 const GRAVITY = 24
 const JUMP_HEIGHT = -600
 var motion = Vector2()
+var sentido = -1
+
+const VEL_SOCO = 100
+const TEMPO_SOCO = 0.2
+var soco = 0
+var tempo_soco = 0.0
+var vel_soco = 0.0
+var teste
+
+func _ready():
+
+#	if player == 1:
+#		$Animacao.animation = "Player 1"
+#	elif player == 2:
+#		$Animacao.animation = "Player 2"
+	soco = 0
+	sentido = -1
+
 
 func _physics_process(delta):
 	motion.y += GRAVITY
@@ -15,10 +33,12 @@ func _physics_process(delta):
 	
 		if Input.is_action_pressed("ui_right"):
 			motion.x = SPEED
+			sentido = 1
 			$Sprite.flip_h = true
 			#$Sprite.play("Run")
 		elif Input.is_action_pressed("ui_left"):
 			motion.x = -SPEED
+			sentido = -1
 			$Sprite.flip_h = false
 			#$Sprite.play("Run")
 		else:
@@ -30,6 +50,10 @@ func _physics_process(delta):
 				motion.y = JUMP_HEIGHT
 		#else:
 			#$Sprite.play("Jump")
+			
+		if Input.is_key_pressed(KEY_ENTER):
+			punch()
+		
 	
 		motion = move_and_slide(motion, UP)
 		pass
@@ -37,12 +61,13 @@ func _physics_process(delta):
 	elif player == 2:
 		
 		if Input.is_key_pressed(KEY_D):
-			print("OK")
 			motion.x = SPEED
+			sentido = 1
 			$Sprite.flip_h = true
 			#$Sprite.play("Run")
 		elif Input.is_key_pressed(KEY_A):
 			motion.x = -SPEED
+			sentido = -1
 			$Sprite.flip_h = false
 			#$Sprite.play("Run")
 		else:
@@ -56,9 +81,50 @@ func _physics_process(delta):
 			#$Sprite.play("Jump")
 	
 		motion = move_and_slide(motion, UP)
-		pass
+		
+	if soco != 0:
+		tempo_soco += delta
+	
+	if soco == 1 and tempo_soco >= TEMPO_SOCO/2:
+		soco = 2
+		vel_soco = - vel_soco
+	elif soco == 2 and tempo_soco >= TEMPO_SOCO:
+		soco = 0
+		vel_soco = 0;
+		$Mao.position.x = 0
+		tempo_soco = 0
+	
+	if soco == 1:
+		$Mao.position = sign(vel_soco) * sentido * $Mao.position 
+		vel_soco = sentido * VEL_SOCO
+		
+	elif soco == 2:
+		$Mao.position = - sign(vel_soco) * sentido * $Mao.position 
+		vel_soco = - sentido * VEL_SOCO
+	
+	if soco != 0:
+		$Mao.position = $Mao.position + Vector2(vel_soco*delta, 0)
+		#$Mao.position = Vector2(10,10)
+	#$Mao/Sprite.position = $Mao/Colisao.position
+	
+	#print(soco)
+	print($Mao.position)
+	print(tempo_soco)
+	print(vel_soco)
+		
+	pass
+
+func punch():
+	if soco == 0:
+		soco = 1
+		tempo_soco = 0.0
+		vel_soco = sentido * VEL_SOCO
+		#print(soco)
+		#print(teste)
+		print("SOCO")
 
 
+#func _process()
 #export var player = 1
 #var x
 #var y
@@ -75,7 +141,6 @@ func _physics_process(delta):
 #		$Animacao.animation = "Player 1"
 #	elif player == 2:
 #		$Animacao.animation = "Player 2"
-#	pass 
 	
 #	self.mode = MODE_CHARACTER
 	

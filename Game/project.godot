@@ -31,6 +31,7 @@ window/stretch/aspect="expand"
 
 2d_physics/layer_1="Player"
 2d_physics/layer_2="Plataforma"
+2d_physics/layer_6="Mao"
 
 [rendering]
 

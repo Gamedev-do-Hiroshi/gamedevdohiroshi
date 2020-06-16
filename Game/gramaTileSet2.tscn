@@ -1,0 +1,13 @@
+[gd_scene load_steps=2 format=2]
+
+[ext_resource path="res://plataformas/plataforma2.png" type="Texture" id=1]
+
+[node name="gramaTileSet" type="Node"]
+
+[node name="Sprite2" type="Sprite" parent="."]
+position = Vector2( 20, -2.72848e-12 )
+scale = Vector2( 0.3125, 0.3125 )
+texture = ExtResource( 1 )
+centered = false
+region_enabled = true
+region_rect = Rect2( 32, 0, 32, 32 )
