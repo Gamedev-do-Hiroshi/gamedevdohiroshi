@@ -1,40 +1,21 @@
-[gd_scene load_steps=4 format=2]
+[gd_scene load_steps=3 format=2]
 
 [ext_resource path="res://Player.tscn" type="PackedScene" id=1]
-[ext_resource path="res://Plataforma.tscn" type="PackedScene" id=2]
-[ext_resource path="res://gramaTileSet.tres" type="TileSet" id=3]
+[ext_resource path="res://gramaTileSet.tres" type="TileSet" id=2]
 
 [node name="Luta" type="Node2D"]
 
 [node name="Player 1" parent="." instance=ExtResource( 1 )]
 position = Vector2( 715.74, 229.033 )
-gravity_scale = 10.0
 
 [node name="Player 2" parent="." instance=ExtResource( 1 )]
 position = Vector2( 887.983, 231.485 )
-mass = 70.2
-gravity_scale = 10.0
 player = 2
 
-[node name="Plataforma" parent="." instance=ExtResource( 2 )]
-position = Vector2( 255.36, 383 )
-tipo = 3
-
-[node name="Plataforma2" parent="." instance=ExtResource( 2 )]
-position = Vector2( 333, 383 )
-
-[node name="Plataforma3" parent="." instance=ExtResource( 2 )]
-position = Vector2( 414, 383 )
-
-[node name="Plataforma4" parent="." instance=ExtResource( 2 )]
-position = Vector2( 485.827, 431.552 )
-
-[node name="Plataforma5" parent="." instance=ExtResource( 2 )]
-position = Vector2( 581.389, 438.084 )
-tipo = 2
-
-[node name="TileMap" type="TileMap" parent="."]
-tile_set = ExtResource( 3 )
+[node name="TileMap" type="TileMap" parent="." groups=[
+"plataforma",
+]]
+tile_set = ExtResource( 2 )
 cell_size = Vector2( 32, 32 )
 format = 1
-tile_data = PoolIntArray( 327699, 3, 0, 393235, 3, 0, 458771, 3, 0, 524307, 3, 0, 589844, 1, 0, 589845, 1, 0, 589846, 1, 0, 589847, 1, 0, 589848, 1, 0, 589849, 1, 0, 589850, 1, 0, 589851, 1, 0, 589852, 1, 0, 589853, 1, 0 )
+tile_data = PoolIntArray( 983039, 3, 0, 917544, 5, 0, 1048575, 3, 0, 983080, 5, 0, 1114111, 3, 0, 1048616, 5, 0, 1179647, 3, 0, 1114152, 5, 0, 1245183, 3, 0, 1179672, 0, 0, 1179673, 1, 0, 1179674, 2, 0, 1179688, 5, 0, 1310719, 3, 0, 1245208, 6, 0, 1245209, 7, 0, 1245210, 8, 0, 1245224, 5, 0, 1376255, 3, 0, 1310760, 5, 0, 1441791, 3, 0, 1376296, 5, 0, 1441792, 1, 0, 1441793, 1, 0, 1441794, 1, 0, 1441795, 1, 0, 1441796, 1, 0, 1441797, 1, 0, 1441798, 1, 0, 1441799, 1, 0, 1441800, 1, 0, 1441801, 1, 0, 1441802, 1, 0, 1441803, 1, 0, 1441804, 1, 0, 1441808, 1, 0, 1441809, 1, 0, 1441810, 1, 0, 1441811, 1, 0, 1441812, 1, 0, 1441813, 1, 0, 1441814, 1, 0, 1441815, 1, 0, 1441816, 1, 0, 1441817, 1, 0, 1441818, 1, 0, 1441819, 1, 0, 1441820, 1, 0, 1441821, 1, 0, 1441822, 1, 0, 1441823, 1, 0, 1441824, 1, 0, 1441825, 1, 0, 1441826, 1, 0, 1441827, 1, 0, 1441828, 1, 0, 1441829, 1, 0, 1441830, 1, 0, 1441831, 1, 0 )

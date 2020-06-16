@@ -1,78 +1,136 @@
-extends RigidBody2D
+extends KinematicBody2D
 
 export var player = 1
-var x
-var y
-var vx
-var vy
-var chao
-var g = 100
 
+const UP = Vector2(0, -1)
 const SPEED = 200
-const JUMP_SPEED = 500
+const GRAVITY = 24
+const JUMP_HEIGHT = -600
+var motion = Vector2()
 
-func _ready():
+func _physics_process(delta):
+	motion.y += GRAVITY
+	
 	if player == 1:
-		$Animacao.animation = "Player 1"
+	
+		if Input.is_action_pressed("ui_right"):
+			motion.x = SPEED
+			$Sprite.flip_h = true
+			#$Sprite.play("Run")
+		elif Input.is_action_pressed("ui_left"):
+			motion.x = -SPEED
+			$Sprite.flip_h = false
+			#$Sprite.play("Run")
+		else:
+			motion.x = 0
+			#$Sprite.play("Idle")
+		
+		if is_on_floor():
+			if Input.is_action_just_pressed("ui_up"):
+				motion.y = JUMP_HEIGHT
+		#else:
+			#$Sprite.play("Jump")
+	
+		motion = move_and_slide(motion, UP)
+		pass
+		
 	elif player == 2:
-		$Animacao.animation = "Player 2"
-	pass 
+		
+		if Input.is_key_pressed(KEY_D):
+			print("OK")
+			motion.x = SPEED
+			$Sprite.flip_h = true
+			#$Sprite.play("Run")
+		elif Input.is_key_pressed(KEY_A):
+			motion.x = -SPEED
+			$Sprite.flip_h = false
+			#$Sprite.play("Run")
+		else:
+			motion.x = 0
+			#$Sprite.play("Idle")
+		
+		if is_on_floor():
+			if Input.is_key_pressed(KEY_W):
+				motion.y = JUMP_HEIGHT
+		#else:
+			#$Sprite.play("Jump")
 	
-	self.mode = MODE_CHARACTER
-	
-	x = 0
-	y = 0
-	vx = 0
-	vy = 0
-	chao = 0
+		motion = move_and_slide(motion, UP)
+		pass
 
-func _input(event):
-	if player == 1:
-		if event is InputEventKey:
-			if event is InputEventKey:
-				if event.pressed and event.scancode == 68: #definir cada tecla como constante tipo 68 = KEY_D
-					self.linear_velocity.x = SPEED
-				if !event.pressed and event.scancode == 68:
-					self.linear_velocity.x = 0
-				if event.pressed and event.scancode == 65:#KEY_A
-					self.linear_velocity.x = -SPEED
-				if !event.pressed and event.scancode == 65:
-					self.linear_velocity.x = 0
-					
-				if event.pressed and event.scancode == 87: #KEY_W
-					if chao != 0:
-						self.linear_velocity.y = -JUMP_SPEED
-	elif player == 2:
-		if event is InputEventKey:
-			if event is InputEventKey:
-				if event.pressed and event.scancode == 16777233: #KEY_RIGHT
-					self.linear_velocity.x = SPEED
-				if !event.pressed and event.scancode == 16777233:
-					self.linear_velocity.x = 0
-				if event.pressed and event.scancode == 16777231: #KEY_LEFT
-					self.linear_velocity.x = -SPEED
-				if !event.pressed and event.scancode == 16777231:
-					self.linear_velocity.x = 0
+
+#export var player = 1
+#var x
+#var y
+#var vx
+#var vy
+#var chao
+#var g = 100
+
+#const SPEED = 200
+#const JUMP_SPEED = 500
+
+#func _ready():
+#	if player == 1:
+#		$Animacao.animation = "Player 1"
+#	elif player == 2:
+#		$Animacao.animation = "Player 2"
+#	pass 
 	
-				if event.pressed and event.scancode == 16777232: #KEY_UP
-					if chao != 0:
-						self.linear_velocity.y = -JUMP_SPEED
+#	self.mode = MODE_CHARACTER
+	
+#	y = 0
+#	vx = 0
+#	vy = 0
+#	chao = 0
+
+#func _input(event):
+#	if player == 1:
+#		if event is InputEventKey:
+#			if event is InputEventKey:
+#				if event.pressed and event.scancode == 68: #definir cada tecla como constante tipo 68 = KEY_D
+#					self.linear_velocity.x = SPEED
+#				if !event.pressed and event.scancode == 68:
+#					self.linear_velocity.x = 0
+#				if event.pressed and event.scancode == 65:#KEY_A
+#					self.linear_velocity.x = -SPEED
+#				if !event.pressed and event.scancode == 65:
+#					self.linear_velocity.x = 0
+#					
+#				if event.pressed and event.scancode == 87: #KEY_W
+#					if chao != 0:
+#						self.linear_velocity.y = -JUMP_SPEED
+#	elif player == 2:
+#		if event is InputEventKey:
+#			if event is InputEventKey:
+#				if event.pressed and event.scancode == 16777233: #KEY_RIGHT
+#					self.linear_velocity.x = SPEED
+#				if !event.pressed and event.scancode == 16777233:
+#					self.linear_velocity.x = 0
+#				if event.pressed and event.scancode == 16777231: #KEY_LEFT
+#					self.linear_velocity.x = -SPEED
+#				if !event.pressed and event.scancode == 16777231:
+#					self.linear_velocity.x = 0
+	
+#				if event.pressed and event.scancode == 16777232: #KEY_UP
+#					if chao != 0:
+#						self.linear_velocity.y = -JUMP_SPEED
 						
-	if event is InputEventKey:
-		print(event.scancode)
+#	if event is InputEventKey:
+#		print(event.scancode)
 	
-	pass
+#	pass
 	
-func _integrate_forces(state):	
+#func _integrate_forces(state):	
 
-	self.angular_velocity = 0
-	self.applied_torque = 0
+#	self.angular_velocity = 0
+#	self.applied_torque = 0
 	
 
-func _process(delta):
+#func _process(delta):
 	
-	if( abs(self.linear_velocity.y) < 1 ):
-		self.linear_velocity.y = -1
+#	if( abs(self.linear_velocity.y) < 1 ):
+#		self.linear_velocity.y = -1
 	
 	#self.rotation_degrees = 0
 	#self.
@@ -87,17 +145,17 @@ func _process(delta):
 	#self.position.y = y;
 	
 	
-	pass
+#	pass
 
 
 
-func _on_Pes_area_entered(area):
-	print(area.get_groups()) 
-	if area.get_groups().has("plataforma"):
-		chao += 1
+#func _on_Pes_area_entered(area):
+#	print(area.get_groups()) 
+#	if area.get_groups().has("plataforma"):
+#		chao += 1
 
 
-func _on_Pes_area_exited(area):
-	print(area.get_groups()) 
-	if area.get_groups().has("plataforma"):
-		chao -= 1
+#func _on_Pes_area_exited(area):
+#	print(area.get_groups()) 
+#	if area.get_groups().has("plataforma"):
+#		chao -= 1
