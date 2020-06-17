@@ -24,6 +24,11 @@ const DURACAO_KNOCK_BACK = 0.2
 var knock_back
 var tempo_knock_back
 
+var vel_colisao = Vector2()
+var colisao = 0
+var bola
+var normal = Vector2()
+
 
 # --------------------------------------> FUNÇÃO CHAMADA QUANDO CARREGA O NÓ <-----------------------------------------
 func _ready():
@@ -36,7 +41,15 @@ func _ready():
 	sentido = -1
 	vida = 100
 	knock_back = 0
+	colisao = 0
 	
+# --------------------------------------> FUNÇÃO CHAMADA A CADA FRAME <-----------------------------------------
+func _process(delta):
+	
+	if vida <= 0:
+		self.free()
+	
+	pass
 
 
 # ---------------------------------------------------> FÍSICA <---------------------------------------------------------
@@ -44,16 +57,22 @@ func _physics_process(delta):
 	
 	motion.y += GRAVITY
 	
+	
 	if knock_back == 0:
 		control(delta)
 		socar(delta)
 	else:
 		empurrao(delta)
+		
 	
+	if colisao:
+		motion = vel_colisao
 	
+	#print(motion)
 	motion = move_and_slide(motion, UP)
 		
 	pass
+
 
 # -------------------------------------------------------> SOCO <------------------------------------------------------
 func punch():
@@ -98,11 +117,18 @@ func socado(direcao):
 
 func empurrao(delta):
 	
+	
 	tempo_knock_back += delta
 	
 	if tempo_knock_back >= DURACAO_KNOCK_BACK:
 		knock_back = 0
 		motion.x = 0
+	
+	pass
+
+# -----------------------------------------------------> BASQUETE <-----------------------------------------------------
+
+func colide():
 	
 	pass
 
@@ -157,10 +183,11 @@ func control(delta):
 			if Input.is_key_pressed(KEY_W):
 				motion.y = JUMP_HEIGHT
 				
-		if Input.is_key_pressed(KEY_SPACE):
-			punch()
 		#else:
 			#$Sprite.play("Jump")
+			
+		if Input.is_key_pressed(KEY_SPACE):
+			punch()
 	
 
 
@@ -178,3 +205,65 @@ func _on_Mao_area_entered(area):
 		area.get_parent().socado(sentido)
 		
 	pass
+
+
+func _on_Corpo_body_entered(body):
+	if body.get_groups().has("bola"):
+		normal = (position - body.position).normalized()
+		vel_colisao = normal * 200	
+		body.apply_central_impulse(200*normal * motion.dot(normal))
+		print(200*normal * motion.dot(normal))
+		bola = body
+		colisao = 1
+		#print(vel_colisao)
+	
+	pass # Replace with function body.
+
+
+func _on_Corpo_body_exited(body):
+	if body.get_groups().has("bola"):
+		colisao = 0
+	pass # Replace with function body.
+
+
+func _on_Mao_body_entered(body):
+	if body.get_groups().has("bola"):
+		normal = ((position+ $Mao.position) - body.position).normalized()
+		vel_colisao = normal * 200	
+		body.apply_central_impulse(200*normal * (motion + Vector2(vel_soco, 0)).dot(normal) + Vector2(0, -80000))
+		print("PPP")
+		print(200*normal * (motion + Vector2(vel_soco, 0)).dot(normal))
+		bola = body
+		colisao = 1
+	pass # Replace with function body.
+
+
+func _on_Mao_body_exited(body):
+	if body.get_groups().has("bola"):
+		colisao = 0
+	pass # Replace with function body.
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

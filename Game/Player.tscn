@@ -47,3 +47,7 @@ collision_mask = 24576
 [node name="Colisao" type="CollisionShape2D" parent="Corpo"]
 shape = SubResource( 3 )
 [connection signal="area_entered" from="Mao" to="." method="_on_Mao_area_entered"]
+[connection signal="body_entered" from="Mao" to="." method="_on_Mao_body_entered"]
+[connection signal="body_exited" from="Mao" to="." method="_on_Mao_body_exited"]
+[connection signal="body_entered" from="Corpo" to="." method="_on_Corpo_body_entered"]
+[connection signal="body_exited" from="Corpo" to="." method="_on_Corpo_body_exited"]
