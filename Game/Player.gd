@@ -6,15 +6,21 @@ const UP = Vector2(0, -1)
 const SPEED = 200
 const GRAVITY = 24
 const JUMP_HEIGHT = -600
+const KB_SPEED = 400
+const KB_TIME = 0.2
 var motion = Vector2()
 var sentido = -1
 
 const VEL_SOCO = 100
-const TEMPO_SOCO = 0.2
+const TEMPO_SOCO = 0.4
 var soco = 0
 var tempo_soco = 0.0
 var vel_soco = 0.0
 var teste
+
+var vida
+var knock_back
+var tempo_knock_back
 
 func _ready():
 
@@ -24,6 +30,9 @@ func _ready():
 #		$Animacao.animation = "Player 2"
 	soco = 0
 	sentido = -1
+	vida = 100
+	knock_back = 0
+	
 
 
 func _physics_process(delta):
@@ -77,11 +86,28 @@ func _physics_process(delta):
 		if is_on_floor():
 			if Input.is_key_pressed(KEY_W):
 				motion.y = JUMP_HEIGHT
+				
+		if Input.is_key_pressed(KEY_SPACE):
+			punch()
 		#else:
 			#$Sprite.play("Jump")
 	
 		motion = move_and_slide(motion, UP)
 		
+	socar(delta)
+		
+	pass
+
+func punch():
+	if soco == 0:
+		soco = 1
+		tempo_soco = 0.0
+		vel_soco = sentido * VEL_SOCO
+		#print(soco)
+		#print(teste)
+		print("SOCO")
+
+func socar(delta): 
 	if soco != 0:
 		tempo_soco += delta
 	
@@ -104,26 +130,11 @@ func _physics_process(delta):
 	
 	if soco != 0:
 		$Mao.position = $Mao.position + Vector2(vel_soco*delta, 0)
-		#$Mao.position = Vector2(10,10)
-	#$Mao/Sprite.position = $Mao/Colisao.position
+
+func socado(direcao):
+	knock_back = direcao
+	tempo_knock_back = 0.0
 	
-	#print(soco)
-	print($Mao.position)
-	print(tempo_soco)
-	print(vel_soco)
-		
-	pass
-
-func punch():
-	if soco == 0:
-		soco = 1
-		tempo_soco = 0.0
-		vel_soco = sentido * VEL_SOCO
-		#print(soco)
-		#print(teste)
-		print("SOCO")
-
-
 #func _process()
 #export var player = 1
 #var x
@@ -224,3 +235,16 @@ func punch():
 #	print(area.get_groups()) 
 #	if area.get_groups().has("plataforma"):
 #		chao -= 1
+
+
+func _on_Mao_area_entered(area):
+	print(area.get_groups()) 
+	if area.get_groups().has("player") and area != self:
+		print("SOQUEI")
+		area.vida -= 10
+		area.socado(sentido)
+	if area.get_groups().has("mao") and area.get_parent() != self:
+		print("SOQUEI")
+		area.get_parent().vida -= 10
+		area.get_parent().socado(sentido)
+	pass # Replace with function body.
