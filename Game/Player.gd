@@ -19,9 +19,13 @@ var vel_soco = 0.0
 var teste
 
 var vida
+const VEL_KNOCK_BACK = 200
+const DURACAO_KNOCK_BACK = 0.2
 var knock_back
 var tempo_knock_back
 
+
+# --------------------------------------> FUNÇÃO CHAMADA QUANDO CARREGA O NÓ <-----------------------------------------
 func _ready():
 
 #	if player == 1:
@@ -35,69 +39,23 @@ func _ready():
 	
 
 
+# ---------------------------------------------------> FÍSICA <---------------------------------------------------------
 func _physics_process(delta):
+	
 	motion.y += GRAVITY
 	
-	if player == 1:
+	if knock_back == 0:
+		control(delta)
+		socar(delta)
+	else:
+		empurrao(delta)
 	
-		if Input.is_action_pressed("ui_right"):
-			motion.x = SPEED
-			sentido = 1
-			$Sprite.flip_h = true
-			#$Sprite.play("Run")
-		elif Input.is_action_pressed("ui_left"):
-			motion.x = -SPEED
-			sentido = -1
-			$Sprite.flip_h = false
-			#$Sprite.play("Run")
-		else:
-			motion.x = 0
-			#$Sprite.play("Idle")
-		
-		if is_on_floor():
-			if Input.is_action_just_pressed("ui_up"):
-				motion.y = JUMP_HEIGHT
-		#else:
-			#$Sprite.play("Jump")
-			
-		if Input.is_key_pressed(KEY_ENTER):
-			punch()
-		
 	
-		motion = move_and_slide(motion, UP)
-		pass
-		
-	elif player == 2:
-		
-		if Input.is_key_pressed(KEY_D):
-			motion.x = SPEED
-			sentido = 1
-			$Sprite.flip_h = true
-			#$Sprite.play("Run")
-		elif Input.is_key_pressed(KEY_A):
-			motion.x = -SPEED
-			sentido = -1
-			$Sprite.flip_h = false
-			#$Sprite.play("Run")
-		else:
-			motion.x = 0
-			#$Sprite.play("Idle")
-		
-		if is_on_floor():
-			if Input.is_key_pressed(KEY_W):
-				motion.y = JUMP_HEIGHT
-				
-		if Input.is_key_pressed(KEY_SPACE):
-			punch()
-		#else:
-			#$Sprite.play("Jump")
-	
-		motion = move_and_slide(motion, UP)
-		
-	socar(delta)
+	motion = move_and_slide(motion, UP)
 		
 	pass
 
+# -------------------------------------------------------> SOCO <------------------------------------------------------
 func punch():
 	if soco == 0:
 		soco = 1
@@ -132,119 +90,91 @@ func socar(delta):
 		$Mao.position = $Mao.position + Vector2(vel_soco*delta, 0)
 
 func socado(direcao):
+	if knock_back != 0:
+		pass
 	knock_back = direcao
 	tempo_knock_back = 0.0
-	
-#func _process()
-#export var player = 1
-#var x
-#var y
-#var vx
-#var vy
-#var chao
-#var g = 100
+	motion.x = direcao * VEL_KNOCK_BACK
 
-#const SPEED = 200
-#const JUMP_SPEED = 500
+func empurrao(delta):
+	
+	tempo_knock_back += delta
+	
+	if tempo_knock_back >= DURACAO_KNOCK_BACK:
+		knock_back = 0
+		motion.x = 0
+	
+	pass
 
-#func _ready():
-#	if player == 1:
-#		$Animacao.animation = "Player 1"
-#	elif player == 2:
-#		$Animacao.animation = "Player 2"
+# -----------------------------------------------------> CONTROLES <----------------------------------------------------
+func control(delta):
 	
-#	self.mode = MODE_CHARACTER
+	if player == 1:
 	
-#	y = 0
-#	vx = 0
-#	vy = 0
-#	chao = 0
+		if Input.is_action_pressed("ui_right"):
+			motion.x = SPEED
+			sentido = 1
+			$Sprite.flip_h = true
+			#$Sprite.play("Run")
+		elif Input.is_action_pressed("ui_left"):
+			motion.x = -SPEED
+			sentido = -1
+			$Sprite.flip_h = false
+			#$Sprite.play("Run")
+		else:
+			motion.x = 0
+			#$Sprite.play("Idle")
+		
+		if is_on_floor():
+			if Input.is_action_just_pressed("ui_up"):
+				motion.y = JUMP_HEIGHT
+		#else:
+			#$Sprite.play("Jump")
+			
+		if Input.is_key_pressed(KEY_ENTER):
+			punch()
+		
 
-#func _input(event):
-#	if player == 1:
-#		if event is InputEventKey:
-#			if event is InputEventKey:
-#				if event.pressed and event.scancode == 68: #definir cada tecla como constante tipo 68 = KEY_D
-#					self.linear_velocity.x = SPEED
-#				if !event.pressed and event.scancode == 68:
-#					self.linear_velocity.x = 0
-#				if event.pressed and event.scancode == 65:#KEY_A
-#					self.linear_velocity.x = -SPEED
-#				if !event.pressed and event.scancode == 65:
-#					self.linear_velocity.x = 0
-#					
-#				if event.pressed and event.scancode == 87: #KEY_W
-#					if chao != 0:
-#						self.linear_velocity.y = -JUMP_SPEED
-#	elif player == 2:
-#		if event is InputEventKey:
-#			if event is InputEventKey:
-#				if event.pressed and event.scancode == 16777233: #KEY_RIGHT
-#					self.linear_velocity.x = SPEED
-#				if !event.pressed and event.scancode == 16777233:
-#					self.linear_velocity.x = 0
-#				if event.pressed and event.scancode == 16777231: #KEY_LEFT
-#					self.linear_velocity.x = -SPEED
-#				if !event.pressed and event.scancode == 16777231:
-#					self.linear_velocity.x = 0
+		pass
+		
+	elif player == 2:
+		
+		if Input.is_key_pressed(KEY_D):
+			motion.x = SPEED
+			sentido = 1
+			$Sprite.flip_h = true
+			#$Sprite.play("Run")
+		elif Input.is_key_pressed(KEY_A):
+			motion.x = -SPEED
+			sentido = -1
+			$Sprite.flip_h = false
+			#$Sprite.play("Run")
+		else:
+			motion.x = 0
+			#$Sprite.play("Idle")
+		
+		if is_on_floor():
+			if Input.is_key_pressed(KEY_W):
+				motion.y = JUMP_HEIGHT
+				
+		if Input.is_key_pressed(KEY_SPACE):
+			punch()
+		#else:
+			#$Sprite.play("Jump")
 	
-#				if event.pressed and event.scancode == 16777232: #KEY_UP
-#					if chao != 0:
-#						self.linear_velocity.y = -JUMP_SPEED
-						
-#	if event is InputEventKey:
-#		print(event.scancode)
-	
-#	pass
-	
-#func _integrate_forces(state):	
-
-#	self.angular_velocity = 0
-#	self.applied_torque = 0
-	
-
-#func _process(delta):
-	
-#	if( abs(self.linear_velocity.y) < 1 ):
-#		self.linear_velocity.y = -1
-	
-	#self.rotation_degrees = 0
-	#self.
-	
-#	if !chao:
-#		vy += g*delta
-#	elif vy > 0:
-#		vy = 0
-#
-#	self.position.x += vx * delta;
-#	self.position.y += vy * delta;
-	#self.position.y = y;
-	
-	
-#	pass
 
 
-
-#func _on_Pes_area_entered(area):
-#	print(area.get_groups()) 
-#	if area.get_groups().has("plataforma"):
-#		chao += 1
-
-
-#func _on_Pes_area_exited(area):
-#	print(area.get_groups()) 
-#	if area.get_groups().has("plataforma"):
-#		chao -= 1
-
+# ------------------------------------------------------> SINAIS <------------------------------------------------------
 
 func _on_Mao_area_entered(area):
-	print(area.get_groups()) 
-	if area.get_groups().has("player") and area != self:
-		print("SOQUEI")
-		area.vida -= 10
-		area.socado(sentido)
-	if area.get_groups().has("mao") and area.get_parent() != self:
+	print(String(player) + " " + String(area.get_groups()) + " soco = " + String(soco)) 
+	
+	if(soco == 0):
+		pass
+	
+	if ((area.get_groups().has("mao") or area.get_groups().has("corpo"))  and area.get_parent() != self):
 		print("SOQUEI")
 		area.get_parent().vida -= 10
 		area.get_parent().socado(sentido)
-	pass # Replace with function body.
+		
+	pass
