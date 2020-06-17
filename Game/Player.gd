@@ -1,6 +1,7 @@
 extends KinematicBody2D
 
 export var player = 1
+export(int, "VERMELHO", "LARANJA") var poder = "VERMELHO"
 
 const UP = Vector2(0, -1)
 const SPEED = 200
@@ -18,7 +19,9 @@ var tempo_soco = 0.0
 var vel_soco = 0.0
 var teste
 
-var vida
+var vida = 100
+var mana = 100
+const TAXA_MANA = 50
 const VEL_KNOCK_BACK = 200
 const DURACAO_KNOCK_BACK = 0.2
 var knock_back
@@ -29,6 +32,8 @@ var colisao = 0
 var bola
 var normal = Vector2()
 
+var cena_poder
+var novo_poder
 
 # --------------------------------------> FUNÇÃO CHAMADA QUANDO CARREGA O NÓ <-----------------------------------------
 func _ready():
@@ -40,6 +45,7 @@ func _ready():
 	soco = 0
 	sentido = -1
 	vida = 100
+	mana = 100
 	knock_back = 0
 	colisao = 0
 	
@@ -48,6 +54,12 @@ func _process(delta):
 	
 	if vida <= 0:
 		self.free()
+	
+	mana += TAXA_MANA * delta
+	
+	if mana > 100:
+		mana = 100
+	
 	
 	pass
 
@@ -129,7 +141,7 @@ func empurrao(delta):
 # -----------------------------------------------------> BASQUETE <-----------------------------------------------------
 
 func colide():
-	
+	#kkkk nunca usei
 	pass
 
 # -----------------------------------------------------> CONTROLES <----------------------------------------------------
@@ -160,6 +172,9 @@ func control(delta):
 		if Input.is_key_pressed(KEY_ENTER):
 			punch()
 		
+		if Input.is_key_pressed(KEY_L):
+			ativar_poder()
+		
 
 		pass
 		
@@ -189,7 +204,21 @@ func control(delta):
 		if Input.is_key_pressed(KEY_SPACE):
 			punch()
 	
-
+# ------------------------------------------------------> PODERES <-----------------------------------------------------
+func ativar_poder():
+	
+	if mana < 100:
+		return
+	mana -= 100
+	
+	cena_poder = load("res://Poderes.tscn")
+	novo_poder = cena_poder.instance()
+	novo_poder.poder = poder
+	novo_poder.velocidade = motion
+	novo_poder.position = position + sentido * Vector2(sentido*50, -10)
+	
+	self.get_parent().add_child(novo_poder)
+	pass
 
 # ------------------------------------------------------> SINAIS <------------------------------------------------------
 
