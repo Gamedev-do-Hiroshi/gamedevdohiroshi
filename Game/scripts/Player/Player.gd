@@ -1,7 +1,7 @@
 extends KinematicBody2D
 
 export var player = 1
-export(int, "VERMELHO", "LARANJA") var poder = "VERMELHO"
+export(int, "VERMELHO", "LARANJA", "AZUL") var poder = "VERMELHO"
 
 const UP = Vector2(0, -1)
 const SPEED = 400
@@ -92,6 +92,7 @@ func punch():
 		soco = 1
 		tempo_soco = 0.0
 		vel_soco = sentido * VEL_SOCO
+		$Sprite.play("Punch")
 		#print(soco)
 		#print(teste)
 		print("SOCO")
@@ -108,6 +109,7 @@ func socar(delta):
 		vel_soco = 0;
 		$Mao.position.x = 0
 		tempo_soco = 0
+		$Sprite.play("Idle")
 	
 	if soco == 1:
 		$Mao.position = sign(vel_soco) * sentido * $Mao.position 
@@ -153,15 +155,24 @@ func control(delta):
 			motion.x = SPEED
 			sentido = 1
 			$Sprite.flip_h = true
-			$Sprite.play("Run")
+			if soco == 0:
+				$Sprite.play("Run")
+			else:
+				#animação de Run + punch
+				pass
 		elif Input.is_action_pressed("ui_left"):
 			motion.x = -SPEED
 			sentido = -1
 			$Sprite.flip_h = false
-			$Sprite.play("Run")
+			if soco == 0:
+				$Sprite.play("Run")
+			else:
+				#animação de Run + punch
+				pass
 		else:
 			motion.x = 0
-			$Sprite.play("Idle")
+			if soco == 0:
+				$Sprite.play("Idle")
 		
 		if is_on_floor():
 			if Input.is_action_just_pressed("ui_up"):
@@ -184,15 +195,24 @@ func control(delta):
 			motion.x = SPEED
 			sentido = 1
 			$Sprite.flip_h = true
-			$Sprite.play("Run")
+			if soco == 0:
+				$Sprite.play("Run")
+			else:
+				#animação de Run + punch
+				pass
 		elif Input.is_key_pressed(KEY_A):
 			motion.x = -SPEED
 			sentido = -1
 			$Sprite.flip_h = false
-			$Sprite.play("Run")
+			if soco == 0:
+				$Sprite.play("Run")
+			else:
+				#animação de Run + punch
+				pass
 		else:
 			motion.x = 0
-			$Sprite.play("Idle")
+			if soco == 0:
+				$Sprite.play("Idle")
 		
 		if is_on_floor():
 			if Input.is_key_pressed(KEY_W):
@@ -204,6 +224,8 @@ func control(delta):
 		if Input.is_key_pressed(KEY_SPACE):
 			punch()
 	
+		if Input.is_key_pressed(KEY_Q):
+			ativar_poder()
 # ------------------------------------------------------> PODERES <-----------------------------------------------------
 func ativar_poder():
 	
@@ -216,9 +238,26 @@ func ativar_poder():
 	novo_poder.poder = poder
 	novo_poder.sentido = sentido
 	novo_poder.velocidade = motion
-	novo_poder.position = position + sentido * Vector2(sentido*30, -10)
+	if poder == 0:
+		novo_poder.position = position +  Vector2(sentido*30, -10)
+	elif poder == 2:
+		novo_poder.position = position +  Vector2(sentido*50, -10)
 	
 	self.get_parent().add_child(novo_poder)
+	pass
+
+func gelado():
+	
+	cena_poder = load("res://Poderes.tscn")
+	novo_poder = cena_poder.instance()
+	novo_poder.poder = 3
+	#novo_poder.sentido = sentido
+	#novo_poder.velocidade = motion
+	#novo_poder.position = position
+	
+	self.add_child(novo_poder)
+	
+	
 	pass
 
 # ------------------------------------------------------> SINAIS <------------------------------------------------------
@@ -233,11 +272,13 @@ func _on_Mao_area_entered(area):
 		print("SOQUEI")
 		area.get_parent().vida -= 10
 		area.get_parent().socado(sentido)
-		
+	
+	
 	pass
 
 
 func _on_Corpo_body_entered(body):
+	print(body)
 	if body.get_groups().has("bola"):
 		normal = (position - body.position).normalized()
 		vel_colisao = normal * 200	
