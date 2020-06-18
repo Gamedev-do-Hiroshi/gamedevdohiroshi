@@ -4,7 +4,7 @@ export var player = 1
 export(int, "VERMELHO", "LARANJA") var poder = "VERMELHO"
 
 const UP = Vector2(0, -1)
-const SPEED = 200
+const SPEED = 400
 const GRAVITY = 24
 const JUMP_HEIGHT = -600
 const KB_SPEED = 400
@@ -153,15 +153,15 @@ func control(delta):
 			motion.x = SPEED
 			sentido = 1
 			$Sprite.flip_h = true
-			#$Sprite.play("Run")
+			$Sprite.play("Run")
 		elif Input.is_action_pressed("ui_left"):
 			motion.x = -SPEED
 			sentido = -1
 			$Sprite.flip_h = false
-			#$Sprite.play("Run")
+			$Sprite.play("Run")
 		else:
 			motion.x = 0
-			#$Sprite.play("Idle")
+			$Sprite.play("Idle")
 		
 		if is_on_floor():
 			if Input.is_action_just_pressed("ui_up"):
@@ -184,15 +184,15 @@ func control(delta):
 			motion.x = SPEED
 			sentido = 1
 			$Sprite.flip_h = true
-			#$Sprite.play("Run")
+			$Sprite.play("Run")
 		elif Input.is_key_pressed(KEY_A):
 			motion.x = -SPEED
 			sentido = -1
 			$Sprite.flip_h = false
-			#$Sprite.play("Run")
+			$Sprite.play("Run")
 		else:
 			motion.x = 0
-			#$Sprite.play("Idle")
+			$Sprite.play("Idle")
 		
 		if is_on_floor():
 			if Input.is_key_pressed(KEY_W):
@@ -214,8 +214,9 @@ func ativar_poder():
 	cena_poder = load("res://Poderes.tscn")
 	novo_poder = cena_poder.instance()
 	novo_poder.poder = poder
+	novo_poder.sentido = sentido
 	novo_poder.velocidade = motion
-	novo_poder.position = position + sentido * Vector2(sentido*50, -10)
+	novo_poder.position = position + sentido * Vector2(sentido*30, -10)
 	
 	self.get_parent().add_child(novo_poder)
 	pass

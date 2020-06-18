@@ -1,55 +1,53 @@
 [gd_scene load_steps=8 format=2]
 
 [ext_resource path="res://Basquete.gd" type="Script" id=1]
-[ext_resource path="res://Sprites/Bola.png" type="Texture" id=2]
+[ext_resource path="res://Bola.tscn" type="PackedScene" id=2]
 [ext_resource path="res://gramaTileSet.tres" type="TileSet" id=3]
 [ext_resource path="res://Player.tscn" type="PackedScene" id=4]
+[ext_resource path="res://basqueteBackground.png" type="Texture" id=5]
 
-[sub_resource type="PhysicsMaterial" id=1]
-bounce = 0.5
+[sub_resource type="RectangleShape2D" id=1]
+extents = Vector2( 140.649, 10 )
 
-[sub_resource type="CircleShape2D" id=2]
-radius = 15.0
-
-[sub_resource type="RectangleShape2D" id=3]
-extents = Vector2( 100, 10 )
+[sub_resource type="RectangleShape2D" id=2]
+extents = Vector2( 8.21533, 10.5263 )
 
 [node name="Basquete" type="Node2D"]
 script = ExtResource( 1 )
 
-[node name="Bola" type="RigidBody2D" parent="." groups=[
-"bola",
-]]
-position = Vector2( 110.397, 333.444 )
-collision_layer = 81953
-collision_mask = 81953
-mass = 100.0
-physics_material_override = SubResource( 1 )
-gravity_scale = 7.0
-
-[node name="Colisao" type="CollisionShape2D" parent="Bola"]
-scale = Vector2( 3, 3 )
-shape = SubResource( 2 )
-
-[node name="Sprite" type="Sprite" parent="Bola"]
-position = Vector2( 2.76624, 2.15149 )
-scale = Vector2( 6, 6 )
-texture = ExtResource( 2 )
-region_rect = Rect2( 16, 0, 16, 16 )
+[node name="Bola" parent="." instance=ExtResource( 2 )]
+position = Vector2( -102.774, 269.216 )
 
 [node name="Cesta1" type="Area2D" parent="."]
-position = Vector2( 100, 470 )
+position = Vector2( 99.978, 378.646 )
 collision_layer = 65536
 collision_mask = 65536
+__meta__ = {
+"_edit_group_": true
+}
 
 [node name="Colisao" type="CollisionShape2D" parent="Cesta1"]
-shape = SubResource( 3 )
+shape = SubResource( 1 )
+
+[node name="BordaCesta" type="StaticBody2D" parent="Cesta1"]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Cesta1/BordaCesta"]
+position = Vector2( 132.433, 0.16272 )
+shape = SubResource( 2 )
 
 [node name="Cesta2" type="Area2D" parent="."]
 position = Vector2( 1180, 470 )
 
 [node name="Colisao" type="CollisionShape2D" parent="Cesta2"]
-shape = SubResource( 3 )
+position = Vector2( -3.68323, -87.1692 )
+shape = SubResource( 1 )
+
+[node name="BordaCesta2" type="StaticBody2D" parent="Cesta2"]
+position = Vector2( -1080.02, -91.354 )
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Cesta2/BordaCesta2"]
+position = Vector2( 942.252, 3.48682 )
+shape = SubResource( 2 )
 
 [node name="Quadra" type="TileMap" parent="."]
 tile_set = ExtResource( 3 )
@@ -59,9 +57,26 @@ tile_data = PoolIntArray( -65536, 7, 0, -65535, 7, 0, -65534, 7, 0, -65533, 7, 0
 
 [node name="Player 1" parent="." instance=ExtResource( 4 )]
 position = Vector2( 295.549, 597.191 )
+scale = Vector2( 2.5, 2.5 )
 
 [node name="Player 2" parent="." instance=ExtResource( 4 )]
 position = Vector2( 985.687, 592.262 )
+scale = Vector2( 2.5, 2.5 )
 player = 2
+
+[node name="Timer" type="Timer" parent="."]
+one_shot = true
+
+[node name="Background" type="Sprite" parent="."]
+show_behind_parent = true
+position = Vector2( 6.47306e-05, -0.340968 )
+scale = Vector2( 10, 10 )
+texture = ExtResource( 5 )
+centered = false
+__meta__ = {
+"_edit_group_": true
+}
 [connection signal="body_entered" from="Cesta1" to="." method="_on_Cesta1_body_entered"]
-[connection signal="body_exited" from="Cesta1" to="." method="_on_Cesta1_body_exited"]
+[connection signal="body_entered" from="Cesta2" to="." method="_on_Cesta2_body_entered"]
+[connection signal="timeout" from="Timer" to="Bola" method="_on_Timer_timeout"]
+[connection signal="timeout" from="Timer" to="." method="_on_Timer_timeout"]
