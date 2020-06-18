@@ -1,10 +1,11 @@
-[gd_scene load_steps=8 format=2]
+[gd_scene load_steps=9 format=2]
 
-[ext_resource path="res://Basquete.gd" type="Script" id=1]
+[ext_resource path="res://scripts/Basquete/Basquete.gd" type="Script" id=1]
 [ext_resource path="res://Bola.tscn" type="PackedScene" id=2]
 [ext_resource path="res://gramaTileSet.tres" type="TileSet" id=3]
 [ext_resource path="res://Player.tscn" type="PackedScene" id=4]
-[ext_resource path="res://basqueteBackground.png" type="Texture" id=5]
+[ext_resource path="res://assets/Basquete/basqueteBackground.png" type="Texture" id=5]
+[ext_resource path="res://GUI.tscn" type="PackedScene" id=6]
 
 [sub_resource type="RectangleShape2D" id=1]
 extents = Vector2( 140.649, 10 )
@@ -28,6 +29,8 @@ __meta__ = {
 
 [node name="Colisao" type="CollisionShape2D" parent="Cesta1"]
 shape = SubResource( 1 )
+one_way_collision = true
+one_way_collision_margin = 1.5
 
 [node name="BordaCesta" type="StaticBody2D" parent="Cesta1"]
 
@@ -76,6 +79,10 @@ centered = false
 __meta__ = {
 "_edit_group_": true
 }
+
+[node name="GUI" parent="." instance=ExtResource( 6 )]
+margin_right = 1282.0
+margin_bottom = 98.0
 [connection signal="body_entered" from="Cesta1" to="." method="_on_Cesta1_body_entered"]
 [connection signal="body_entered" from="Cesta2" to="." method="_on_Cesta2_body_entered"]
 [connection signal="timeout" from="Timer" to="Bola" method="_on_Timer_timeout"]

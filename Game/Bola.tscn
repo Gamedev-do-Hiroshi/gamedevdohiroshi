@@ -1,7 +1,8 @@
 [gd_scene load_steps=5 format=2]
 
-[ext_resource path="res://Bola.gd" type="Script" id=1]
+[ext_resource path="res://scripts/Bola/Bola.gd" type="Script" id=1]
 [ext_resource path="res://Sprites/Bola.png" type="Texture" id=2]
+
 
 [sub_resource type="PhysicsMaterial" id=1]
 bounce = 0.5
