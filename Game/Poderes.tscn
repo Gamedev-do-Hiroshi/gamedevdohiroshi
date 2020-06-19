@@ -1,4 +1,4 @@
-[gd_scene load_steps=18 format=2]
+[gd_scene load_steps=22 format=2]
 
 [ext_resource path="res://Sprites/Bola.png" type="Texture" id=1]
 [ext_resource path="res://Sprites/Fogo.png" type="Texture" id=2]
@@ -6,7 +6,10 @@
 [ext_resource path="res://Sprites/bloco_gelo.png" type="Texture" id=4]
 [ext_resource path="res://assets/Poderes/laser.png" type="Texture" id=5]
 [ext_resource path="res://Sprites/espiral1.png" type="Texture" id=6]
-[ext_resource path="res://Sprites/espinho.png" type="Texture" id=7]
+[ext_resource path="res://Sprites/espinhoCrescendo0.png" type="Texture" id=7]
+[ext_resource path="res://Sprites/espinhoCrescendo1.png" type="Texture" id=8]
+[ext_resource path="res://Sprites/espinhoCrescendo2.png" type="Texture" id=9]
+[ext_resource path="res://Sprites/espinhoCrescendo3.png" type="Texture" id=10]
 
 [sub_resource type="GDScript" id=1]
 script/source = "extends Node2D
@@ -80,6 +83,9 @@ func _process(delta):
 		#	self.free()
 		pass
 	
+	elif poder == PODERES.ESPINHO:
+		$Espinhos.get_node(\"Sprite\").play(\"Grow\")
+	
 	pass
 	
 func _physics_process(delta):
@@ -115,6 +121,7 @@ func _physics_process(delta):
 				
 				espinho.global_position = $Bola_de_terra.global_position
 				espinho.poder = PODERES.ESPINHO
+				espinho.z_index = 2
 				
 				get_parent().add_child(espinho)
 				
@@ -126,7 +133,7 @@ func _physics_process(delta):
 		
 		for x in $Espinhos.get_overlapping_bodies():
 			if x.get_class() == \"KinematicBody2D\":
-				x.vida-=0.4
+				x.vida-=0.1
 				x.lento = 1
 				
 				if x.player == 1:
@@ -213,6 +220,14 @@ radius = 13.5492
 [sub_resource type="RectangleShape2D" id=9]
 extents = Vector2( 0, 12 )
 
+[sub_resource type="SpriteFrames" id=12]
+animations = [ {
+"frames": [ ExtResource( 7 ), ExtResource( 8 ), ExtResource( 9 ), ExtResource( 10 ) ],
+"loop": false,
+"name": "Grow",
+"speed": 8.0
+} ]
+
 [sub_resource type="RectangleShape2D" id=11]
 extents = Vector2( 52.2251, 46.926 )
 
@@ -238,7 +253,6 @@ texture = ExtResource( 1 )
 position = Vector2( -18, 0 )
 scale = Vector2( 2, 2 )
 frames = SubResource( 7 )
-frame = 2
 playing = true
 
 [node name="Bola_de_neve" type="RigidBody2D" parent="." groups=[
@@ -310,10 +324,11 @@ shape = SubResource( 8 )
 [node name="Espinhos" type="Area2D" parent="."]
 position = Vector2( 0.880249, 9.03878 )
 
-[node name="Sprite" type="Sprite" parent="Espinhos"]
+[node name="Sprite" type="AnimatedSprite" parent="Espinhos"]
 position = Vector2( -1.42233, -23.3268 )
 scale = Vector2( 3, 3 )
-texture = ExtResource( 7 )
+frames = SubResource( 12 )
+animation = "Grow"
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Espinhos"]
 position = Vector2( -0.88028, -44.893 )

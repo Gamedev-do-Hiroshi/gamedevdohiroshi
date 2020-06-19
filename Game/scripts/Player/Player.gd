@@ -93,7 +93,7 @@ func _process(delta):
 # ---------------------------------------------------> FÍSICA <---------------------------------------------------------
 func _physics_process(delta):
 	if lento:
-		SPEED = MAX_SPEED/2
+		SPEED = MAX_SPEED/3
 	else:
 		SPEED = MAX_SPEED
 	

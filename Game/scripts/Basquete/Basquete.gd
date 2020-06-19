@@ -11,6 +11,7 @@ func _ready():
 	Bola.position.x = 640
 	Bola.position.y = 200
 	$Timer.connect("timeout", Bola, "_on_Timer_timeout")
+	Bola.z_index = 1
 	add_child(Bola)
 	
 	print("Comecou")
@@ -48,6 +49,7 @@ func _on_Timer_timeout():
 	Bola.position.x = 640
 	Bola.position.y = 200
 	$Timer.connect("timeout", Bola, "_on_Timer_timeout")
+	Bola.z_index = 1
 	add_child(Bola)
 	
 	$Timer.set_wait_time(3)
