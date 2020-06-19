@@ -74,6 +74,7 @@ poder = 2
 position = Vector2( 985.687, 592.262 )
 scale = Vector2( 2.5, 2.5 )
 player = 2
+poder = 4
 
 [node name="Timer" type="Timer" parent="."]
 one_shot = true

@@ -1,7 +1,10 @@
 extends KinematicBody2D
 
 export var player = 1
-export(int, "VERMELHO", "LARANJA", "AZUL") var poder = "VERMELHO"
+
+enum PODERES {VERMELHO, LARANJA, AZUL, GELO, AMARELO}
+
+export(PODERES) var poder = PODERES.VERMELHO
 
 const UP = Vector2(0, -1)
 const SPEED = 400
@@ -35,6 +38,8 @@ var normal = Vector2()
 var cena_poder
 var novo_poder
 
+var ocupado = 0
+
 # --------------------------------------> FUNÇÃO CHAMADA QUANDO CARREGA O NÓ <-----------------------------------------
 func _ready():
 
@@ -48,6 +53,7 @@ func _ready():
 	mana = 100
 	knock_back = 0
 	colisao = 0
+	ocupado = 0
 	
 # --------------------------------------> FUNÇÃO CHAMADA A CADA FRAME <-----------------------------------------
 func _process(delta):
@@ -69,10 +75,10 @@ func _physics_process(delta):
 	motion.y += GRAVITY
 	
 	
-	if knock_back == 0:
+	if knock_back == 0 and ocupado == 0:
 		control(delta)
 		socar(delta)
-	else:
+	elif knock_back != 0:
 		empurrao(delta)
 		
 	
@@ -88,6 +94,7 @@ func _physics_process(delta):
 # -------------------------------------------------------> SOCO <------------------------------------------------------
 func punch():
 	if soco == 0:
+		ocupado = 1
 		soco = 1
 		tempo_soco = 0.0
 		vel_soco = sentido * VEL_SOCO
@@ -108,6 +115,7 @@ func socar(delta):
 		vel_soco = 0;
 		$Mao.position.x = 0
 		tempo_soco = 0
+		ocupado = 0
 		$Sprite.play("Idle")
 	
 	if soco == 1:
@@ -170,7 +178,7 @@ func control(delta):
 				pass
 		else:
 			motion.x = 0
-			if soco == 0:
+			if ocupado == 0:
 				$Sprite.play("Idle")
 		
 		if is_on_floor():
@@ -210,7 +218,7 @@ func control(delta):
 				pass
 		else:
 			motion.x = 0
-			if soco == 0:
+			if ocupado == 0:
 				$Sprite.play("Idle")
 		
 		if is_on_floor():
@@ -239,10 +247,15 @@ func ativar_poder():
 	novo_poder.velocidade = motion
 	if poder == 0:
 		novo_poder.position = position +  Vector2(sentido*30, -10)
+		self.get_parent().add_child(novo_poder)
 	elif poder == 2:
 		novo_poder.position = position +  Vector2(sentido*50, -10)
-	
-	self.get_parent().add_child(novo_poder)
+		self.get_parent().add_child(novo_poder)
+	elif poder == PODERES.AMARELO:
+		novo_poder.position = Vector2(sentido*10, 6)
+		$Sprite.animation = "Laser"
+		ocupado = 1
+		self.add_child(novo_poder)
 	pass
 
 func gelado():

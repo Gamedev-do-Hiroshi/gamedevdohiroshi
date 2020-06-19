@@ -2,15 +2,15 @@
 
 importer="texture"
 type="StreamTexture"
-path="res://.import/pixil-frame-2(4).png-056a78c2269f09f61424593a50dbf35b.stex"
+path="res://.import/hiroshiLaser2.png-95ca1d4c601bc2d81f5dc45db97a25cf.stex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://assets/Poderes/pixil-frame-2(4).png"
-dest_files=[ "res://.import/pixil-frame-2(4).png-056a78c2269f09f61424593a50dbf35b.stex" ]
+source_file="res://assets/Poderes/hiroshiLaser2.png"
+dest_files=[ "res://.import/hiroshiLaser2.png-95ca1d4c601bc2d81f5dc45db97a25cf.stex" ]
 
 [params]
 

@@ -2,24 +2,24 @@
 
 importer="texture"
 type="StreamTexture"
-path="res://.import/pixil-frame-1 (3).png-6c83e8579c1ff33b1cffdb00b92cab04.stex"
+path="res://.import/laser.png-28a3452f94882fe8ac4c42a1ff101a84.stex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://assets/Poderes/pixil-frame-1 (3).png"
-dest_files=[ "res://.import/pixil-frame-1 (3).png-6c83e8579c1ff33b1cffdb00b92cab04.stex" ]
+source_file="res://assets/Poderes/laser.png"
+dest_files=[ "res://.import/laser.png-28a3452f94882fe8ac4c42a1ff101a84.stex" ]
 
 [params]
 
-compress/mode=0
+compress/mode=3
 compress/lossy_quality=0.7
 compress/hdr_mode=0
 compress/bptc_ldr=0
 compress/normal_map=0
-flags/repeat=0
+flags/repeat=1
 flags/filter=true
 flags/mipmaps=false
 flags/anisotropic=false
