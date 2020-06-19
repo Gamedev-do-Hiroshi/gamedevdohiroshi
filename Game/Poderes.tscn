@@ -9,7 +9,7 @@
 [sub_resource type="GDScript" id=1]
 script/source = "extends Node2D
 
-enum PODERES {VERMELHO, LARANJA, AZUL, GELO, AMARELO}
+enum PODERES {VERMELHO, LARANJA, AZUL, GELO, AMARELO, ROXO}
 
 export(PODERES) var poder = PODERES.VERMELHO
 var sentido = 1
@@ -43,13 +43,13 @@ func _ready():
 	
 	print(poder)
 	
-	if poder == 0:
+	if poder == PODERES.VERMELHO:
 		print(\"VERMELHO\")
 		$Bola.apply_central_impulse(Vector2(sentido*IMPULSO_BOLA.x, IMPULSO_BOLA.y) + velocidade/10)
 		$Bola.angular_velocity = sentido*10
-	elif poder == 2:
+	elif poder == PODERES.AZUL:
 		$Bola_de_neve.apply_central_impulse(Vector2(sentido*IMPULSO_NEVE.x, IMPULSO_NEVE.y) + velocidade/10)
-	elif poder == 3:
+	elif poder == PODERES.GELO:
 		$Gelo.modulate = Color(1,1,1,0.9)
 		print(\"GELOU\")
 	elif poder == PODERES.AMARELO:
@@ -127,6 +127,7 @@ func _physics_process(delta):
 					x.stunado = 1
 					x.motion.x = 0
 					x.get_node(\"Sprite\").animation = \"Idle\"
+					#x.get_node(\"Sprite\").animation = \"Cego\"
 					
 			self.free()
 			return

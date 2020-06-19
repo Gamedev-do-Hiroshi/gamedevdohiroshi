@@ -2,7 +2,7 @@ extends KinematicBody2D
 
 export var player = 1
 
-enum PODERES {VERMELHO, LARANJA, AZUL, GELO, AMARELO}
+enum PODERES {VERMELHO, LARANJA, AZUL, GELO, AMARELO, ROXO}
 
 export(PODERES) var poder = PODERES.VERMELHO
 
@@ -86,7 +86,8 @@ func _process(delta):
 # ---------------------------------------------------> FÍSICA <---------------------------------------------------------
 func _physics_process(delta):
 	
-	motion.y += GRAVITY
+	if !self.get_parent().get_groups().has("vinicula"):
+		motion.y += GRAVITY
 	
 	
 	if knock_back == 0 and stunado == 0: 
@@ -179,7 +180,10 @@ func control(delta):
 	if player == 1:
 	
 		if Input.is_action_pressed("ui_right"):
-			motion.x = SPEED
+			if !self.get_parent().get_groups().has("vinicula"):
+				motion.x = SPEED
+			else:
+				motion.x += SPEED
 			sentido = 1
 			$Sprite.flip_h = true
 			if soco == 0:
@@ -188,7 +192,10 @@ func control(delta):
 				#animação de Run + punch
 				pass
 		elif Input.is_action_pressed("ui_left"):
-			motion.x = -SPEED
+			if !self.get_parent().get_groups().has("vinicula"):
+				motion.x = -SPEED
+			else:
+				motion.x -= SPEED
 			sentido = -1
 			$Sprite.flip_h = false
 			if soco == 0:
@@ -197,7 +204,8 @@ func control(delta):
 				#animação de Run + punch
 				pass
 		else:
-			motion.x = 0
+			if !self.get_parent().get_groups().has("vinicula"):
+				motion.x = 0
 			if soco == 0:
 				$Sprite.play("Idle")
 		
@@ -219,7 +227,10 @@ func control(delta):
 	elif player == 2:
 		
 		if Input.is_key_pressed(KEY_D):
-			motion.x = SPEED
+			if !self.get_parent().get_groups().has("vinicula"):
+				motion.x = SPEED
+			else:
+				motion.x += SPEED
 			sentido = 1
 			$Sprite.flip_h = true
 			if soco == 0:
@@ -228,7 +239,10 @@ func control(delta):
 				#animação de Run + punch
 				pass
 		elif Input.is_key_pressed(KEY_A):
-			motion.x = -SPEED
+			if !self.get_parent().get_groups().has("vinicula"):
+				motion.x = SPEED
+			else:
+				motion.x -= SPEED
 			sentido = -1
 			$Sprite.flip_h = false
 			if soco == 0:
@@ -237,7 +251,8 @@ func control(delta):
 				#animação de Run + punch
 				pass
 		else:
-			motion.x = 0
+			if !self.get_parent().get_groups().has("vinicula"):
+				motion.x = 0
 			if soco == 0:
 				$Sprite.play("Idle")
 		
