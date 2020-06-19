@@ -49,7 +49,7 @@ extents = Vector2( 12.0251, 24.693 )
 extents = Vector2( 5.61736, 3.53411 )
 
 [sub_resource type="RectangleShape2D" id=4]
-extents = Vector2( 11.9924, 24.4546 )
+extents = Vector2( 17, 30 )
 
 [node name="Player" type="KinematicBody2D" groups=[
 "player",
@@ -82,7 +82,6 @@ collision_layer = 24576
 collision_mask = 24576
 
 [node name="Colisao" type="CollisionShape2D" parent="Corpo"]
-visible = false
 shape = SubResource( 4 )
 [connection signal="area_entered" from="Mao" to="." method="_on_Mao_area_entered"]
 [connection signal="body_entered" from="Mao" to="." method="_on_Mao_body_entered"]

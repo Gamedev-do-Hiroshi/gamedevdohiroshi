@@ -1,6 +1,6 @@
 extends Node2D
 
-const GRAVIDADE = 10.0
+const GRAVIDADE = 30.0
 const CENTRO = Vector2(640, 360)
 var area = preload("res://Setor_vinicula.tscn")
 var gravidade
@@ -21,7 +21,7 @@ func _physics_process(delta):
 		
 			gravidade = - GRAVIDADE * 1/( (CENTRO - x.position).length() )
 			if x.get_groups().has("player"):
-				x.motion += gravidade * (CENTRO - x.position)
+				x.vel_vinicola += gravidade * (CENTRO - x.position) * delta
 			else:
 				x.linear_velocity += gravidade * (CENTRO - x.position) * delta
 	pass

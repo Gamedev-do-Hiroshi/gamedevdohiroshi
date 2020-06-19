@@ -51,6 +51,8 @@ const DURACAO_STUN = 2.0
 var tempo_stun = 0.0
 var stunado = 0
 
+var vel_vinicola
+
 # --------------------------------------> FUNÇÃO CHAMADA QUANDO CARREGA O NÓ <-----------------------------------------
 func _ready():
 
@@ -68,6 +70,7 @@ func _ready():
 	gelou = 0
 	stunado = 0
 	tempo_stun = 0.0
+	vel_vinicola = Vector2()
 	
 # --------------------------------------> FUNÇÃO CHAMADA A CADA FRAME <-----------------------------------------
 func _process(delta):
@@ -86,8 +89,16 @@ func _process(delta):
 # ---------------------------------------------------> FÍSICA <---------------------------------------------------------
 func _physics_process(delta):
 	
-	if !self.get_parent().get_groups().has("vinicula"):
+	if !self.get_parent().get_groups().has("vinicola"):
 		motion.y += GRAVITY
+	else:
+		
+		for x in $Corpo.get_overlapping_bodies():
+			#print("OLHA: ", x)
+			if x.get_groups().has("mapa"):
+				vel_vinicola -= (position - x.position).normalized().cross(vel_vinicola) * (position - x.position).normalized().rotated(PI/2)
+				print(vel_vinicola)
+		position += vel_vinicola * delta
 	
 	
 	if knock_back == 0 and stunado == 0: 
@@ -105,6 +116,7 @@ func _physics_process(delta):
 		motion = vel_colisao
 	if gelou:
 		geleira(delta)
+	
 	
 	#print(motion)
 	motion = move_and_slide(motion, UP)
@@ -183,7 +195,7 @@ func control(delta):
 			if !self.get_parent().get_groups().has("vinicula"):
 				motion.x = SPEED
 			else:
-				motion.x += SPEED
+				motion.x = SPEED
 			sentido = 1
 			$Sprite.flip_h = true
 			if soco == 0:
@@ -195,7 +207,7 @@ func control(delta):
 			if !self.get_parent().get_groups().has("vinicula"):
 				motion.x = -SPEED
 			else:
-				motion.x -= SPEED
+				motion.x = -SPEED
 			sentido = -1
 			$Sprite.flip_h = false
 			if soco == 0:
@@ -230,7 +242,7 @@ func control(delta):
 			if !self.get_parent().get_groups().has("vinicula"):
 				motion.x = SPEED
 			else:
-				motion.x += SPEED
+				motion.x = SPEED
 			sentido = 1
 			$Sprite.flip_h = true
 			if soco == 0:
@@ -240,9 +252,9 @@ func control(delta):
 				pass
 		elif Input.is_key_pressed(KEY_A):
 			if !self.get_parent().get_groups().has("vinicula"):
-				motion.x = SPEED
+				motion.x = -SPEED
 			else:
-				motion.x -= SPEED
+				motion.x = -SPEED
 			sentido = -1
 			$Sprite.flip_h = false
 			if soco == 0:
