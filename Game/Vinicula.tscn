@@ -38,6 +38,7 @@ player = 2
 poder = 2
 
 [node name="Area" type="Area2D" parent="."]
+editor/display_folded = true
 collision_layer = 0
 collision_mask = 291
 

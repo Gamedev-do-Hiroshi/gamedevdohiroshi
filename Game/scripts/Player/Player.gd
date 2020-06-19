@@ -2,12 +2,14 @@ extends KinematicBody2D
 
 export var player = 1
 
-enum PODERES {VERMELHO, LARANJA, AZUL, GELO, AMARELO, ROXO}
+enum PODERES {VERMELHO, LARANJA, AZUL, GELO, AMARELO, ROXO, VERDE, ESPINHO}
 
 export(PODERES) var poder = PODERES.VERMELHO
 
+const MAX_SPEED = 400
+
 const UP = Vector2(0, -1)
-const SPEED = 400
+var SPEED = MAX_SPEED
 const GRAVITY = 24
 const JUMP_HEIGHT = -600
 const KB_SPEED = 400
@@ -53,6 +55,8 @@ var stunado = 0
 
 var vel_vinicola
 
+var lento = 0
+
 # --------------------------------------> FUNÇÃO CHAMADA QUANDO CARREGA O NÓ <-----------------------------------------
 func _ready():
 
@@ -76,7 +80,7 @@ func _ready():
 func _process(delta):
 	
 	if vida <= 0:
-		self.free()
+		$Sprite.play("Dead")
 	
 	mana += TAXA_MANA * delta
 	
@@ -88,11 +92,19 @@ func _process(delta):
 
 # ---------------------------------------------------> FÍSICA <---------------------------------------------------------
 func _physics_process(delta):
+	if lento:
+		SPEED = MAX_SPEED/2
+	else:
+		SPEED = MAX_SPEED
+	
 	
 	if !self.get_parent().get_groups().has("vinicola"):
 		motion.y += GRAVITY
+	
+		if vida <= 0:
+			$Sprite.play("Dead")
+			return
 	else:
-		
 		for x in $Corpo.get_overlapping_bodies():
 			#print("OLHA: ", x)
 			if x.get_groups().has("mapa"):
@@ -110,7 +122,6 @@ func _physics_process(delta):
 	
 	if stunado:
 		stun(delta)
-		
 	
 	if colisao:
 		motion = vel_colisao
@@ -189,8 +200,11 @@ func colide():
 # -----------------------------------------------------> CONTROLES <----------------------------------------------------
 func control(delta):
 	
-	if player == 1:
+	if vida <= 0:
+		$Sprite.play("Dead")
+		return
 	
+	if player == 1:
 		if Input.is_action_pressed("ui_right"):
 			if !self.get_parent().get_groups().has("vinicula"):
 				motion.x = SPEED
@@ -303,6 +317,9 @@ func ativar_poder():
 		$Sprite.animation = "Laser"
 		ocupado = 1
 		self.add_child(novo_poder)
+	elif poder == PODERES.VERDE:
+		novo_poder.position = position +  Vector2(sentido*50, -10)
+		self.get_parent().add_child(novo_poder)
 	pass
 
 func gelado(direcao):
@@ -358,6 +375,11 @@ func _on_Mao_area_entered(area):
 	if ((area.get_groups().has("mao") or area.get_groups().has("corpo"))  and area.get_parent() != self):
 		print("SOQUEI")
 		area.get_parent().vida -= 10
+		
+		if area.get_parent().vida <= 0:
+			area.get_parent().get_node("Sprite").flip_h = !($Sprite.flip_h)
+			pass
+			
 		area.get_parent().socado(sentido)
 	
 	
