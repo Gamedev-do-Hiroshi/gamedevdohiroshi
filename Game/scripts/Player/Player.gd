@@ -40,6 +40,17 @@ var novo_poder
 
 var ocupado = 0
 
+const DURACAO_GELO = 2.0
+const VEL_GELO = 20
+var gelou = 0
+var tempo_gelo = 0.0
+var vel_gelo
+var gelo
+
+const DURACAO_STUN = 2.0
+var tempo_stun = 0.0
+var stunado = 0
+
 # --------------------------------------> FUNÇÃO CHAMADA QUANDO CARREGA O NÓ <-----------------------------------------
 func _ready():
 
@@ -54,6 +65,9 @@ func _ready():
 	knock_back = 0
 	colisao = 0
 	ocupado = 0
+	gelou = 0
+	stunado = 0
+	tempo_stun = 0.0
 	
 # --------------------------------------> FUNÇÃO CHAMADA A CADA FRAME <-----------------------------------------
 func _process(delta):
@@ -75,26 +89,33 @@ func _physics_process(delta):
 	motion.y += GRAVITY
 	
 	
-	if knock_back == 0 and ocupado == 0:
-		control(delta)
+	if knock_back == 0 and stunado == 0: 
 		socar(delta)
+		if ocupado == 0:
+			control(delta)
 	elif knock_back != 0:
 		empurrao(delta)
+	
+	if stunado:
+		stun(delta)
 		
 	
 	if colisao:
 		motion = vel_colisao
+	if gelou:
+		geleira(delta)
 	
 	#print(motion)
 	motion = move_and_slide(motion, UP)
-		
+	
+	if gelou:
+		motion.x = vel_gelo
 	pass
 
 
 # -------------------------------------------------------> SOCO <------------------------------------------------------
 func punch():
 	if soco == 0:
-		ocupado = 1
 		soco = 1
 		tempo_soco = 0.0
 		vel_soco = sentido * VEL_SOCO
@@ -115,7 +136,6 @@ func socar(delta):
 		vel_soco = 0;
 		$Mao.position.x = 0
 		tempo_soco = 0
-		ocupado = 0
 		$Sprite.play("Idle")
 	
 	if soco == 1:
@@ -178,7 +198,7 @@ func control(delta):
 				pass
 		else:
 			motion.x = 0
-			if ocupado == 0:
+			if soco == 0:
 				$Sprite.play("Idle")
 		
 		if is_on_floor():
@@ -218,7 +238,7 @@ func control(delta):
 				pass
 		else:
 			motion.x = 0
-			if ocupado == 0:
+			if soco == 0:
 				$Sprite.play("Idle")
 		
 		if is_on_floor():
@@ -258,17 +278,45 @@ func ativar_poder():
 		self.add_child(novo_poder)
 	pass
 
-func gelado():
+func gelado(direcao):
+	
+	print("direção: " + String(direcao))
 	
 	cena_poder = load("res://Poderes.tscn")
 	novo_poder = cena_poder.instance()
 	novo_poder.poder = 3
+	ocupado = 1
+	gelou = 1
+	tempo_gelo = 0.0
+	vel_gelo = motion.x + direcao*VEL_GELO
 	#novo_poder.sentido = sentido
 	#novo_poder.velocidade = motion
 	#novo_poder.position = position
 	
 	self.add_child(novo_poder)
 	
+	gelo = novo_poder
+	
+	
+	pass
+
+func geleira(delta):
+	tempo_gelo += delta
+	if tempo_gelo < DURACAO_GELO:
+		pass
+	else:
+		gelou = 0
+		tempo_gelo = 0.0
+		motion.x = 0
+		ocupado = 0
+		gelo.free()
+	pass
+
+func stun(delta):
+	tempo_stun += delta
+	if tempo_stun >= DURACAO_STUN:
+		stunado = 0
+		tempo_stun = 0.0
 	
 	pass
 

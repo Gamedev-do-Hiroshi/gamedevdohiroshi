@@ -18,10 +18,12 @@ const IMPULSO_BOLA = Vector2(1, -4) * 100
 var velocidade = Vector2()
 
 const TEMPO_NEVE = 2.0
+const DANO_NEVE = 5
 const IMPULSO_NEVE = Vector2(1, -1) * 300
 var tempo = 0.0
 
 const VEL_LASER = 200
+const DANO_LASER = 10
 var x_laser = 0.0
 var frame_laser = [5.0, 15.0, 25.0]
 var y_laser = 5.0
@@ -77,8 +79,7 @@ func _physics_process(delta):
 	
 	if poder == 0:
 		$Bola/Fogo.rotation = -$Bola.rotation + $Bola.linear_velocity.angle()
-	elif poder == 2:
-		#print($Bola_de_neve.contacts_reported)
+	elif poder == PODERES.AZUL:
 		if $Bola_de_neve/Area2D.get_overlapping_areas().size() != 0 or $Bola_de_neve/Area2D.get_overlapping_bodies().size() != 0:
 			if $Bola_de_neve/Area2D.get_overlapping_bodies() == [$Bola_de_neve]:
 				return
@@ -86,12 +87,14 @@ func _physics_process(delta):
 			for x in $Bola_de_neve/Area2D.get_overlapping_bodies():
 				print(x)
 				if x.get_groups().has(\"player\"):
-					x.gelado()
+					x.gelado(sentido)
+					x.vida -= DANO_NEVE
 					
 			for x in $Bola_de_neve/Area2D.get_overlapping_areas():
 				print(x)
 				if x.get_groups().has(\"mao\"):
-					x.get_parent().gelado()
+					x.get_parent().gelado(sentido)
+					x.get_parent().vida -= DANO_NEVE
 			
 			print(\"Corpos: \" + String($Bola_de_neve/Area2D.get_overlapping_bodies()))
 			
@@ -117,6 +120,14 @@ func _physics_process(delta):
 			print($Laser.get_overlapping_bodies())
 			print(\"MORREU\")
 			self.get_parent().ocupado = 0
+			self.get_parent().get_node(\"Sprite\").animation = \"Idle\"
+			for x in  $Laser.get_overlapping_bodies():
+				if x.get_groups().has(\"player\") and x != self.get_parent():
+					x.vida -= DANO_LASER
+					x.stunado = 1
+					x.motion.x = 0
+					x.get_node(\"Sprite\").animation = \"Idle\"
+					
 			self.free()
 			return
 		#print($Laser.get_overlapping_areas().size())
@@ -183,7 +194,6 @@ texture = ExtResource( 1 )
 position = Vector2( -18, 0 )
 scale = Vector2( 2, 2 )
 frames = SubResource( 7 )
-frame = 2
 playing = true
 
 [node name="Bola_de_neve" type="RigidBody2D" parent="." groups=[
