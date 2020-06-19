@@ -7,6 +7,8 @@ onready var p2_lifenumber_label = $HBoxContainer/P2Bars/LifeBar/Count/Background
 onready var p2_life_bar = $HBoxContainer/P2Bars/LifeBar/Gauge
 onready var p2_energynumber_label = $HBoxContainer/P2Bars/EnergyBar/Count/Background/Number
 onready var p2_energy_bar = $HBoxContainer/P2Bars/EnergyBar/Gauge
+onready var p1_score = $HBoxContainer/HBoxContainer/Placar/Exibir/Number1
+onready var p2_score = $HBoxContainer/HBoxContainer/Placar/Exibir/Number2
 
 # Declare member variables here. Examples:
 # var a = 2
@@ -19,7 +21,7 @@ func _ready():
 	p1_life_bar.max_value = player_max_health
 	p2_life_bar.max_value = player_max_health
 	
-
+	
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 #func _process(delta):
