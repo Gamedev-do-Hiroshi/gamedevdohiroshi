@@ -2,15 +2,15 @@
 
 importer="texture"
 type="StreamTexture"
-path="res://.import/Fogo.png-299eff09555078d4aff045ea0213de0f.stex"
+path="res://.import/espiral1.png-ea6cc701c2227c9be8dde71e64da5d35.stex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://Sprites/Fogo.png"
-dest_files=[ "res://.import/Fogo.png-299eff09555078d4aff045ea0213de0f.stex" ]
+source_file="res://assets/Poderes/espiral1.png"
+dest_files=[ "res://.import/espiral1.png-ea6cc701c2227c9be8dde71e64da5d35.stex" ]
 
 [params]
 

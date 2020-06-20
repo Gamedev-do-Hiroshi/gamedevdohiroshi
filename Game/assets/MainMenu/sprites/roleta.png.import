@@ -2,11 +2,16 @@
 
 importer="texture"
 type="StreamTexture"
-valid=false
+path="res://.import/roleta.png-f1ebe6090cd87df044f9d573b563b770.stex"
+metadata={
+"vram_texture": false
+}
 
 [deps]
 
-source_file="res://Sprites/bolaTerra.png"
+source_file="res://assets/MainMenu/sprites/roleta.png"
+dest_files=[ "res://.import/roleta.png-f1ebe6090cd87df044f9d573b563b770.stex" ]
+
 [params]
 
 compress/mode=0

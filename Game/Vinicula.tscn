@@ -1,8 +1,14 @@
 [gd_scene load_steps=9 format=2]
 
 [ext_resource path="res://Vinicula.gd" type="Script" id=1]
+<<<<<<< HEAD
 [ext_resource path="res://assets/Basquete/vinicola.png" type="Texture" id=3]
+=======
+[ext_resource path="res://Bola.tscn" type="PackedScene" id=2]
+[ext_resource path="res://assets/Cenarios/vinicola.png" type="Texture" id=3]
+>>>>>>> refs/remotes/origin/master
 [ext_resource path="res://Player.tscn" type="PackedScene" id=4]
+
 
 [sub_resource type="RectangleShape2D" id=1]
 extents = Vector2( 640, 360 )

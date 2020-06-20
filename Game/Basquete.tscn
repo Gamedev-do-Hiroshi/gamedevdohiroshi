@@ -1,11 +1,13 @@
 [gd_scene load_steps=9 format=2]
 
-[ext_resource path="res://scripts/Basquete/Basquete.gd" type="Script" id=1]
-[ext_resource path="res://assets/Basquete/basqueteBackground.png" type="Texture" id=2]
+[ext_resource path="res://scripts/Cenarios/Basquete.gd" type="Script" id=1]
+[ext_resource path="res://assets/Cenarios/basqueteBackground.png" type="Texture" id=2]
 [ext_resource path="res://gramaTileSet.tres" type="TileSet" id=3]
 [ext_resource path="res://Player.tscn" type="PackedScene" id=4]
 [ext_resource path="res://GUI.tscn" type="PackedScene" id=5]
 [ext_resource path="res://gramaTestTileSet.tres" type="TileSet" id=6]
+
+
 
 [sub_resource type="RectangleShape2D" id=1]
 extents = Vector2( 140.649, 10 )
@@ -68,13 +70,21 @@ tile_data = PoolIntArray( -1, 3, 0, -65536, 7, 0, -65535, 7, 0, -65534, 7, 0, -6
 [node name="Player 1" parent="." instance=ExtResource( 4 )]
 position = Vector2( 295.549, 597.191 )
 scale = Vector2( 2.5, 2.5 )
+<<<<<<< HEAD
 poder = 8
+=======
+poder = 5
+>>>>>>> refs/remotes/origin/master
 
 [node name="Player 2" parent="." instance=ExtResource( 4 )]
 position = Vector2( 985.687, 592.262 )
 scale = Vector2( 2.5, 2.5 )
 player = 2
+<<<<<<< HEAD
 poder = 8
+=======
+poder = 4
+>>>>>>> refs/remotes/origin/master
 
 [node name="Timer" type="Timer" parent="."]
 one_shot = true

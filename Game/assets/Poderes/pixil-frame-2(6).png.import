@@ -2,15 +2,15 @@
 
 importer="texture"
 type="StreamTexture"
-path="res://.import/vinicola.png-2570894083262fadca60de345149e129.stex"
+path="res://.import/pixil-frame-2(6).png-24b59d12e029e19b3664e8c09c015dd2.stex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://assets/Basquete/vinicola.png"
-dest_files=[ "res://.import/vinicola.png-2570894083262fadca60de345149e129.stex" ]
+source_file="res://assets/Poderes/pixil-frame-2(6).png"
+dest_files=[ "res://.import/pixil-frame-2(6).png-24b59d12e029e19b3664e8c09c015dd2.stex" ]
 
 [params]
 

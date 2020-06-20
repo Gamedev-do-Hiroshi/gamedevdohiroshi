@@ -2,19 +2,19 @@
 
 importer="texture"
 type="StreamTexture"
-path="res://.import/pixil-frame-2(6).png-d186dfb3a3a6227ea5080d24edc5d848.stex"
+path="res://.import/hiroshiIdle0.png-807c876f69c870dffd7bbf23f9499886.stex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://Sprites/pixil-frame-2(6).png"
-dest_files=[ "res://.import/pixil-frame-2(6).png-d186dfb3a3a6227ea5080d24edc5d848.stex" ]
+source_file="res://assets/MainMenu/sprites/hiroshiIdle0.png"
+dest_files=[ "res://.import/hiroshiIdle0.png-807c876f69c870dffd7bbf23f9499886.stex" ]
 
 [params]
 
-compress/mode=0
+compress/mode=3
 compress/lossy_quality=0.7
 compress/hdr_mode=0
 compress/bptc_ldr=0

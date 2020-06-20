@@ -2,15 +2,15 @@
 
 importer="texture"
 type="StreamTexture"
-path="res://.import/bola_de_neve.png-7a1085e524a9461df0b95d0f0753f9ed.stex"
+path="res://.import/bola_de_neve.png-9e3f6f1ec14b29a1e438fd63a8801c68.stex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://Sprites/bola_de_neve.png"
-dest_files=[ "res://.import/bola_de_neve.png-7a1085e524a9461df0b95d0f0753f9ed.stex" ]
+source_file="res://assets/Poderes/bola_de_neve.png"
+dest_files=[ "res://.import/bola_de_neve.png-9e3f6f1ec14b29a1e438fd63a8801c68.stex" ]
 
 [params]
 

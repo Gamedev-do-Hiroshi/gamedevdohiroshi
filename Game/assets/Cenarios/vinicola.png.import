@@ -2,15 +2,15 @@
 
 importer="texture"
 type="StreamTexture"
-path="res://.import/espinho.png-d07744d60d6bc93ff2680ab60a007810.stex"
+path="res://.import/vinicola.png-d481b78263dd48da695c90cda83e91d5.stex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://Sprites/espinho.png"
-dest_files=[ "res://.import/espinho.png-d07744d60d6bc93ff2680ab60a007810.stex" ]
+source_file="res://assets/Cenarios/vinicola.png"
+dest_files=[ "res://.import/vinicola.png-d481b78263dd48da695c90cda83e91d5.stex" ]
 
 [params]
 
