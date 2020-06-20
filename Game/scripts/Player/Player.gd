@@ -27,8 +27,10 @@ var teste
 var vida = 100
 var mana = 100
 const TAXA_MANA = 50
-const VEL_KNOCK_BACK = 200
-const DURACAO_KNOCK_BACK = 0.2
+const MAX_VEL_KNOCK_BACK = 200
+const MAX_DURACAO_KNOCK_BACK = 0.2
+var VEL_KNOCK_BACK = 200
+var DURACAO_KNOCK_BACK = 0.2
 var knock_back
 var tempo_knock_back
 
@@ -59,7 +61,9 @@ var lento = 0
 
 # --------------------------------------> FUNÇÃO CHAMADA QUANDO CARREGA O NÓ <-----------------------------------------
 func _ready():
-
+	if self.get_parent().get_groups().has("Floresta"):
+		VEL_KNOCK_BACK = 2*MAX_VEL_KNOCK_BACK
+		DURACAO_KNOCK_BACK = 2*DURACAO_KNOCK_BACK
 #	if player == 1:
 #		$Animacao.animation = "Player 1"
 #	elif player == 2:
@@ -92,12 +96,15 @@ func _process(delta):
 
 # ---------------------------------------------------> FÍSICA <---------------------------------------------------------
 func _physics_process(delta):
+	for x in $Corpo.get_overlapping_areas():
+		if x.get_groups().has("Area_espinhos"):
+			lento = 1
+			
 	if lento:
 		SPEED = MAX_SPEED/3
 	else:
 		SPEED = MAX_SPEED
-	
-	
+		
 	if !self.get_parent().get_groups().has("vinicola"):
 		motion.y += GRAVITY
 	
@@ -134,8 +141,10 @@ func _physics_process(delta):
 	
 	if gelou:
 		motion.x = vel_gelo
+		
+	lento = 0
+	
 	pass
-
 
 # -------------------------------------------------------> SOCO <------------------------------------------------------
 func punch():
@@ -144,11 +153,16 @@ func punch():
 		tempo_soco = 0.0
 		vel_soco = sentido * VEL_SOCO
 		$Sprite.play("Punch")
+		var sound = AudioStreamPlayer2D.new();
+		self.add_child(sound);
+		sound.stream = load("res://sounds/Woosh-Mark_DiAngelo-4778593.wav");
+		sound.set_volume_db(-5);
+		sound.play();
 		#print(soco)
 		#print(teste)
 		print("SOCO")
 
-func socar(delta): 
+func socar(delta):  
 	if soco != 0:
 		tempo_soco += delta
 	
@@ -199,10 +213,11 @@ func colide():
 
 # -----------------------------------------------------> CONTROLES <----------------------------------------------------
 func control(delta):
-	
 	if vida <= 0:
 		$Sprite.play("Dead")
 		return
+	
+	#print(lento)
 	
 	if player == 1:
 		if Input.is_action_pressed("ui_right"):
@@ -375,12 +390,19 @@ func _on_Mao_area_entered(area):
 	if ((area.get_groups().has("mao") or area.get_groups().has("corpo"))  and area.get_parent() != self):
 		print("SOQUEI")
 		area.get_parent().vida -= 10
+		var sound = AudioStreamPlayer2D.new();
+		self.add_child(sound);
+		sound.stream = load("res://sounds/Realistic_Punch-Mark_DiAngelo-1609462330.wav");
+		sound.set_volume_db(-5);
+		sound.play();
 		
 		if area.get_parent().vida <= 0:
 			area.get_parent().get_node("Sprite").flip_h = !($Sprite.flip_h)
 			pass
 			
 		area.get_parent().socado(sentido)
+		
+		
 	
 	
 	pass
