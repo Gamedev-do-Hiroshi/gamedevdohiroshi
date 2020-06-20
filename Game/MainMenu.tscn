@@ -107,4 +107,5 @@ size_flags_vertical = 3
 position = Vector2( 855.733, 208 )
 scale = Vector2( 10, 10 )
 frames = SubResource( 3 )
+frame = 1
 playing = true

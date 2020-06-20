@@ -32,7 +32,7 @@ func _input(event):
 		if event.pressed and event.scancode == KEY_UP:
 			state -= 1
 		elif event.pressed and event.scancode == KEY_DOWN:
-			state += 1		
+			state += 1
 		elif event.pressed and event.scancode == KEY_ENTER:
 			if state == 0:
 #				var scene = load("res://Basquete.tscn")

@@ -2,15 +2,15 @@
 
 importer="texture"
 type="StreamTexture"
-path="res://.import/espinhoCrescendo3.png-a91b35200649671a5b0c21614233232e.stex"
+path="res://.import/espinhoCrescendo1.png-cb7d5ea5ce1360ee1aeaafaf9e0c0338.stex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://Sprites/espinhoCrescendo3.png"
-dest_files=[ "res://.import/espinhoCrescendo3.png-a91b35200649671a5b0c21614233232e.stex" ]
+source_file="res://assets/Poderes/espinhoCrescendo1.png"
+dest_files=[ "res://.import/espinhoCrescendo1.png-cb7d5ea5ce1360ee1aeaafaf9e0c0338.stex" ]
 
 [params]
 

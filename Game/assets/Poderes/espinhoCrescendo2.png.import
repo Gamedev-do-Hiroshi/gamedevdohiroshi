@@ -2,11 +2,16 @@
 
 importer="texture"
 type="StreamTexture"
-valid=false
+path="res://.import/espinhoCrescendo2.png-ac1940e94b8ad0a551d218124e0bb167.stex"
+metadata={
+"vram_texture": false
+}
 
 [deps]
 
-source_file="res://Sprites/bolaTerra.png"
+source_file="res://assets/Poderes/espinhoCrescendo2.png"
+dest_files=[ "res://.import/espinhoCrescendo2.png-ac1940e94b8ad0a551d218124e0bb167.stex" ]
+
 [params]
 
 compress/mode=0

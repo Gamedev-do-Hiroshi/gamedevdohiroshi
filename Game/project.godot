@@ -17,7 +17,7 @@ _global_script_class_icons={
 
 config/name="Game"
 run/main_scene="res://Vinicula.tscn"
-config/icon="res://icone_roleta.png"
+config/icon="res://icon.png"
 
 [display]
 

@@ -2,15 +2,15 @@
 
 importer="texture"
 type="StreamTexture"
-path="res://.import/espinhoCrescendo2.png-32d542997962d203f02c9babebb6fa90.stex"
+path="res://.import/BolaFogo.png-11e8be8ca5a0a32e73a90bca25b5b7af.stex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://Sprites/espinhoCrescendo2.png"
-dest_files=[ "res://.import/espinhoCrescendo2.png-32d542997962d203f02c9babebb6fa90.stex" ]
+source_file="res://assets/Poderes/BolaFogo.png"
+dest_files=[ "res://.import/BolaFogo.png-11e8be8ca5a0a32e73a90bca25b5b7af.stex" ]
 
 [params]
 

@@ -2,15 +2,15 @@
 
 importer="texture"
 type="StreamTexture"
-path="res://.import/pixil-frame-2(6).png-d186dfb3a3a6227ea5080d24edc5d848.stex"
+path="res://.import/pixil-frame-2(6).png-24b59d12e029e19b3664e8c09c015dd2.stex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://Sprites/pixil-frame-2(6).png"
-dest_files=[ "res://.import/pixil-frame-2(6).png-d186dfb3a3a6227ea5080d24edc5d848.stex" ]
+source_file="res://assets/Poderes/pixil-frame-2(6).png"
+dest_files=[ "res://.import/pixil-frame-2(6).png-24b59d12e029e19b3664e8c09c015dd2.stex" ]
 
 [params]
 

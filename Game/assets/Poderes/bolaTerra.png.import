@@ -2,16 +2,11 @@
 
 importer="texture"
 type="StreamTexture"
-path="res://.import/bola_de_neve.png-7a1085e524a9461df0b95d0f0753f9ed.stex"
-metadata={
-"vram_texture": false
-}
+valid=false
 
 [deps]
 
-source_file="res://Sprites/bola_de_neve.png"
-dest_files=[ "res://.import/bola_de_neve.png-7a1085e524a9461df0b95d0f0753f9ed.stex" ]
-
+source_file="res://assets/Poderes/bolaTerra.png"
 [params]
 
 compress/mode=0
