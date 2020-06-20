@@ -92,6 +92,10 @@ func _process(delta):
 
 # ---------------------------------------------------> FÍSICA <---------------------------------------------------------
 func _physics_process(delta):
+	for x in $Corpo.get_overlapping_areas():
+		if x.get_groups().has("Area_espinhos"):
+			lento = 1
+			
 	if lento:
 		SPEED = MAX_SPEED/3
 	else:
@@ -134,8 +138,10 @@ func _physics_process(delta):
 	
 	if gelou:
 		motion.x = vel_gelo
+		
+	lento = 0
+	
 	pass
-
 
 # -------------------------------------------------------> SOCO <------------------------------------------------------
 func punch():
@@ -148,7 +154,7 @@ func punch():
 		#print(teste)
 		print("SOCO")
 
-func socar(delta): 
+func socar(delta):  
 	if soco != 0:
 		tempo_soco += delta
 	
@@ -199,10 +205,11 @@ func colide():
 
 # -----------------------------------------------------> CONTROLES <----------------------------------------------------
 func control(delta):
-	
 	if vida <= 0:
 		$Sprite.play("Dead")
 		return
+	
+	#print(lento)
 	
 	if player == 1:
 		if Input.is_action_pressed("ui_right"):

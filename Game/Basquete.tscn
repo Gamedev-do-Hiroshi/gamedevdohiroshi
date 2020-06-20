@@ -14,6 +14,7 @@ extents = Vector2( 140.649, 10 )
 extents = Vector2( 8.21533, 10.5263 )
 
 [node name="Basquete" type="Node2D"]
+editor/display_folded = true
 script = ExtResource( 1 )
 
 [node name="Background" type="Sprite" parent="."]

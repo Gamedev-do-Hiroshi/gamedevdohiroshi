@@ -50,8 +50,6 @@ func _ready():
 	if poder != PODERES.ESPINHO:
 		$Espinhos.free()
 	
-	print(poder)
-	
 	if poder == PODERES.VERMELHO:
 		print(\"VERMELHO\")
 		$Bola.apply_central_impulse(Vector2(sentido*IMPULSO_BOLA.x, IMPULSO_BOLA.y) + velocidade/10)
@@ -84,7 +82,7 @@ func _process(delta):
 		pass
 	
 	elif poder == PODERES.ESPINHO:
-		$Espinhos.get_node(\"Sprite\").play(\"Grow\")
+		$Espinhos.get_node(\"Area_espinhos\").play(\"Grow\")
 	
 	pass
 	
@@ -133,18 +131,13 @@ func _physics_process(delta):
 		
 		for x in $Espinhos.get_overlapping_bodies():
 			if x.get_class() == \"KinematicBody2D\":
-				x.vida-=0.1
+				#x.vida-=0.1
 				x.lento = 1
 				
 				if x.player == 1:
 					p1 = 1
 				else:
 					p2 = 1
-		
-		if p1 == 0:
-			self.get_parent().get_node(\"Player 1\").lento = 0
-		if p2 == 0:
-			self.get_parent().get_node(\"Player 2\").lento = 0
 		
 	elif poder == PODERES.AMARELO:
 		x_laser += sentido*VEL_LASER * delta
@@ -324,7 +317,7 @@ shape = SubResource( 8 )
 [node name="Espinhos" type="Area2D" parent="."]
 position = Vector2( 0.880249, 9.03878 )
 
-[node name="Sprite" type="AnimatedSprite" parent="Espinhos"]
+[node name="Area_espinhos" type="AnimatedSprite" parent="Espinhos"]
 position = Vector2( -1.42233, -23.3268 )
 scale = Vector2( 3, 3 )
 frames = SubResource( 12 )
