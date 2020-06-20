@@ -17,7 +17,7 @@ func _physics_process(delta):
 	
 	for x in $Area.get_overlapping_bodies():
 		
-		if !x.get_groups().has("mapa"):
+		if !x.get_parent().get_groups().has("plataforma"):
 		
 			gravidade = - GRAVIDADE * 1/( (CENTRO - x.position).length() )
 			if x.get_groups().has("player"):

@@ -1,12 +1,24 @@
-[gd_scene load_steps=6 format=2]
+[gd_scene load_steps=10 format=2]
 
 [ext_resource path="res://Vinicula.gd" type="Script" id=1]
 [ext_resource path="res://Bola.tscn" type="PackedScene" id=2]
-[ext_resource path="res://gramaTileSet.tres" type="TileSet" id=3]
+[ext_resource path="res://assets/Basquete/vinicola.png" type="Texture" id=3]
 [ext_resource path="res://Player.tscn" type="PackedScene" id=4]
 
 [sub_resource type="RectangleShape2D" id=1]
 extents = Vector2( 640, 360 )
+
+[sub_resource type="RectangleShape2D" id=2]
+extents = Vector2( 47.3404, 119.143 )
+
+[sub_resource type="RectangleShape2D" id=3]
+extents = Vector2( 21.3244, 43.7266 )
+
+[sub_resource type="RectangleShape2D" id=4]
+extents = Vector2( 426.757, 18.2782 )
+
+[sub_resource type="RectangleShape2D" id=5]
+extents = Vector2( 205.272, 11.8958 )
 
 [node name="Vinicola" type="Node2D" groups=[
 "vinicola",
@@ -19,18 +31,8 @@ collision_layer = 82465
 collision_mask = 82465
 linear_velocity = Vector2( 20, 0 )
 
-[node name="TileMap" type="TileMap" parent="." groups=[
-"mapa",
-]]
-tile_set = ExtResource( 3 )
-cell_size = Vector2( 32, 32 )
-collision_layer = 8193
-collision_mask = 8193
-format = 1
-tile_data = PoolIntArray( 196611, -1073741822, 0, 196612, -1073741821, 0, 196613, -1073741821, 0, 196614, -1073741821, 0, 196615, -1073741821, 0, 196616, -1073741821, 0, 196617, -1073741821, 0, 196618, -1073741821, 0, 196619, -1073741821, 0, 196620, -1073741821, 0, 196621, -1073741821, 0, 196622, -1073741821, 0, 196623, -1073741821, 0, 196624, -1073741821, 0, 196625, -1073741821, 0, 196626, -1073741821, 0, 196627, -1073741821, 0, 196628, -1073741821, 0, 196629, -1073741821, 0, 196630, -1073741821, 0, 196631, -1073741821, 0, 196632, -1073741821, 0, 196633, -1073741821, 0, 196634, -1073741821, 0, 196635, -1073741821, 0, 196636, -1073741821, 0, 196637, -1073741821, 0, 196638, -1073741821, 0, 196639, -1073741821, 0, 196640, -1073741821, 0, 196641, -1073741821, 0, 196642, -1073741821, 0, 196643, -1073741821, 0, 196644, -1073741821, 0, 196645, -1073741821, 0, 196646, -1073741821, 0, 196647, -1073741821, 0, 196648, -1073741816, 0, 262147, -1073741823, 0, 262184, -1073741817, 0, 327683, -1073741823, 0, 327720, -1073741817, 0, 393219, -1073741823, 0, 393256, -1073741817, 0, 458755, -1073741823, 0, 458792, -1073741817, 0, 524291, -1073741823, 0, 524328, -1073741817, 0, 589827, -1073741823, 0, 589864, -1073741817, 0, 655363, -1073741823, 0, 655400, -1073741817, 0, 720899, -1073741823, 0, 720936, -1073741817, 0, 786435, -1073741823, 0, 786472, -1073741817, 0, 851971, -1073741823, 0, 852008, -1073741817, 0, 917507, -1073741823, 0, 917544, -1073741817, 0, 983043, -1073741823, 0, 983080, -1073741817, 0, 1048579, -1073741823, 0, 1048616, -1073741817, 0, 1114115, -1073741823, 0, 1114152, -1073741817, 0, 1179651, -1073741823, 0, 1179688, -1073741817, 0, 1245187, -1073741823, 0, 1245224, -1073741817, 0, 1310723, -1073741823, 0, 1310760, -1073741817, 0, 1376259, -1073741824, 0, 1376260, -1073741819, 0, 1376261, -1073741819, 0, 1376262, -1073741819, 0, 1376263, -1073741819, 0, 1376264, -1073741819, 0, 1376265, -1073741819, 0, 1376266, -1073741819, 0, 1376267, -1073741819, 0, 1376268, -1073741819, 0, 1376269, -1073741819, 0, 1376270, -1073741819, 0, 1376271, -1073741819, 0, 1376272, -1073741819, 0, 1376273, -1073741819, 0, 1376274, -1073741819, 0, 1376275, -1073741819, 0, 1376276, -1073741819, 0, 1376277, -1073741819, 0, 1376278, -1073741819, 0, 1376279, -1073741819, 0, 1376280, -1073741819, 0, 1376281, -1073741819, 0, 1376282, -1073741819, 0, 1376283, -1073741819, 0, 1376284, -1073741819, 0, 1376285, -1073741819, 0, 1376286, -1073741819, 0, 1376287, -1073741819, 0, 1376288, -1073741819, 0, 1376289, -1073741819, 0, 1376290, -1073741819, 0, 1376291, -1073741819, 0, 1376292, -1073741819, 0, 1376293, -1073741819, 0, 1376294, -1073741819, 0, 1376295, -1073741819, 0, 1376296, -1073741818, 0 )
-
 [node name="Player 1" parent="." instance=ExtResource( 4 )]
-position = Vector2( 961.702, 307.581 )
+position = Vector2( 855.395, 715.354 )
 
 [node name="Player 2" parent="." instance=ExtResource( 4 )]
 position = Vector2( 559.797, 469.573 )
@@ -38,10 +40,158 @@ player = 2
 poder = 2
 
 [node name="Area" type="Area2D" parent="."]
-editor/display_folded = true
+visible = false
 collision_layer = 0
 collision_mask = 291
 
 [node name="Colisao" type="CollisionShape2D" parent="Area"]
 position = Vector2( 640, 360 )
 shape = SubResource( 1 )
+
+[node name="Plataformas" type="Node2D" parent="." groups=[
+"plataforma",
+]]
+
+[node name="vinicola" type="Sprite" parent="Plataformas"]
+position = Vector2( 640, 359.5 )
+scale = Vector2( 10, 10 )
+texture = ExtResource( 3 )
+
+[node name="Plataforma" type="StaticBody2D" parent="Plataformas"]
+collision_layer = 16385
+collision_mask = 16385
+
+[node name="Colisao" type="CollisionShape2D" parent="Plataformas/Plataforma"]
+position = Vector2( 77.7825, 79.7385 )
+rotation = 0.785398
+shape = SubResource( 2 )
+
+[node name="Plataforma9" type="StaticBody2D" parent="Plataformas"]
+collision_layer = 16385
+collision_mask = 16385
+
+[node name="Colisao" type="CollisionShape2D" parent="Plataformas/Plataforma9"]
+position = Vector2( 202.047, 13.4696 )
+rotation = 1.18682
+shape = SubResource( 3 )
+
+[node name="Plataforma12" type="StaticBody2D" parent="Plataformas"]
+collision_layer = 16385
+collision_mask = 16385
+
+[node name="Colisao" type="CollisionShape2D" parent="Plataformas/Plataforma12"]
+position = Vector2( 1064.43, 696.345 )
+rotation = 1.18682
+shape = SubResource( 3 )
+
+[node name="Plataforma10" type="StaticBody2D" parent="Plataformas"]
+collision_layer = 16385
+collision_mask = 16385
+
+[node name="Colisao" type="CollisionShape2D" parent="Plataformas/Plataforma10"]
+position = Vector2( 13.4463, 205.479 )
+rotation = 0.401426
+shape = SubResource( 3 )
+
+[node name="Plataforma11" type="StaticBody2D" parent="Plataformas"]
+collision_layer = 16385
+collision_mask = 16385
+
+[node name="Colisao" type="CollisionShape2D" parent="Plataformas/Plataforma11"]
+position = Vector2( 1264.46, 494.174 )
+rotation = 0.401426
+shape = SubResource( 3 )
+
+[node name="Plataforma13" type="StaticBody2D" parent="Plataformas"]
+collision_layer = 16385
+collision_mask = 16385
+
+[node name="Colisao" type="CollisionShape2D" parent="Plataformas/Plataforma13"]
+position = Vector2( 14.4094, 492.229 )
+rotation = -0.401426
+shape = SubResource( 3 )
+
+[node name="Plataforma14" type="StaticBody2D" parent="Plataformas"]
+collision_layer = 16385
+collision_mask = 16385
+
+[node name="Colisao" type="CollisionShape2D" parent="Plataformas/Plataforma14"]
+position = Vector2( 1264.44, 205.963 )
+rotation = 2.74017
+shape = SubResource( 3 )
+
+[node name="Plataforma15" type="StaticBody2D" parent="Plataformas"]
+collision_layer = 16385
+collision_mask = 16385
+
+[node name="Colisao" type="CollisionShape2D" parent="Plataformas/Plataforma15"]
+position = Vector2( 1082.58, 19.8076 )
+rotation = 2.04204
+shape = SubResource( 3 )
+
+[node name="Plataforma16" type="StaticBody2D" parent="Plataformas"]
+collision_layer = 16385
+collision_mask = 16385
+
+[node name="Colisao" type="CollisionShape2D" parent="Plataformas/Plataforma16"]
+position = Vector2( 214.81, 694.264 )
+rotation = -1.18682
+shape = SubResource( 3 )
+
+[node name="Plataforma5" type="StaticBody2D" parent="Plataformas"]
+collision_layer = 16385
+collision_mask = 16385
+
+[node name="Colisao" type="CollisionShape2D" parent="Plataformas/Plataforma5"]
+position = Vector2( 621.118, -8.87207 )
+rotation = 3.14159
+shape = SubResource( 4 )
+
+[node name="Plataforma6" type="StaticBody2D" parent="Plataformas"]
+collision_layer = 16385
+collision_mask = 16385
+
+[node name="Colisao" type="CollisionShape2D" parent="Plataformas/Plataforma6"]
+position = Vector2( 668.216, 717.03 )
+shape = SubResource( 4 )
+
+[node name="Plataforma7" type="StaticBody2D" parent="Plataformas"]
+collision_layer = 16385
+collision_mask = 16385
+
+[node name="Colisao" type="CollisionShape2D" parent="Plataformas/Plataforma7"]
+position = Vector2( -20.0204, 348.08 )
+rotation = 1.5708
+shape = SubResource( 5 )
+
+[node name="Plataforma8" type="StaticBody2D" parent="Plataformas"]
+collision_layer = 16385
+
+[node name="Colisao" type="CollisionShape2D" parent="Plataformas/Plataforma8"]
+position = Vector2( 1298.62, 341.686 )
+rotation = -1.5708
+shape = SubResource( 5 )
+
+[node name="Plataforma2" type="StaticBody2D" parent="Plataformas"]
+collision_layer = 17
+
+[node name="Colisao" type="CollisionShape2D" parent="Plataformas/Plataforma2"]
+position = Vector2( 1200.14, 629.226 )
+rotation = 0.785398
+shape = SubResource( 2 )
+
+[node name="Plataforma3" type="StaticBody2D" parent="Plataformas"]
+collision_layer = 17
+
+[node name="Colisao" type="CollisionShape2D" parent="Plataformas/Plataforma3"]
+position = Vector2( 82.793, 635.907 )
+rotation = -0.785398
+shape = SubResource( 2 )
+
+[node name="Plataforma4" type="StaticBody2D" parent="Plataformas"]
+collision_layer = 17
+
+[node name="Colisao" type="CollisionShape2D" parent="Plataformas/Plataforma4"]
+position = Vector2( 1205.47, 81.6811 )
+rotation = 2.35619
+shape = SubResource( 2 )

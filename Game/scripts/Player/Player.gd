@@ -57,6 +57,7 @@ var stunado = 0
 
 var vel_vinicola
 
+
 var lento = 0
 
 # --------------------------------------> FUNÇÃO CHAMADA QUANDO CARREGA O NÓ <-----------------------------------------
@@ -112,18 +113,24 @@ func _physics_process(delta):
 			$Sprite.play("Dead")
 			return
 	else:
+		#motion = Vector2()
 		for x in $Corpo.get_overlapping_bodies():
 			#print("OLHA: ", x)
-			if x.get_groups().has("mapa"):
-				vel_vinicola -= (position - x.position).normalized().cross(vel_vinicola) * (position - x.position).normalized().rotated(PI/2)
-				print(vel_vinicola)
+			if x.get_parent().get_groups().has("plataforma"):
+				#vel_vinicola -= (position - x.position).normalized().cross(vel_vinicola) * (position - x.position).normalized().rotated(PI/2)
+				vel_vinicola = Vector2()
+				#print(vel_vinicola)
+				self.rotation = x.get_node("Colisao").rotation
 		position += vel_vinicola * delta
 	
 	
 	if knock_back == 0 and stunado == 0: 
 		socar(delta)
 		if ocupado == 0:
-			control(delta)
+			if !self.get_parent().get_groups().has("vinicola"):
+				control(delta)
+			else:
+				control_vinicola(delta)
 	elif knock_back != 0:
 		empurrao(delta)
 	
@@ -221,10 +228,7 @@ func control(delta):
 	
 	if player == 1:
 		if Input.is_action_pressed("ui_right"):
-			if !self.get_parent().get_groups().has("vinicula"):
-				motion.x = SPEED
-			else:
-				motion.x = SPEED
+			motion.x = SPEED
 			sentido = 1
 			$Sprite.flip_h = true
 			if soco == 0:
@@ -233,10 +237,7 @@ func control(delta):
 				#animação de Run + punch
 				pass
 		elif Input.is_action_pressed("ui_left"):
-			if !self.get_parent().get_groups().has("vinicula"):
-				motion.x = -SPEED
-			else:
-				motion.x = -SPEED
+			motion.x = -SPEED
 			sentido = -1
 			$Sprite.flip_h = false
 			if soco == 0:
@@ -245,8 +246,7 @@ func control(delta):
 				#animação de Run + punch
 				pass
 		else:
-			if !self.get_parent().get_groups().has("vinicula"):
-				motion.x = 0
+			motion.x = 0
 			if soco == 0:
 				$Sprite.play("Idle")
 		
@@ -268,10 +268,7 @@ func control(delta):
 	elif player == 2:
 		
 		if Input.is_key_pressed(KEY_D):
-			if !self.get_parent().get_groups().has("vinicula"):
-				motion.x = SPEED
-			else:
-				motion.x = SPEED
+			motion.x = SPEED
 			sentido = 1
 			$Sprite.flip_h = true
 			if soco == 0:
@@ -280,10 +277,7 @@ func control(delta):
 				#animação de Run + punch
 				pass
 		elif Input.is_key_pressed(KEY_A):
-			if !self.get_parent().get_groups().has("vinicula"):
-				motion.x = -SPEED
-			else:
-				motion.x = -SPEED
+			motion.x = -SPEED
 			sentido = -1
 			$Sprite.flip_h = false
 			if soco == 0:
@@ -292,8 +286,7 @@ func control(delta):
 				#animação de Run + punch
 				pass
 		else:
-			if !self.get_parent().get_groups().has("vinicula"):
-				motion.x = 0
+			motion.x = 0
 			if soco == 0:
 				$Sprite.play("Idle")
 		
@@ -309,6 +302,103 @@ func control(delta):
 	
 		if Input.is_key_pressed(KEY_Q):
 			ativar_poder()
+
+func control_vinicola(delta):
+	if vida <= 0:
+		$Sprite.play("Dead")
+		return
+	
+	#print(lento)
+	
+	if player == 1:
+		if Input.is_action_pressed("ui_right"):
+			motion += SPEED * Vector2(1, 0).rotated(self.rotation) * delta
+			sentido = 1
+			$Sprite.flip_h = true
+			if soco == 0:
+				$Sprite.play("Run")
+			else:
+				#animação de Run + punch
+				pass
+		elif Input.is_action_pressed("ui_left"):
+			motion += -SPEED * Vector2(1, 0).rotated(self.rotation) * delta
+			sentido = -1
+			$Sprite.flip_h = false
+			if soco == 0:
+				$Sprite.play("Run")
+			else:
+				#animação de Run + punch
+				pass
+		else:
+			#motion.x = 0
+			if soco == 0:
+				$Sprite.play("Idle")
+		
+		if Input.is_action_just_pressed("ui_up"):
+			print("PRESSIONADO")
+			for x in $Corpo.get_overlapping_bodies():
+				print("OLHA: ", x)
+				if x.get_parent().get_groups().has("plataforma"):
+					motion += JUMP_HEIGHT * Vector2(0, 1).rotated(self.rotation)
+					print("PULA")
+					return
+		#else:
+			#$Sprite.play("Jump")
+			
+		if Input.is_key_pressed(KEY_ENTER):
+			punch()
+		
+		if Input.is_key_pressed(KEY_L):
+			ativar_poder()
+		
+
+		pass
+		
+	elif player == 2:
+		
+		if Input.is_key_pressed(KEY_D):
+			motion += SPEED * Vector2(1, 0).rotated(self.rotation) * delta
+			sentido = 1
+			$Sprite.flip_h = true
+			if soco == 0:
+				$Sprite.play("Run")
+			else:
+				#animação de Run + punch
+				pass
+		elif Input.is_key_pressed(KEY_A):
+			motion += - SPEED * Vector2(1, 0).rotated(self.rotation) * delta
+			sentido = -1
+			$Sprite.flip_h = false
+			if soco == 0:
+				$Sprite.play("Run")
+			else:
+				#animação de Run + punch
+				pass
+		else:
+			motion.x = 0
+			if soco == 0:
+				$Sprite.play("Idle")
+		
+		if Input.is_key_pressed(KEY_W):
+			print("PRESSIONADO")
+			for x in $Corpo.get_overlapping_bodies():
+				print("OLHA: ", x)
+				if x.get_parent().get_groups().has("plataforma"):
+					motion += JUMP_HEIGHT * Vector2(0, 1).rotated(self.rotation)
+					print("PULA")
+					return
+				
+		#else:
+			#$Sprite.play("Jump")
+			
+		if Input.is_key_pressed(KEY_SPACE):
+			punch()
+	
+		if Input.is_key_pressed(KEY_Q):
+			ativar_poder()
+
+	pass
+
 # ------------------------------------------------------> PODERES <-----------------------------------------------------
 func ativar_poder():
 	
@@ -414,7 +504,7 @@ func _on_Corpo_body_entered(body):
 		normal = (position - body.position).normalized()
 		vel_colisao = normal * 200	
 		body.apply_central_impulse(200*normal * motion.dot(normal))
-		print(200*normal * motion.dot(normal))
+		#print(200*normal * motion.dot(normal))
 		bola = body
 		colisao = 1
 		#print(vel_colisao)
@@ -434,7 +524,7 @@ func _on_Mao_body_entered(body):
 		vel_colisao = normal * 200	
 		body.apply_central_impulse(200*normal * (motion + Vector2(vel_soco, 0)).dot(normal) + Vector2(0, -80000))
 		print("PPP")
-		print(200*normal * (motion + Vector2(vel_soco, 0)).dot(normal))
+		#print(200*normal * (motion + Vector2(vel_soco, 0)).dot(normal))
 		bola = body
 		colisao = 1
 	pass # Replace with function body.

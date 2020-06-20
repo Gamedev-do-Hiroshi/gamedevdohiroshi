@@ -28,15 +28,15 @@
 
 [sub_resource type="SpriteFrames" id=1]
 animations = [ {
-"frames": [ ExtResource( 2 ), ExtResource( 3 ), ExtResource( 4 ), ExtResource( 5 ), ExtResource( 6 ), ExtResource( 7 ), ExtResource( 8 ), ExtResource( 9 ), ExtResource( 10 ), ExtResource( 11 ) ],
-"loop": true,
-"name": "Run",
-"speed": 22.0
-}, {
 "frames": [ ExtResource( 12 ), ExtResource( 13 ) ],
 "loop": true,
 "name": "Idle",
 "speed": 5.0
+}, {
+"frames": [ ExtResource( 2 ), ExtResource( 3 ), ExtResource( 4 ), ExtResource( 5 ), ExtResource( 6 ), ExtResource( 7 ), ExtResource( 8 ), ExtResource( 9 ), ExtResource( 10 ), ExtResource( 11 ) ],
+"loop": true,
+"name": "Run",
+"speed": 22.0
 }, {
 "frames": [ ExtResource( 14 ), ExtResource( 15 ), ExtResource( 15 ), ExtResource( 15 ), ExtResource( 14 ) ],
 "loop": false,
@@ -61,7 +61,7 @@ extents = Vector2( 12.0251, 23.2934 )
 extents = Vector2( 5.61736, 3.53411 )
 
 [sub_resource type="RectangleShape2D" id=4]
-extents = Vector2( 12.0496, 23.2934 )
+extents = Vector2( 13.6243, 30.388 )
 
 [node name="Player" type="KinematicBody2D" groups=[
 "player",
@@ -71,6 +71,7 @@ script = ExtResource( 1 )
 [node name="Sprite" type="AnimatedSprite" parent="."]
 frames = SubResource( 1 )
 animation = "Idle"
+frame = 1
 playing = true
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
@@ -80,7 +81,6 @@ shape = SubResource( 2 )
 [node name="Mao" type="Area2D" parent="." groups=[
 "mao",
 ]]
-editor/display_folded = true
 collision_layer = 24576
 collision_mask = 24576
 
@@ -90,8 +90,8 @@ shape = SubResource( 3 )
 [node name="Corpo" type="Area2D" parent="." groups=[
 "corpo",
 ]]
-collision_layer = 24576
-collision_mask = 24576
+collision_layer = 24592
+collision_mask = 24592
 
 [node name="Colisao" type="CollisionShape2D" parent="Corpo"]
 position = Vector2( -0.554764, -1.10956 )
