@@ -5,29 +5,12 @@
 [ext_resource path="res://assets/Poderes/bola_de_neve.png" type="Texture" id=3]
 [ext_resource path="res://assets/Poderes/bloco_gelo.png" type="Texture" id=4]
 [ext_resource path="res://assets/Poderes/laser.png" type="Texture" id=5]
-<<<<<<< HEAD
-[ext_resource path="res://Sprites/espiral1.png" type="Texture" id=6]
-[ext_resource path="res://Sprites/espinhoCrescendo0.png" type="Texture" id=7]
-[ext_resource path="res://Sprites/espinhoCrescendo1.png" type="Texture" id=8]
-[ext_resource path="res://Sprites/espinhoCrescendo2.png" type="Texture" id=9]
-[ext_resource path="res://Sprites/espinhoCrescendo3.png" type="Texture" id=10]
-[ext_resource path="res://assets/Poderes/garrafa.png" type="Texture" id=11]
-=======
 [ext_resource path="res://assets/Poderes/espiral1.png" type="Texture" id=6]
 [ext_resource path="res://assets/Poderes/espinhoCrescendo0.png" type="Texture" id=7]
 [ext_resource path="res://assets/Poderes/espinhoCrescendo1.png" type="Texture" id=8]
 [ext_resource path="res://assets/Poderes/espinhoCrescendo2.png" type="Texture" id=9]
 [ext_resource path="res://assets/Poderes/espinhoCrescendo3.png" type="Texture" id=10]
-
-
-
-
-
-
-
-
-
->>>>>>> refs/remotes/origin/master
+[ext_resource path="res://assets/Poderes/garrafa.png" type="Texture" id=11]
 
 [sub_resource type="GDScript" id=1]
 script/source = "extends Node2D
@@ -309,6 +292,7 @@ texture = ExtResource( 1 )
 position = Vector2( -18, 0 )
 scale = Vector2( 2, 2 )
 frames = SubResource( 7 )
+frame = 1
 playing = true
 
 [node name="Bola_de_neve" type="RigidBody2D" parent="." groups=[
