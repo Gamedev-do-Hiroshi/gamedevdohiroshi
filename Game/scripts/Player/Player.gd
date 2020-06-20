@@ -2,7 +2,7 @@ extends KinematicBody2D
 
 export var player = 1
 
-enum PODERES {VERMELHO, LARANJA, AZUL, GELO, AMARELO, ROXO, VERDE, ESPINHO}
+enum PODERES {VERMELHO, LARANJA, AZUL, GELO, AMARELO, ROXO, VERDE, ESPINH, ROXO}
 
 export(PODERES) var poder = PODERES.VERMELHO
 
@@ -57,6 +57,10 @@ var stunado = 0
 
 var vel_vinicola
 
+const DURACAO_BEBADO = 5.0
+var bebeu = 1
+var tempo_bebado = 0.0
+
 
 var lento = 0
 
@@ -80,6 +84,9 @@ func _ready():
 	stunado = 0
 	tempo_stun = 0.0
 	vel_vinicola = Vector2()
+	bebeu = 1
+	tempo_bebado = 0.0
+	$Bolhas.visible = 0
 	
 # --------------------------------------> FUNÇÃO CHAMADA A CADA FRAME <-----------------------------------------
 func _process(delta):
@@ -100,7 +107,7 @@ func _physics_process(delta):
 	for x in $Corpo.get_overlapping_areas():
 		if x.get_groups().has("Area_espinhos"):
 			lento = 1
-			
+	
 	if lento:
 		SPEED = MAX_SPEED/3
 	else:
@@ -123,7 +130,7 @@ func _physics_process(delta):
 				self.rotation = x.get_node("Colisao").rotation
 		position += vel_vinicola * delta
 	
-	
+		
 	if knock_back == 0 and stunado == 0: 
 		socar(delta)
 		if ocupado == 0:
@@ -131,19 +138,19 @@ func _physics_process(delta):
 				control(delta)
 			else:
 				control_vinicola(delta)
+					
 	elif knock_back != 0:
 		empurrao(delta)
 	
 	if stunado:
 		stun(delta)
-	
+	if bebeu == -1:
+		bebado(delta)
 	if colisao:
 		motion = vel_colisao
 	if gelou:
 		geleira(delta)
 	
-	
-	#print(motion)
 	motion = move_and_slide(motion, UP)
 	
 	if gelou:
@@ -228,7 +235,7 @@ func control(delta):
 	
 	if player == 1:
 		if Input.is_action_pressed("ui_right"):
-			motion.x = SPEED
+			motion.x = bebeu * SPEED
 			sentido = 1
 			$Sprite.flip_h = true
 			if soco == 0:
@@ -237,7 +244,7 @@ func control(delta):
 				#animação de Run + punch
 				pass
 		elif Input.is_action_pressed("ui_left"):
-			motion.x = -SPEED
+			motion.x = - bebeu* SPEED
 			sentido = -1
 			$Sprite.flip_h = false
 			if soco == 0:
@@ -268,7 +275,7 @@ func control(delta):
 	elif player == 2:
 		
 		if Input.is_key_pressed(KEY_D):
-			motion.x = SPEED
+			motion.x = bebeu * SPEED
 			sentido = 1
 			$Sprite.flip_h = true
 			if soco == 0:
@@ -277,7 +284,7 @@ func control(delta):
 				#animação de Run + punch
 				pass
 		elif Input.is_key_pressed(KEY_A):
-			motion.x = -SPEED
+			motion.x = - bebeu * SPEED
 			sentido = -1
 			$Sprite.flip_h = false
 			if soco == 0:
@@ -312,7 +319,7 @@ func control_vinicola(delta):
 	
 	if player == 1:
 		if Input.is_action_pressed("ui_right"):
-			motion += SPEED * Vector2(1, 0).rotated(self.rotation) * delta
+			motion += bebeu * SPEED * Vector2(1, 0).rotated(self.rotation) * delta
 			sentido = 1
 			$Sprite.flip_h = true
 			if soco == 0:
@@ -321,7 +328,7 @@ func control_vinicola(delta):
 				#animação de Run + punch
 				pass
 		elif Input.is_action_pressed("ui_left"):
-			motion += -SPEED * Vector2(1, 0).rotated(self.rotation) * delta
+			motion += - bebeu * SPEED * Vector2(1, 0).rotated(self.rotation) * delta
 			sentido = -1
 			$Sprite.flip_h = false
 			if soco == 0:
@@ -330,7 +337,6 @@ func control_vinicola(delta):
 				#animação de Run + punch
 				pass
 		else:
-			#motion.x = 0
 			if soco == 0:
 				$Sprite.play("Idle")
 		
@@ -339,7 +345,7 @@ func control_vinicola(delta):
 			for x in $Corpo.get_overlapping_bodies():
 				print("OLHA: ", x)
 				if x.get_parent().get_groups().has("plataforma"):
-					motion += JUMP_HEIGHT * Vector2(0, 1).rotated(self.rotation)
+					motion = JUMP_HEIGHT * Vector2(0, 1).rotated(self.rotation)
 					print("PULA")
 					return
 		#else:
@@ -357,7 +363,7 @@ func control_vinicola(delta):
 	elif player == 2:
 		
 		if Input.is_key_pressed(KEY_D):
-			motion += SPEED * Vector2(1, 0).rotated(self.rotation) * delta
+			motion += bebeu * SPEED * Vector2(1, 0).rotated(self.rotation) * delta
 			sentido = 1
 			$Sprite.flip_h = true
 			if soco == 0:
@@ -366,7 +372,7 @@ func control_vinicola(delta):
 				#animação de Run + punch
 				pass
 		elif Input.is_key_pressed(KEY_A):
-			motion += - SPEED * Vector2(1, 0).rotated(self.rotation) * delta
+			motion += - bebeu * SPEED * Vector2(1, 0).rotated(self.rotation) * delta
 			sentido = -1
 			$Sprite.flip_h = false
 			if soco == 0:
@@ -375,7 +381,6 @@ func control_vinicola(delta):
 				#animação de Run + punch
 				pass
 		else:
-			motion.x = 0
 			if soco == 0:
 				$Sprite.play("Idle")
 		
@@ -384,7 +389,7 @@ func control_vinicola(delta):
 			for x in $Corpo.get_overlapping_bodies():
 				print("OLHA: ", x)
 				if x.get_parent().get_groups().has("plataforma"):
-					motion += JUMP_HEIGHT * Vector2(0, 1).rotated(self.rotation)
+					motion = JUMP_HEIGHT * Vector2(0, 1).rotated(self.rotation)
 					print("PULA")
 					return
 				
@@ -411,19 +416,24 @@ func ativar_poder():
 	novo_poder.poder = poder
 	novo_poder.sentido = sentido
 	novo_poder.velocidade = motion
-	if poder == 0:
-		novo_poder.position = position +  Vector2(sentido*30, -10)
+	novo_poder.angulo = self.rotation
+	if poder == PODERES.VERMELHO:
+		novo_poder.position = position +  Vector2(sentido*30, -10).rotated(self.rotation)
 		self.get_parent().add_child(novo_poder)
-	elif poder == 2:
-		novo_poder.position = position +  Vector2(sentido*50, -10)
+	elif poder == PODERES.AZUL:
+		novo_poder.position = position +  Vector2(sentido*50, -10).rotated(self.rotation)
 		self.get_parent().add_child(novo_poder)
 	elif poder == PODERES.AMARELO:
-		novo_poder.position = Vector2(sentido*10, 6)
+		novo_poder.position = Vector2(sentido*10, 6).rotated(self.rotation)
 		$Sprite.animation = "Laser"
 		ocupado = 1
 		self.add_child(novo_poder)
 	elif poder == PODERES.VERDE:
-		novo_poder.position = position +  Vector2(sentido*50, -10)
+		novo_poder.position = position +  Vector2(sentido*50, -10).rotated(self.rotation)
+		self.get_parent().add_child(novo_poder)
+	elif poder == PODERES.ROXO:
+		novo_poder.position = position +  Vector2(sentido*70, -10).rotated(self.rotation)
+		print(Vector2(sentido*50, -10).rotated(self.rotation))
 		self.get_parent().add_child(novo_poder)
 	pass
 
@@ -468,6 +478,20 @@ func stun(delta):
 		tempo_stun = 0.0
 	
 	pass
+	
+func bebado(delta):
+	tempo_bebado += delta
+	$Bolhas.position = Vector2(sentido * 14, -36)
+	if tempo_bebado >= DURACAO_BEBADO:
+		bebeu = 1
+		tempo_bebado = 0.0
+		$Bolhas.playing = 0
+		$Bolhas.visible = 0
+	else:
+		pass
+	
+	pass
+
 
 # ------------------------------------------------------> SINAIS <------------------------------------------------------
 

@@ -1,6 +1,6 @@
 extends Node2D
 
-const GRAVIDADE = 30.0
+const GRAVIDADE = 70.0
 const CENTRO = Vector2(640, 360)
 var area = preload("res://Setor_vinicula.tscn")
 var gravidade

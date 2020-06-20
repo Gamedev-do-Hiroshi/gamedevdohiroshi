@@ -1,4 +1,4 @@
-[gd_scene load_steps=22 format=2]
+[gd_scene load_steps=25 format=2]
 
 [ext_resource path="res://Sprites/Bola.png" type="Texture" id=1]
 [ext_resource path="res://Sprites/Fogo.png" type="Texture" id=2]
@@ -10,11 +10,12 @@
 [ext_resource path="res://Sprites/espinhoCrescendo1.png" type="Texture" id=8]
 [ext_resource path="res://Sprites/espinhoCrescendo2.png" type="Texture" id=9]
 [ext_resource path="res://Sprites/espinhoCrescendo3.png" type="Texture" id=10]
+[ext_resource path="res://assets/Poderes/garrafa.png" type="Texture" id=11]
 
 [sub_resource type="GDScript" id=1]
 script/source = "extends Node2D
 
-enum PODERES {VERMELHO, LARANJA, AZUL, GELO, AMARELO, ROXO, VERDE, ESPINHO}
+enum PODERES {VERMELHO, LARANJA, AZUL, GELO, AMARELO, ROXO, VERDE, ESPINHO, ROXO}
 
 export(PODERES) var poder = PODERES.VERMELHO
 var sentido = 1
@@ -32,6 +33,10 @@ const DANO_LASER = 10
 var x_laser = 0.0
 var frame_laser = [5.0, 15.0, 25.0]
 var y_laser = 5.0
+var angulo = 0.0
+
+const DANO_GARRAFA = 10
+const IMPULSO_GARRAFA = Vector2(3, -3.5) * 200
 
 func _ready():
 	
@@ -49,13 +54,15 @@ func _ready():
 		$Bola_de_terra.free()
 	if poder != PODERES.ESPINHO:
 		$Espinhos.free()
+	if poder != PODERES.ROXO:
+		$Garrafa.free()
 	
 	if poder == PODERES.VERMELHO:
 		print(\"VERMELHO\")
-		$Bola.apply_central_impulse(Vector2(sentido*IMPULSO_BOLA.x, IMPULSO_BOLA.y) + velocidade/10)
+		$Bola.apply_central_impulse(Vector2(sentido*IMPULSO_BOLA.x, IMPULSO_BOLA.y).rotated(angulo) + velocidade/10)
 		$Bola.angular_velocity = sentido*10
 	elif poder == PODERES.AZUL:
-		$Bola_de_neve.apply_central_impulse(Vector2(sentido*IMPULSO_NEVE.x, IMPULSO_NEVE.y) + velocidade/10)
+		$Bola_de_neve.apply_central_impulse(Vector2(sentido*IMPULSO_NEVE.x, IMPULSO_NEVE.y).rotated(angulo)  + velocidade/10)
 	elif poder == PODERES.GELO:
 		$Gelo.modulate = Color(1,1,1,0.9)
 		print(\"GELOU\")
@@ -66,8 +73,16 @@ func _ready():
 		x_laser = 0.0
 		y_laser = 5.0
 	elif poder == PODERES.VERDE:
-		$Bola_de_terra.apply_central_impulse(Vector2(sentido*IMPULSO_NEVE.x, IMPULSO_NEVE.y) + velocidade/10)
+		$Bola_de_terra.apply_central_impulse(Vector2(sentido*IMPULSO_NEVE.x, IMPULSO_NEVE.y).rotated(angulo)  + velocidade/10)
 		$Bola_de_terra.angular_velocity = sentido*10
+	elif poder == PODERES.ROXO:
+		print(\"GARRAFA\")
+		$Garrafa.apply_central_impulse(Vector2(sentido*IMPULSO_BOLA.x, IMPULSO_GARRAFA.y).rotated(angulo)  + velocidade/10)
+		$Garrafa.angular_velocity = sentido*10
+		
+		
+		
+	
 	pass
 	
 func _process(delta):
@@ -88,7 +103,7 @@ func _process(delta):
 	
 func _physics_process(delta):
 	
-	if poder == 0:
+	if poder == PODERES.VERMELHO:
 		$Bola/Fogo.rotation = -$Bola.rotation + $Bola.linear_velocity.angle()
 	elif poder == PODERES.AZUL:
 		if $Bola_de_neve/Area2D.get_overlapping_areas().size() != 0 or $Bola_de_neve/Area2D.get_overlapping_bodies().size() != 0:
@@ -175,6 +190,32 @@ func _physics_process(delta):
 				#return
 		print(x_laser)
 		pass
+	elif poder == PODERES.ROXO:
+		if $Garrafa/Area2D.get_overlapping_areas().size() != 0 or $Garrafa/Area2D.get_overlapping_bodies().size() != 0:
+			if $Garrafa/Area2D.get_overlapping_bodies() == [$Garrafa]:
+				return
+			
+			for x in $Garrafa/Area2D.get_overlapping_bodies():
+				#print(x)
+				if x.get_groups().has(\"player\"):
+					x.bebado(sentido)
+					x.vida -= DANO_GARRAFA
+					x.bebeu = -1
+					x.get_node(\"Bolhas\").visible = 1
+					x.get_node(\"Bolhas\").play(\"default\")
+					
+			for x in $Garrafa/Area2D.get_overlapping_areas():
+				print(x)
+				if x.get_groups().has(\"mao\"):
+					x.get_parent().bebado(sentido)
+					x.get_parent().vida -= DANO_GARRAFA
+					x.get_node(\"Bolhas\").visible = 1
+					x.get_node(\"Bolhas\").play(\"default\")
+			
+			print(\"GARRAFA QUEBROU\")
+			self.free()
+	
+	
 	pass
 	
 "
@@ -213,7 +254,7 @@ radius = 13.5492
 [sub_resource type="RectangleShape2D" id=9]
 extents = Vector2( 0, 12 )
 
-[sub_resource type="SpriteFrames" id=12]
+[sub_resource type="SpriteFrames" id=10]
 animations = [ {
 "frames": [ ExtResource( 7 ), ExtResource( 8 ), ExtResource( 9 ), ExtResource( 10 ) ],
 "loop": false,
@@ -224,11 +265,16 @@ animations = [ {
 [sub_resource type="RectangleShape2D" id=11]
 extents = Vector2( 52.2251, 46.926 )
 
+[sub_resource type="RectangleShape2D" id=12]
+extents = Vector2( 10, 32.17 )
+
+[sub_resource type="RectangleShape2D" id=13]
+extents = Vector2( 10, 32.6384 )
+
 [node name="Poderes" type="Node2D"]
 script = SubResource( 1 )
 
 [node name="Bola" type="RigidBody2D" parent="."]
-editor/display_folded = true
 physics_material_override = SubResource( 2 )
 gravity_scale = 5.0
 
@@ -246,13 +292,11 @@ texture = ExtResource( 1 )
 position = Vector2( -18, 0 )
 scale = Vector2( 2, 2 )
 frames = SubResource( 7 )
-frame = 1
 playing = true
 
 [node name="Bola_de_neve" type="RigidBody2D" parent="." groups=[
 "bola de neve",
 ]]
-editor/display_folded = true
 collision_layer = 16385
 collision_mask = 16385
 physics_material_override = SubResource( 2 )
@@ -278,7 +322,6 @@ texture = ExtResource( 4 )
 [node name="Laser" type="Area2D" parent="." groups=[
 "laser",
 ]]
-editor/display_folded = true
 scale = Vector2( 1, 1.25 )
 
 [node name="Colisao" type="CollisionShape2D" parent="Laser"]
@@ -295,7 +338,6 @@ region_rect = Rect2( 0, 0, 0, 25 )
 [node name="Bola_de_terra" type="RigidBody2D" parent="." groups=[
 "bola de neve",
 ]]
-editor/display_folded = true
 position = Vector2( 0, -0.611725 )
 collision_layer = 16385
 collision_mask = 16385
@@ -309,7 +351,6 @@ shape = SubResource( 3 )
 texture = ExtResource( 6 )
 
 [node name="Area2D" type="Area2D" parent="Bola_de_terra"]
-editor/display_folded = true
 scale = Vector2( 1.05, 1.05 )
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Bola_de_terra/Area2D"]
@@ -321,9 +362,30 @@ position = Vector2( 0.880249, 9.03878 )
 [node name="Area_espinhos" type="AnimatedSprite" parent="Espinhos"]
 position = Vector2( -1.42233, -23.3268 )
 scale = Vector2( 3, 3 )
-frames = SubResource( 12 )
+frames = SubResource( 10 )
 animation = "Grow"
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Espinhos"]
 position = Vector2( -0.88028, -44.893 )
 shape = SubResource( 11 )
+
+[node name="Garrafa" type="RigidBody2D" parent="."]
+collision_layer = 16385
+collision_mask = 16385
+physics_material_override = SubResource( 2 )
+gravity_scale = 5.0
+
+[node name="Colisao" type="CollisionShape2D" parent="Garrafa"]
+shape = SubResource( 12 )
+
+[node name="Sprite" type="Sprite" parent="Garrafa"]
+position = Vector2( 0.75, 0 )
+scale = Vector2( 2, 2 )
+texture = ExtResource( 11 )
+region_enabled = true
+region_rect = Rect2( 25, 10, 15, 34 )
+
+[node name="Area2D" type="Area2D" parent="Garrafa"]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Garrafa/Area2D"]
+shape = SubResource( 13 )
