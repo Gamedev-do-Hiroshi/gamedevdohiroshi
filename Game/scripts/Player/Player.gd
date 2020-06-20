@@ -153,6 +153,11 @@ func punch():
 		tempo_soco = 0.0
 		vel_soco = sentido * VEL_SOCO
 		$Sprite.play("Punch")
+		var sound = AudioStreamPlayer2D.new();
+		self.add_child(sound);
+		sound.stream = load("res://sounds/Woosh-Mark_DiAngelo-4778593.wav");
+		sound.set_volume_db(-5);
+		sound.play();
 		#print(soco)
 		#print(teste)
 		print("SOCO")
@@ -385,12 +390,19 @@ func _on_Mao_area_entered(area):
 	if ((area.get_groups().has("mao") or area.get_groups().has("corpo"))  and area.get_parent() != self):
 		print("SOQUEI")
 		area.get_parent().vida -= 10
+		var sound = AudioStreamPlayer2D.new();
+		self.add_child(sound);
+		sound.stream = load("res://sounds/Realistic_Punch-Mark_DiAngelo-1609462330.wav");
+		sound.set_volume_db(-5);
+		sound.play();
 		
 		if area.get_parent().vida <= 0:
 			area.get_parent().get_node("Sprite").flip_h = !($Sprite.flip_h)
 			pass
 			
 		area.get_parent().socado(sentido)
+		
+		
 	
 	
 	pass
