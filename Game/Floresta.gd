@@ -13,7 +13,7 @@ func _ready():
 
 func _process(delta):
 	tempo+=1
-	if tempo%100 == 0:
+	if tempo%100 == 0 and tempo < 30000:
 		var cena_espinho = preload("res://Poderes.tscn")
 		var espinho = cena_espinho.instance()
 		espinho.position.x = rand_range(1,1240)

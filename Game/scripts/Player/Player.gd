@@ -27,8 +27,10 @@ var teste
 var vida = 100
 var mana = 100
 const TAXA_MANA = 50
-const VEL_KNOCK_BACK = 200
-const DURACAO_KNOCK_BACK = 0.2
+const MAX_VEL_KNOCK_BACK = 200
+const MAX_DURACAO_KNOCK_BACK = 0.2
+var VEL_KNOCK_BACK = 200
+var DURACAO_KNOCK_BACK = 0.2
 var knock_back
 var tempo_knock_back
 
@@ -59,7 +61,9 @@ var lento = 0
 
 # --------------------------------------> FUNÇÃO CHAMADA QUANDO CARREGA O NÓ <-----------------------------------------
 func _ready():
-
+	if self.get_parent().get_groups().has("Floresta"):
+		VEL_KNOCK_BACK = 2*MAX_VEL_KNOCK_BACK
+		DURACAO_KNOCK_BACK = 2*DURACAO_KNOCK_BACK
 #	if player == 1:
 #		$Animacao.animation = "Player 1"
 #	elif player == 2:
@@ -100,8 +104,7 @@ func _physics_process(delta):
 		SPEED = MAX_SPEED/3
 	else:
 		SPEED = MAX_SPEED
-	
-	
+		
 	if !self.get_parent().get_groups().has("vinicola"):
 		motion.y += GRAVITY
 	
