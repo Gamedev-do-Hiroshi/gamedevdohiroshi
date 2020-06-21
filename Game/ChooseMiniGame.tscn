@@ -1,4 +1,4 @@
-[gd_scene load_steps=9 format=2]
+[gd_scene load_steps=10 format=2]
 
 [ext_resource path="res://ChooseMiniGame.gd" type="Script" id=1]
 [ext_resource path="res://assets/MainMenu/fonts/power_pixel-7.ttf" type="DynamicFontData" id=2]
@@ -6,6 +6,7 @@
 [ext_resource path="res://assets/MainMenu/Selected.png" type="Texture" id=4]
 [ext_resource path="res://Sprites/FlorestaPreview.png" type="Texture" id=5]
 [ext_resource path="res://Sprites/vinicolaPreview.png" type="Texture" id=6]
+[ext_resource path="res://sounds/5413683573293056.wav" type="AudioStream" id=7]
 
 [sub_resource type="DynamicFontData" id=1]
 
@@ -161,3 +162,9 @@ valign = 1
 [node name="Poderes" type="Node2D" parent="."]
 
 [node name="Bola neve" type="Sprite" parent="Poderes"]
+
+[node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="."]
+stream = ExtResource( 7 )
+volume_db = -13.0
+pitch_scale = 1.25
+autoplay = true

@@ -1,7 +1,7 @@
 [gd_scene load_steps=11 format=2]
 
 [ext_resource path="res://scripts/MainMenu/MainMenu.gd" type="Script" id=1]
-[ext_resource path="res://sounds/5755469671956480.wav" type="AudioStream" id=2]
+[ext_resource path="res://sounds/5834464992165888.wav" type="AudioStream" id=2]
 [ext_resource path="res://assets/MainMenu/sprites/roleta.png" type="Texture" id=3]
 [ext_resource path="res://assets/MainMenu/sprites/seta.png" type="Texture" id=4]
 [ext_resource path="res://assets/MainMenu/fonts/power_pixel-7.ttf" type="DynamicFontData" id=5]
@@ -122,5 +122,4 @@ size_flags_vertical = 3
 position = Vector2( 855.733, 208 )
 scale = Vector2( 10, 10 )
 frames = SubResource( 3 )
-frame = 1
 playing = true
