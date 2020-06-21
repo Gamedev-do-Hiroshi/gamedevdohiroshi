@@ -1,4 +1,4 @@
-[gd_scene load_steps=24 format=2]
+[gd_scene load_steps=25 format=2]
 
 [ext_resource path="res://scripts/Cenarios/Vinicula.gd" type="Script" id=1]
 [ext_resource path="res://assets/Cenarios/cenario_vinicola.png" type="Texture" id=2]
@@ -7,6 +7,7 @@
 [ext_resource path="res://assets/Cenarios/Bacia.png" type="Texture" id=5]
 [ext_resource path="res://assets/Cenarios/Barril.png" type="Texture" id=6]
 [ext_resource path="res://GUI.tscn" type="PackedScene" id=7]
+[ext_resource path="res://sounds/5755469671956480.wav" type="AudioStream" id=8]
 
 [sub_resource type="RectangleShape2D" id=1]
 extents = Vector2( 640, 360 )
@@ -239,8 +240,8 @@ rotation = -2.35619
 shape = SubResource( 2 )
 
 [node name="Bacia" type="Sprite" parent="." groups=[
-"planeta",
 "plataforma",
+"planeta",
 ]]
 editor/display_folded = true
 position = Vector2( 367.954, 277.962 )
@@ -491,8 +492,8 @@ rotation = 0.349066
 shape = SubResource( 12 )
 
 [node name="Barril" type="Sprite" parent="." groups=[
-"planeta",
 "plataforma",
+"planeta",
 ]]
 editor/display_folded = true
 position = Vector2( 959.821, 465.898 )
@@ -744,3 +745,9 @@ rotation = -0.0344947
 shape = SubResource( 12 )
 
 [node name="GUI" parent="." instance=ExtResource( 7 )]
+
+[node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="."]
+stream = ExtResource( 8 )
+volume_db = -14.0
+pitch_scale = 1.25
+autoplay = true

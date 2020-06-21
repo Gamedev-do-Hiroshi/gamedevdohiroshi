@@ -12,6 +12,8 @@
 [ext_resource path="res://assets/Poderes/garrafa.png" type="Texture" id=10]
 [ext_resource path="res://assets/Poderes/laser.png" type="Texture" id=11]
 [ext_resource path="res://assets/Poderes/BolaFogo.png" type="Texture" id=12]
+[ext_resource path="res://sounds/5413683573293056.wav" type="AudioStream" id=7]
+
 
 [sub_resource type="DynamicFontData" id=1]
 
@@ -255,3 +257,10 @@ texture = ExtResource( 4 )
 position = Vector2( 16.4264, 8.25356 )
 scale = Vector2( 0.282003, 0.477075 )
 texture = ExtResource( 8 )
+[node name="Bola neve" type="Sprite" parent="Poderes"]
+
+[node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="."]
+stream = ExtResource( 7 )
+volume_db = -13.0
+pitch_scale = 1.25
+autoplay = true
