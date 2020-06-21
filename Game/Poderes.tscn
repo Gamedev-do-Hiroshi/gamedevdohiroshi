@@ -40,6 +40,8 @@ var angulo = 0.0
 const DANO_GARRAFA = 10
 const IMPULSO_GARRAFA = Vector2(3, -3.5) * 200
 
+const DANO_ESPINHO = 0.1
+
 func _ready():
 	
 	tempo = 0.0
@@ -109,16 +111,22 @@ func _physics_process(delta):
 			for x in $Bola/Area2D.get_overlapping_bodies():
 				#print(x)
 				if x.get_groups().has(\"player\"):
-					x.gelado(sentido)
 					x.vida -= DANO_BOLA
+					if x.player == 1:
+						x.get_parent().get_node(\"GUI\").p1_life_bar.value -= DANO_BOLA
+					elif x.player == 2:
+						x.get_parent().get_node(\"GUI\").p2_life_bar.value -= DANO_BOLA
 					self.free()
 					return
 					
 			for x in $Bola/Area2D.get_overlapping_areas():
 				print(x)
 				if x.get_groups().has(\"mao\"):
-					x.get_parent().gelado(sentido)
 					x.get_parent().vida -= DANO_BOLA
+					if x.player == 1:
+						x.get_parent().get_node(\"GUI\").p1_life_bar.value -= DANO_BOLA
+					elif x.player == 2:
+						x.get_parent().get_node(\"GUI\").p2_life_bar.value -= DANO_BOLA
 					self.free()
 		if tempo >= DURACAO_BOLA:
 			self.free()
@@ -132,12 +140,20 @@ func _physics_process(delta):
 				if x.get_groups().has(\"player\"):
 					x.gelado(sentido)
 					x.vida -= DANO_NEVE
+					if x.player == 1:
+						x.get_parent().get_node(\"GUI\").p1_life_bar.value -= DANO_NEVE
+					elif x.player == 2:
+						x.get_parent().get_node(\"GUI\").p2_life_bar.value -= DANO_NEVE
 					
 			for x in $Bola_de_neve/Area2D.get_overlapping_areas():
 				print(x)
 				if x.get_groups().has(\"mao\"):
 					x.get_parent().gelado(sentido)
 					x.get_parent().vida -= DANO_NEVE
+					if x.player == 1:
+						x.get_parent().get_node(\"GUI\").p1_life_bar.value -= DANO_NEVE
+					elif x.player == 2:
+						x.get_parent().get_node(\"GUI\").p2_life_bar.value -= DANO_NEVE
 			
 			print(\"Corpos: \" + String($Bola_de_neve/Area2D.get_overlapping_bodies()))
 			
@@ -163,7 +179,11 @@ func _physics_process(delta):
 		
 		for x in $Espinhos.get_overlapping_bodies():
 			if x.get_class() == \"KinematicBody2D\":
-				#x.vida-=0.1
+				x.vida -= DANO_ESPINHO
+				if x.player == 1:
+					x.get_parent().get_node(\"GUI\").p1_life_bar.value -= DANO_ESPINHO
+				elif x.player == 2:
+					x.get_parent().get_node(\"GUI\").p2_life_bar.value -= DANO_ESPINHO
 				x.lento = 1
 				
 				if x.player == 1:
@@ -194,6 +214,10 @@ func _physics_process(delta):
 			for x in  $Laser.get_overlapping_bodies():
 				if x.get_groups().has(\"player\") and x != self.get_parent():
 					x.vida -= DANO_LASER
+					if x.player == 1:
+						x.get_parent().get_node(\"GUI\").p1_life_bar.value -= DANO_LASER
+					elif x.player == 2:
+						x.get_parent().get_node(\"GUI\").p2_life_bar.value -= DANO_LASER
 					x.stunado = 1
 					x.motion.x = 0
 					x.get_node(\"Sprite\").animation = \"Idle\"
@@ -216,6 +240,10 @@ func _physics_process(delta):
 				if x.get_groups().has(\"player\"):
 					x.bebado(sentido)
 					x.vida -= DANO_GARRAFA
+					if x.player == 1:
+						x.get_parent().get_node(\"GUI\").p1_life_bar.value -= DANO_GARRAFA
+					elif x.player == 2:
+						x.get_parent().get_node(\"GUI\").p2_life_bar.value -= DANO_GARRAFA
 					x.bebeu = -1
 					x.get_node(\"Bolhas\").visible = 1
 					x.get_node(\"Bolhas\").play(\"default\")
@@ -225,6 +253,10 @@ func _physics_process(delta):
 				if x.get_groups().has(\"mao\"):
 					x.get_parent().bebado(sentido)
 					x.get_parent().vida -= DANO_GARRAFA
+					if x.player == 1:
+						x.get_parent().get_node(\"GUI\").p1_life_bar.value -= DANO_GARRAFA
+					elif x.player == 2:
+						x.get_parent().get_node(\"GUI\").p2_life_bar.value -= DANO_GARRAFA
 					x.get_node(\"Bolhas\").visible = 1
 					x.get_node(\"Bolhas\").play(\"default\")
 			

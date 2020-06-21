@@ -99,6 +99,10 @@ func _process(delta):
 	if mana > 100:
 		mana = 100
 	
+	if player == 1:
+		self.get_parent().get_node("GUI").p1_energy_bar.value = mana
+	elif player == 2:
+		self.get_parent().get_node("GUI").p2_energy_bar.value = mana
 	
 	pass
 
@@ -137,19 +141,19 @@ func _physics_process(delta):
 					
 		position += vel_vinicola * delta
 		for x in $Fora.get_overlapping_areas():
-			if x.get_groups().has("portal1") and (motion + vel_vinicola).dot(position - x.get_node("Colisao").global_position) < -50:
+			if x.get_groups().has("portal1") and (motion + vel_vinicola).dot(position - x.get_node("Colisao").global_position) < -100:
 				
 				print("PRODUTO: ", (motion + vel_vinicola).dot(position - x.get_node("Colisao").global_position))
 				self.rotation += x.get_parent().get_node("Portal2/Colisao").rotation + x.get_parent().get_parent().rotation
 				motion = motion.length()*Vector2(1,0).rotated(self.rotation + PI/2)
-				position = x.get_parent().get_node("Portal2/Colisao").global_position + motion.normalized()*15
+				position = x.get_parent().get_node("Portal2/Colisao").global_position + motion.normalized()*10
 				
-			elif x.get_groups().has("portal2") and (motion + vel_vinicola).dot(position - x.get_node("Colisao").global_position) < -50:
+			elif x.get_groups().has("portal2") and (motion + vel_vinicola).dot(position - x.get_node("Colisao").global_position) < -100:
 				
 				print("PRODUTO: ", (motion + vel_vinicola).dot(position - x.get_node("Colisao").global_position))
 				self.rotation = x.get_parent().get_node("Portal1/Colisao").rotation + x.get_parent().get_parent().rotation
 				motion = motion.length()*Vector2(1,0).rotated(self.rotation - PI/2)
-				position = x.get_parent().get_node("Portal1/Colisao").global_position + motion.normalized()*20
+				position = x.get_parent().get_node("Portal1/Colisao").global_position + motion.normalized()*10
 			
 		
 	if knock_back == 0 and stunado == 0: 
@@ -433,6 +437,11 @@ func ativar_poder():
 	if mana < 100:
 		return
 	mana -= 100
+	
+	if player == 1:
+		self.get_parent().get_node("GUI").p1_energy_bar.value -= 100
+	elif player == 2:
+		self.get_parent().get_node("GUI").p2_energy_bar.value -= 100
 	
 	cena_poder = load("res://Poderes.tscn")
 	novo_poder = cena_poder.instance()

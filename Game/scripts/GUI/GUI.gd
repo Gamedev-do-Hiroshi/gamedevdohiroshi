@@ -9,7 +9,7 @@ onready var p2_life_bar = $HBoxContainer/P2Bars/LifeBar/Gauge
 onready var p2_energy_bar = $HBoxContainer/P2Bars/EnergyBar/Gauge
 onready var p1_score = $Number1
 onready var p2_score = $Number2
-var state = 1
+export var state = 1
 # Declare member variables here. Examples:
 # var a = 2
 # var b = "text"
