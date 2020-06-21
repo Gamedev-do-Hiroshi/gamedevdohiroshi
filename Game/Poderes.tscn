@@ -1,4 +1,4 @@
-[gd_scene load_steps=25 format=2]
+[gd_scene load_steps=26 format=2]
 
 [ext_resource path="res://assets/Cenarios/Bola.png" type="Texture" id=1]
 [ext_resource path="res://assets/Poderes/Fogo.png" type="Texture" id=2]
@@ -21,6 +21,8 @@ export(PODERES) var poder = PODERES.VERMELHO
 var sentido = 1
 
 const IMPULSO_BOLA = Vector2(1, -4) * 100
+const DANO_BOLA = 15
+const DURACAO_BOLA = 4.0
 var velocidade = Vector2()
 
 const TEMPO_NEVE = 2.0
@@ -89,11 +91,8 @@ func _process(delta):
 	
 	tempo += delta
 	
-	if poder == 0:
+	if poder == PODERES.VERMELHO:
 		$Bola/Fogo.rotation = -$Bola.rotation + $Bola.linear_velocity.angle()
-	elif poder == 2:
-		#if tempo > TEMPO_NEVE:
-		#	self.free()
 		pass
 	
 	elif poder == PODERES.ESPINHO:
@@ -105,6 +104,24 @@ func _physics_process(delta):
 	
 	if poder == PODERES.VERMELHO:
 		$Bola/Fogo.rotation = -$Bola.rotation + $Bola.linear_velocity.angle()
+		if $Bola/Area2D.get_overlapping_areas().size() != 0 or $Bola_de_neve/Area2D.get_overlapping_bodies().size() != 0:
+			
+			for x in $Bola/Area2D.get_overlapping_bodies():
+				#print(x)
+				if x.get_groups().has(\"player\"):
+					x.gelado(sentido)
+					x.vida -= DANO_BOLA
+					self.free()
+					return
+					
+			for x in $Bola/Area2D.get_overlapping_areas():
+				print(x)
+				if x.get_groups().has(\"mao\"):
+					x.get_parent().gelado(sentido)
+					x.get_parent().vida -= DANO_BOLA
+					self.free()
+		if tempo >= DURACAO_BOLA:
+			self.free()
 	elif poder == PODERES.AZUL:
 		if $Bola_de_neve/Area2D.get_overlapping_areas().size() != 0 or $Bola_de_neve/Area2D.get_overlapping_bodies().size() != 0:
 			if $Bola_de_neve/Area2D.get_overlapping_bodies() == [$Bola_de_neve]:
@@ -153,7 +170,6 @@ func _physics_process(delta):
 					p1 = 1
 				else:
 					p2 = 1
-		
 	elif poder == PODERES.AMARELO:
 		x_laser += sentido*VEL_LASER * delta
 		
@@ -248,6 +264,9 @@ animations = [ {
 "speed": 8.0
 } ]
 
+[sub_resource type="CircleShape2D" id=14]
+radius = 14.4599
+
 [sub_resource type="CircleShape2D" id=8]
 radius = 13.5492
 
@@ -294,6 +313,11 @@ scale = Vector2( 2, 2 )
 frames = SubResource( 7 )
 frame = 1
 playing = true
+
+[node name="Area2D" type="Area2D" parent="Bola"]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Bola/Area2D"]
+shape = SubResource( 14 )
 
 [node name="Bola_de_neve" type="RigidBody2D" parent="." groups=[
 "bola de neve",

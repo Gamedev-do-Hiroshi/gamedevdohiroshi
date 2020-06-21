@@ -2,6 +2,7 @@ extends Node2D
 
 const GRAVIDADE = 70.0
 const CENTRO = Vector2(640, 360)
+const VEL_ANG_BACIA = 1.2
 var area = preload("res://Setor_vinicula.tscn")
 var gravidade
 
@@ -24,4 +25,7 @@ func _physics_process(delta):
 				x.vel_vinicola += gravidade * (CENTRO - x.position) * delta
 			else:
 				x.linear_velocity += gravidade * (CENTRO - x.position) * delta
+	
+	$Bacia.rotation += VEL_ANG_BACIA * delta
+	
 	pass

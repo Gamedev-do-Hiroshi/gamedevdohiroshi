@@ -1,6 +1,7 @@
-[gd_scene load_steps=9 format=2]
+[gd_scene load_steps=13 format=2]
 
 [ext_resource path="res://scripts/Cenarios/Vinicula.gd" type="Script" id=1]
+[ext_resource path="res://assets/Poderes/pixil-frame-0(22).png" type="Texture" id=2]
 [ext_resource path="res://assets/Cenarios/vinicola.png" type="Texture" id=3]
 [ext_resource path="res://Player.tscn" type="PackedScene" id=4]
 
@@ -18,6 +19,15 @@ extents = Vector2( 426.757, 18.2782 )
 
 [sub_resource type="RectangleShape2D" id=5]
 extents = Vector2( 205.272, 37.7291 )
+
+[sub_resource type="RectangleShape2D" id=6]
+extents = Vector2( 19.71, 1.52774 )
+
+[sub_resource type="RectangleShape2D" id=7]
+extents = Vector2( 27.7267, 1.72397 )
+
+[sub_resource type="RectangleShape2D" id=8]
+extents = Vector2( 16.0522, 1.39604 )
 
 [node name="Vinicola" type="Node2D" groups=[
 "vinicola",
@@ -128,7 +138,7 @@ collision_layer = 16385
 collision_mask = 16385
 
 [node name="Colisao" type="CollisionShape2D" parent="Plataformas/Plataforma16"]
-position = Vector2( 207.056, 707.188 )
+position = Vector2( 214.621, 703.946 )
 rotation = 0.383972
 shape = SubResource( 3 )
 
@@ -160,6 +170,7 @@ shape = SubResource( 5 )
 
 [node name="Plataforma8" type="StaticBody2D" parent="Plataformas"]
 collision_layer = 16385
+collision_mask = 16385
 
 [node name="Colisao" type="CollisionShape2D" parent="Plataformas/Plataforma8"]
 position = Vector2( 1298.62, 341.686 )
@@ -167,7 +178,8 @@ rotation = -1.5708
 shape = SubResource( 5 )
 
 [node name="Plataforma2" type="StaticBody2D" parent="Plataformas"]
-collision_layer = 17
+collision_layer = 16385
+collision_mask = 16385
 
 [node name="Colisao" type="CollisionShape2D" parent="Plataformas/Plataforma2"]
 position = Vector2( 1200.14, 629.226 )
@@ -175,7 +187,8 @@ rotation = 5.49779
 shape = SubResource( 2 )
 
 [node name="Plataforma3" type="StaticBody2D" parent="Plataformas"]
-collision_layer = 17
+collision_layer = 16385
+collision_mask = 16385
 
 [node name="Colisao" type="CollisionShape2D" parent="Plataformas/Plataforma3"]
 position = Vector2( 82.793, 635.907 )
@@ -183,9 +196,53 @@ rotation = 0.785398
 shape = SubResource( 2 )
 
 [node name="Plataforma4" type="StaticBody2D" parent="Plataformas"]
-collision_layer = 17
+collision_layer = 16385
+collision_mask = 16385
 
 [node name="Colisao" type="CollisionShape2D" parent="Plataformas/Plataforma4"]
 position = Vector2( 1205.47, 81.6811 )
 rotation = -2.35619
 shape = SubResource( 2 )
+
+[node name="Bacia" type="Sprite" parent="." groups=[
+"planeta",
+"plataforma",
+]]
+position = Vector2( 368.569, 277.962 )
+scale = Vector2( 3, 3 )
+texture = ExtResource( 2 )
+
+[node name="StaticBody2D" type="StaticBody2D" parent="Bacia"]
+collision_layer = 16385
+collision_mask = 16385
+
+[node name="Colisao" type="CollisionShape2D" parent="Bacia/StaticBody2D"]
+position = Vector2( 0.577011, 12.9613 )
+rotation = 3.14159
+shape = SubResource( 6 )
+
+[node name="StaticBody2D2" type="StaticBody2D" parent="Bacia"]
+collision_layer = 16385
+collision_mask = 16385
+
+[node name="Colisao" type="CollisionShape2D" parent="Bacia/StaticBody2D2"]
+position = Vector2( 0.144547, -20.2643 )
+shape = SubResource( 7 )
+
+[node name="StaticBody2D3" type="StaticBody2D" parent="Bacia"]
+collision_layer = 16385
+collision_mask = 16385
+
+[node name="Colisao" type="CollisionShape2D" parent="Bacia/StaticBody2D3"]
+position = Vector2( 26.366, -4.10278 )
+rotation = 1.8326
+shape = SubResource( 8 )
+
+[node name="StaticBody2D4" type="StaticBody2D" parent="Bacia"]
+collision_layer = 16385
+collision_mask = 16385
+
+[node name="Colisao" type="CollisionShape2D" parent="Bacia/StaticBody2D4"]
+position = Vector2( -25.443, -2.32097 )
+rotation = -1.8326
+shape = SubResource( 8 )

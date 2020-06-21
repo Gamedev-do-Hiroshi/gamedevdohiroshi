@@ -1,4 +1,4 @@
-[gd_scene load_steps=30 format=2]
+[gd_scene load_steps=31 format=2]
 
 [ext_resource path="res://scripts/Player/Player.gd" type="Script" id=1]
 [ext_resource path="res://assets/Player/hiroshiRun4.png" type="Texture" id=4]
@@ -55,7 +55,10 @@ extents = Vector2( 12.0251, 24.693 )
 extents = Vector2( 5.61736, 3.53411 )
 
 [sub_resource type="RectangleShape2D" id=4]
-extents = Vector2( 17, 30 )
+extents = Vector2( 11.7764, 24.8158 )
+
+[sub_resource type="RectangleShape2D" id=6]
+extents = Vector2( 14.5069, 27.5038 )
 
 [sub_resource type="SpriteFrames" id=5]
 animations = [ {
@@ -95,6 +98,15 @@ collision_mask = 24576
 
 [node name="Colisao" type="CollisionShape2D" parent="Corpo"]
 shape = SubResource( 4 )
+
+[node name="Fora" type="Area2D" parent="." groups=[
+"fora",
+]]
+collision_layer = 24576
+collision_mask = 24576
+
+[node name="Colisao" type="CollisionShape2D" parent="Fora"]
+shape = SubResource( 6 )
 
 [node name="Bolhas" type="AnimatedSprite" parent="."]
 position = Vector2( -14, -36 )

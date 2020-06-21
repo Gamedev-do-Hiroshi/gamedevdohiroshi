@@ -121,13 +121,15 @@ func _physics_process(delta):
 			return
 	else:
 		#motion = Vector2()
-		for x in $Corpo.get_overlapping_bodies():
+		for x in $Fora.get_overlapping_bodies():
 			#print("OLHA: ", x)
 			if x.get_parent().get_groups().has("plataforma"):
 				#vel_vinicola -= (position - x.position).normalized().cross(vel_vinicola) * (position - x.position).normalized().rotated(PI/2)
 				vel_vinicola = Vector2()
 				#print(vel_vinicola)
-				self.rotation = x.get_node("Colisao").rotation
+				self.rotation = x.get_node("Colisao").rotation + x.get_parent().rotation
+				if x.get_parent().get_groups().has("planeta"):
+					position -= 5 * Vector2(0, -1).rotated(self.rotation)
 		position += vel_vinicola * delta
 	
 		
@@ -342,7 +344,7 @@ func control_vinicola(delta):
 		
 		if Input.is_action_just_pressed("ui_up"):
 			print("PRESSIONADO")
-			for x in $Corpo.get_overlapping_bodies():
+			for x in $Fora.get_overlapping_bodies():
 				print("OLHA: ", x)
 				if x.get_parent().get_groups().has("plataforma"):
 					motion = JUMP_HEIGHT * Vector2(0, 1).rotated(self.rotation)
@@ -386,7 +388,7 @@ func control_vinicola(delta):
 		
 		if Input.is_key_pressed(KEY_W):
 			print("PRESSIONADO")
-			for x in $Corpo.get_overlapping_bodies():
+			for x in $Fora.get_overlapping_bodies():
 				print("OLHA: ", x)
 				if x.get_parent().get_groups().has("plataforma"):
 					motion = JUMP_HEIGHT * Vector2(0, 1).rotated(self.rotation)
@@ -417,6 +419,7 @@ func ativar_poder():
 	novo_poder.sentido = sentido
 	novo_poder.velocidade = motion
 	novo_poder.angulo = self.rotation
+	
 	if poder == PODERES.VERMELHO:
 		novo_poder.position = position +  Vector2(sentido*30, -10).rotated(self.rotation)
 		self.get_parent().add_child(novo_poder)
@@ -432,7 +435,7 @@ func ativar_poder():
 		novo_poder.position = position +  Vector2(sentido*50, -10).rotated(self.rotation)
 		self.get_parent().add_child(novo_poder)
 	elif poder == PODERES.ROXO:
-		novo_poder.position = position +  Vector2(sentido*70, -10).rotated(self.rotation)
+		novo_poder.position = position +  Vector2(sentido*70, -15).rotated(self.rotation)
 		print(Vector2(sentido*50, -10).rotated(self.rotation))
 		self.get_parent().add_child(novo_poder)
 	pass
