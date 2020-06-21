@@ -170,22 +170,19 @@ valign = 1
 [node name="BolaNeve" type="Sprite" parent="Poderes"]
 position = Vector2( 144.317, 507.016 )
 scale = Vector2( 8, 8 )
-
-[node name="Sprite" type="Sprite" parent="Poderes/BolaNeve"]
 texture = ExtResource( 7 )
 
-[node name="Selected1" type="Sprite" parent="Poderes/BolaNeve/Sprite"]
+[node name="Selected1" type="Sprite" parent="Poderes/BolaNeve"]
 position = Vector2( -0.396667, -0.694168 )
 scale = Vector2( 0.172729, 0.303722 )
 texture = ExtResource( 4 )
 
-[node name="Selected2" type="Sprite" parent="Poderes/BolaNeve/Sprite"]
+[node name="Selected2" type="Sprite" parent="Poderes/BolaNeve"]
 position = Vector2( -0.428688, -0.750214 )
 scale = Vector2( 0.178, 0.31 )
 texture = ExtResource( 8 )
 
 [node name="BolaTerra" type="Sprite" parent="Poderes"]
-editor/display_folded = true
 position = Vector2( 381.763, 505.524 )
 scale = Vector2( 5, 5 )
 texture = ExtResource( 9 )
