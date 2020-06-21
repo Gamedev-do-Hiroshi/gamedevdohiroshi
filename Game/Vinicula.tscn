@@ -239,8 +239,8 @@ rotation = -2.35619
 shape = SubResource( 2 )
 
 [node name="Bacia" type="Sprite" parent="." groups=[
-"planeta",
 "plataforma",
+"planeta",
 ]]
 editor/display_folded = true
 position = Vector2( 367.954, 277.962 )
@@ -491,8 +491,8 @@ rotation = 0.349066
 shape = SubResource( 12 )
 
 [node name="Barril" type="Sprite" parent="." groups=[
-"planeta",
 "plataforma",
+"planeta",
 ]]
 editor/display_folded = true
 position = Vector2( 959.821, 465.898 )
