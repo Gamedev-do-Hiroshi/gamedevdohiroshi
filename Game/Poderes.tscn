@@ -104,7 +104,7 @@ func _physics_process(delta):
 	
 	if poder == PODERES.VERMELHO:
 		$Bola/Fogo.rotation = -$Bola.rotation + $Bola.linear_velocity.angle()
-		if $Bola/Area2D.get_overlapping_areas().size() != 0 or $Bola_de_neve/Area2D.get_overlapping_bodies().size() != 0:
+		if $Bola/Area2D.get_overlapping_areas().size() != 0 or $Bola/Area2D.get_overlapping_bodies().size() != 0:
 			
 			for x in $Bola/Area2D.get_overlapping_bodies():
 				#print(x)

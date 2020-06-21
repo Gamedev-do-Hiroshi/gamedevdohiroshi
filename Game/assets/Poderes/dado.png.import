@@ -2,25 +2,25 @@
 
 importer="texture"
 type="StreamTexture"
-path="res://.import/vinicola.png-d481b78263dd48da695c90cda83e91d5.stex"
+path="res://.import/dado.png-a632a3e40df1355a0fa4d49edc8040d9.stex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://assets/Cenarios/vinicola.png"
-dest_files=[ "res://.import/vinicola.png-d481b78263dd48da695c90cda83e91d5.stex" ]
+source_file="res://assets/Poderes/dado.png"
+dest_files=[ "res://.import/dado.png-a632a3e40df1355a0fa4d49edc8040d9.stex" ]
 
 [params]
 
-compress/mode=3
+compress/mode=0
 compress/lossy_quality=0.7
 compress/hdr_mode=0
 compress/bptc_ldr=0
 compress/normal_map=0
 flags/repeat=0
-flags/filter=false
+flags/filter=true
 flags/mipmaps=false
 flags/anisotropic=false
 flags/srgb=2
