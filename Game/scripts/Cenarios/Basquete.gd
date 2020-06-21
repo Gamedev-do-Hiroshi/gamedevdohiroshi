@@ -27,9 +27,23 @@ func _process(delta):
 	#print($Bola.rotation)
 	
 	if(pontoPlayer1 == 10):
-		get_tree().change_scene("res://MainMenu.tscn")
+		var scene = load("res://MainMenu.tscn")
+		
+		var basquete = scene.instance()
+		get_tree().get_root().add_child(basquete)
+
+		var atual = get_tree().get_root().get_node("Basquete")
+		get_tree().get_root().remove_child(atual)
+		atual.call_deferred("free")
 	elif(pontoPlayer2 == 10):
-		get_tree().change_scene("res://MainMenu.tscn")
+		var scene = load("res://MainMenu.tscn")
+		
+		var basquete = scene.instance()
+		get_tree().get_root().add_child(basquete)
+
+		var atual = get_tree().get_root().get_node("Basquete")
+		get_tree().get_root().remove_child(atual)
+		atual.call_deferred("free")
 	
 	pass
 

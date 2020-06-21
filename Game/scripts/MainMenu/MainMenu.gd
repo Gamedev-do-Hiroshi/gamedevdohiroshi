@@ -42,7 +42,16 @@ func _input(event):
 #				var scene = load("res://Basquete.tscn")
 #				var basquete = scene.instance()
 #				add_child(basquete)
-				get_tree().change_scene("res://ChooseMiniGame.tscn")
+
+				var scene = load("res://ChooseMiniGame.tscn")
+		
+				var basquete = scene.instance()
+				get_tree().get_root().add_child(basquete)
+
+				var atual = get_tree().get_root().get_node("MainMenu")
+				get_tree().get_root().remove_child(atual)
+				atual.call_deferred("free")
+		
 			elif state == 3:
 				get_tree().quit()
 	state = state % number_of_options
