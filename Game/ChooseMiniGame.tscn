@@ -1,9 +1,11 @@
-[gd_scene load_steps=7 format=2]
+[gd_scene load_steps=9 format=2]
 
 [ext_resource path="res://ChooseMiniGame.gd" type="Script" id=1]
 [ext_resource path="res://assets/MainMenu/fonts/power_pixel-7.ttf" type="DynamicFontData" id=2]
 [ext_resource path="res://Sprites/BasquetePreview.png" type="Texture" id=3]
 [ext_resource path="res://assets/MainMenu/Selected.png" type="Texture" id=4]
+[ext_resource path="res://Sprites/FlorestaPreview.png" type="Texture" id=5]
+[ext_resource path="res://Sprites/vinicolaPreview.png" type="Texture" id=6]
 
 [sub_resource type="DynamicFontData" id=1]
 
@@ -26,10 +28,7 @@ align = 1
 valign = 1
 
 [node name="Figuras" type="Node2D" parent="."]
-position = Vector2( 0, -12.954 )
-__meta__ = {
-"_edit_group_": true
-}
+position = Vector2( 1.85059, -14.8046 )
 
 [node name="Basquete1" type="Sprite" parent="Figuras"]
 editor/display_folded = true
@@ -47,7 +46,7 @@ centered = false
 editor/display_folded = true
 position = Vector2( 480, 98.374 )
 scale = Vector2( 0.25, 0.25 )
-texture = ExtResource( 3 )
+texture = ExtResource( 5 )
 centered = false
 
 [node name="Selected" type="Sprite" parent="Figuras/Vinicola1"]
@@ -59,7 +58,7 @@ centered = false
 editor/display_folded = true
 position = Vector2( 830, 98.374 )
 scale = Vector2( 0.25, 0.25 )
-texture = ExtResource( 3 )
+texture = ExtResource( 6 )
 centered = false
 
 [node name="Selected" type="Sprite" parent="Figuras/Floresta1"]

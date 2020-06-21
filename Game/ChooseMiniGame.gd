@@ -95,6 +95,8 @@ func _input(event):
 				get_tree().change_scene("res://Basquete.tscn")
 			elif state == 1:
 				get_tree().change_scene("res://Floresta.tscn")	
+			elif state == 2:
+				get_tree().change_scene("res://Vinicula.tscn")			
 	#defstate()
 	pass
 
