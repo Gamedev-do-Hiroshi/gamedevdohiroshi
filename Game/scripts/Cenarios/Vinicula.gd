@@ -19,6 +19,17 @@ func _ready():
 	
 	pass
 
+func _process(delta):
+	if(player1.vida <= 0 or player2.vida <= 0):
+		var scene = load("res://MainMenu.tscn")
+		
+		var basquete = scene.instance()
+		get_tree().get_root().add_child(basquete)
+
+		var atual = get_tree().get_root().get_node("Vinicola")
+		get_tree().get_root().remove_child(atual)
+		atual.call_deferred("free")
+
 func _physics_process(delta):
 	
 	for x in $Area.get_overlapping_bodies():
@@ -33,16 +44,6 @@ func _physics_process(delta):
 	
 	$Bacia.rotation += VEL_ANG_BACIA * delta
 	$Barril.rotation += VEL_ANG_BARRIL * delta
-	
-	if(player1.vida <= 0 or player2.vida <= 0):
-		var scene = load("res://MainMenu.tscn")
-		
-		var basquete = scene.instance()
-		get_tree().get_root().add_child(basquete)
-
-		var atual = get_tree().get_root().get_node("Vinicula")
-		get_tree().get_root().remove_child(atual)
-		atual.call_deferred("free")
 	
 	
 	pass
