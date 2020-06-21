@@ -17,8 +17,8 @@ export var state = 1
 # Called when the node enters the scene tree for the first time.
 func _ready():
 #	 var player_max_health = $"../Characters/Player".max_health
-	var player_max_health = 100
-	var player_max_energy = 100
+	var player_max_health = 1000
+	var player_max_energy = 1000
 	p1_life_bar.max_value = player_max_health
 	p1_life_bar.value = player_max_health
 	p1_energy_bar.max_value = player_max_energy

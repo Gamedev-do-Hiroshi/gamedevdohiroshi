@@ -17,6 +17,7 @@ const KB_TIME = 0.2
 var motion = Vector2()
 var sentido = -1
 
+const DANO_SOCO = 100
 const VEL_SOCO = 100
 const TEMPO_SOCO = 0.4
 var soco = 0
@@ -24,7 +25,7 @@ var tempo_soco = 0.0
 var vel_soco = 0.0
 var teste
 
-var vida = 100
+var vida = 1000
 var mana = 100
 const TAXA_MANA = 50
 const MAX_VEL_KNOCK_BACK = 200
@@ -44,7 +45,7 @@ var novo_poder
 
 var ocupado = 0
 
-const DURACAO_GELO = 2.0
+const DURACAO_GELO = 1.0
 const VEL_GELO = 20
 var gelou = 0
 var tempo_gelo = 0.0
@@ -75,7 +76,7 @@ func _ready():
 #		$Animacao.animation = "Player 2"
 	soco = 0
 	sentido = -1
-	vida = 100
+	vida = 1000
 	mana = 100
 	knock_back = 0
 	colisao = 0
@@ -536,7 +537,13 @@ func _on_Mao_area_entered(area):
 	
 	if ((area.get_groups().has("mao") or area.get_groups().has("corpo"))  and area.get_parent() != self):
 		print("SOQUEI")
-		area.get_parent().vida -= 10
+		area.get_parent().vida -= DANO_SOCO
+		
+		if area.get_parent().player == 1:
+			self.get_parent().get_node("GUI").p1_life_bar.value -= DANO_SOCO
+		elif area.get_parent().player == 2:
+			self.get_parent().get_node("GUI").p2_life_bar.value -= DANO_SOCO
+		
 		var sound = AudioStreamPlayer2D.new();
 		self.add_child(sound);
 		sound.stream = load("res://sounds/Realistic_Punch-Mark_DiAngelo-1609462330.wav");

@@ -21,26 +21,26 @@ export(PODERES) var poder = PODERES.VERMELHO
 var sentido = 1
 
 const IMPULSO_BOLA = Vector2(1, -4) * 100
-const DANO_BOLA = 15
+const DANO_BOLA = 150
 const DURACAO_BOLA = 4.0
 var velocidade = Vector2()
 
 const TEMPO_NEVE = 2.0
-const DANO_NEVE = 5
+const DANO_NEVE = 50
 const IMPULSO_NEVE = Vector2(1, -1) * 300
 var tempo = 0.0
 
 const VEL_LASER = 200
-const DANO_LASER = 10
+const DANO_LASER = 100
 var x_laser = 0.0
 var frame_laser = [5.0, 15.0, 25.0]
 var y_laser = 5.0
 var angulo = 0.0
 
-const DANO_GARRAFA = 10
+const DANO_GARRAFA = 100
 const IMPULSO_GARRAFA = Vector2(3, -3.5) * 200
 
-const DANO_ESPINHO = 0.1
+const DANO_ESPINHO = 1
 
 func _ready():
 	
