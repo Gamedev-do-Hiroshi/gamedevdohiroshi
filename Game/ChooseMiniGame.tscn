@@ -1,4 +1,4 @@
-[gd_scene load_steps=15 format=2]
+[gd_scene load_steps=16 format=2]
 
 [ext_resource path="res://ChooseMiniGame.gd" type="Script" id=1]
 [ext_resource path="res://assets/MainMenu/fonts/power_pixel-7.ttf" type="DynamicFontData" id=2]
@@ -12,8 +12,7 @@
 [ext_resource path="res://assets/Poderes/garrafa.png" type="Texture" id=10]
 [ext_resource path="res://assets/Poderes/laser.png" type="Texture" id=11]
 [ext_resource path="res://assets/Poderes/BolaFogo.png" type="Texture" id=12]
-[ext_resource path="res://sounds/5413683573293056.wav" type="AudioStream" id=7]
-
+[ext_resource path="res://sounds/5413683573293056.wav" type="AudioStream" id=13]
 
 [sub_resource type="DynamicFontData" id=1]
 
@@ -171,19 +170,22 @@ valign = 1
 [node name="BolaNeve" type="Sprite" parent="Poderes"]
 position = Vector2( 144.317, 507.016 )
 scale = Vector2( 8, 8 )
+
+[node name="Sprite" type="Sprite" parent="Poderes/BolaNeve"]
 texture = ExtResource( 7 )
 
-[node name="Selected1" type="Sprite" parent="Poderes/BolaNeve"]
-position = Vector2( -0.396668, -0.694168 )
+[node name="Selected1" type="Sprite" parent="Poderes/BolaNeve/Sprite"]
+position = Vector2( -0.396667, -0.694168 )
 scale = Vector2( 0.172729, 0.303722 )
 texture = ExtResource( 4 )
 
-[node name="Selected2" type="Sprite" parent="Poderes/BolaNeve"]
+[node name="Selected2" type="Sprite" parent="Poderes/BolaNeve/Sprite"]
 position = Vector2( -0.428688, -0.750214 )
 scale = Vector2( 0.178, 0.31 )
 texture = ExtResource( 8 )
 
 [node name="BolaTerra" type="Sprite" parent="Poderes"]
+editor/display_folded = true
 position = Vector2( 381.763, 505.524 )
 scale = Vector2( 5, 5 )
 texture = ExtResource( 9 )
@@ -202,6 +204,7 @@ scale = Vector2( 0.2848, 0.496 )
 texture = ExtResource( 8 )
 
 [node name="garrafa" type="Sprite" parent="Poderes"]
+editor/display_folded = true
 position = Vector2( 576.019, 512.224 )
 scale = Vector2( 5, 5 )
 texture = ExtResource( 10 )
@@ -220,6 +223,7 @@ scale = Vector2( 0.2848, 0.496 )
 texture = ExtResource( 8 )
 
 [node name="laser" type="Sprite" parent="Poderes"]
+editor/display_folded = true
 position = Vector2( 893.748, 503.591 )
 scale = Vector2( 5.38979, 3.98294 )
 texture = ExtResource( 11 )
@@ -238,6 +242,7 @@ scale = Vector2( 0.264203, 0.622655 )
 texture = ExtResource( 8 )
 
 [node name="BolaFogo" type="Sprite" parent="Poderes"]
+editor/display_folded = true
 position = Vector2( 1061.94, 457.095 )
 scale = Vector2( 5.04959, 5.19835 )
 texture = ExtResource( 12 )
@@ -257,10 +262,11 @@ texture = ExtResource( 4 )
 position = Vector2( 16.4264, 8.25356 )
 scale = Vector2( 0.282003, 0.477075 )
 texture = ExtResource( 8 )
+
 [node name="Bola neve" type="Sprite" parent="Poderes"]
 
 [node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="."]
-stream = ExtResource( 7 )
+stream = ExtResource( 13 )
 volume_db = -13.0
 pitch_scale = 1.25
 autoplay = true
