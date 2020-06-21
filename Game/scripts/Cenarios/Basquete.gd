@@ -1,5 +1,7 @@
 extends Node2D
 
+onready var player1 = $"Player 1"
+onready var player2 = $"Player 2"
 onready var gui = $GUI
 
 var pontoPlayer2 = 0
@@ -23,6 +25,11 @@ func _ready():
 
 func _process(delta):
 	#print($Bola.rotation)
+	
+	if(pontoPlayer1 == 10):
+		get_tree().change_scene("res://MainMenu.tscn")
+	elif(pontoPlayer2 == 10):
+		get_tree().change_scene("res://MainMenu.tscn")
 	
 	pass
 

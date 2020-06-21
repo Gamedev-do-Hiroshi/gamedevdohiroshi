@@ -1,4 +1,4 @@
-[gd_scene load_steps=9 format=2]
+[gd_scene load_steps=15 format=2]
 
 [ext_resource path="res://ChooseMiniGame.gd" type="Script" id=1]
 [ext_resource path="res://assets/MainMenu/fonts/power_pixel-7.ttf" type="DynamicFontData" id=2]
@@ -6,6 +6,12 @@
 [ext_resource path="res://assets/MainMenu/Selected.png" type="Texture" id=4]
 [ext_resource path="res://Sprites/FlorestaPreview.png" type="Texture" id=5]
 [ext_resource path="res://Sprites/vinicolaPreview.png" type="Texture" id=6]
+[ext_resource path="res://assets/Poderes/bola_de_neve.png" type="Texture" id=7]
+[ext_resource path="res://assets/MainMenu/Selected2.png" type="Texture" id=8]
+[ext_resource path="res://assets/Poderes/bolaTerra.png" type="Texture" id=9]
+[ext_resource path="res://assets/Poderes/garrafa.png" type="Texture" id=10]
+[ext_resource path="res://assets/Poderes/laser.png" type="Texture" id=11]
+[ext_resource path="res://assets/Poderes/BolaFogo.png" type="Texture" id=12]
 
 [sub_resource type="DynamicFontData" id=1]
 
@@ -29,7 +35,7 @@ valign = 1
 
 [node name="Figuras" type="Node2D" parent="."]
 editor/display_folded = true
-position = Vector2( 0, -12.954 )
+position = Vector2( 0, -14.1203 )
 __meta__ = {
 "_edit_group_": true
 }
@@ -160,4 +166,92 @@ valign = 1
 
 [node name="Poderes" type="Node2D" parent="."]
 
-[node name="Bola neve" type="Sprite" parent="Poderes"]
+[node name="BolaNeve" type="Sprite" parent="Poderes"]
+position = Vector2( 144.317, 507.016 )
+scale = Vector2( 8, 8 )
+texture = ExtResource( 7 )
+
+[node name="Selected1" type="Sprite" parent="Poderes/BolaNeve"]
+position = Vector2( -0.396668, -0.694168 )
+scale = Vector2( 0.172729, 0.303722 )
+texture = ExtResource( 4 )
+
+[node name="Selected2" type="Sprite" parent="Poderes/BolaNeve"]
+position = Vector2( -0.428688, -0.750214 )
+scale = Vector2( 0.178, 0.31 )
+texture = ExtResource( 8 )
+
+[node name="BolaTerra" type="Sprite" parent="Poderes"]
+position = Vector2( 381.763, 505.524 )
+scale = Vector2( 5, 5 )
+texture = ExtResource( 9 )
+
+[node name="Selected1" type="Sprite" parent="Poderes/BolaTerra"]
+position = Vector2( 2.21243, -0.812279 )
+scale = Vector2( 0.276367, 0.485955 )
+texture = ExtResource( 4 )
+__meta__ = {
+"_edit_group_": true
+}
+
+[node name="Selected2" type="Sprite" parent="Poderes/BolaTerra"]
+position = Vector2( 2.16119, -0.901955 )
+scale = Vector2( 0.2848, 0.496 )
+texture = ExtResource( 8 )
+
+[node name="garrafa" type="Sprite" parent="Poderes"]
+position = Vector2( 576.019, 512.224 )
+scale = Vector2( 5, 5 )
+texture = ExtResource( 10 )
+
+[node name="Selected1" type="Sprite" parent="Poderes/garrafa"]
+position = Vector2( 13.8247, -2.47816 )
+scale = Vector2( 0.276367, 0.485955 )
+texture = ExtResource( 4 )
+__meta__ = {
+"_edit_group_": true
+}
+
+[node name="Selected2" type="Sprite" parent="Poderes/garrafa"]
+position = Vector2( 13.7735, -2.56783 )
+scale = Vector2( 0.2848, 0.496 )
+texture = ExtResource( 8 )
+
+[node name="laser" type="Sprite" parent="Poderes"]
+position = Vector2( 893.748, 503.591 )
+scale = Vector2( 5.38979, 3.98294 )
+texture = ExtResource( 11 )
+__meta__ = {
+"_edit_group_": true
+}
+
+[node name="Selected1" type="Sprite" parent="Poderes/laser"]
+position = Vector2( 0.559265, -0.875343 )
+scale = Vector2( 0.25638, 0.610045 )
+texture = ExtResource( 4 )
+
+[node name="Selected2" type="Sprite" parent="Poderes/laser"]
+position = Vector2( 0.511749, -0.987915 )
+scale = Vector2( 0.264203, 0.622655 )
+texture = ExtResource( 8 )
+
+[node name="BolaFogo" type="Sprite" parent="Poderes"]
+position = Vector2( 1061.94, 457.095 )
+scale = Vector2( 5.04959, 5.19835 )
+texture = ExtResource( 12 )
+centered = false
+region_enabled = true
+region_rect = Rect2( 0, 0, 32, 16 )
+__meta__ = {
+"_edit_group_": true
+}
+
+[node name="Selected1" type="Sprite" parent="Poderes/BolaFogo"]
+position = Vector2( 16.4771, 8.33981 )
+scale = Vector2( 0.273653, 0.467413 )
+texture = ExtResource( 4 )
+
+[node name="Selected2" type="Sprite" parent="Poderes/BolaFogo"]
+position = Vector2( 16.4264, 8.25356 )
+scale = Vector2( 0.282003, 0.477075 )
+texture = ExtResource( 8 )

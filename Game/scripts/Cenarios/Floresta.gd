@@ -1,5 +1,9 @@
 extends Node2D
 
+onready var player1 = $"Player 1"
+onready var player2 = $"Player 2"
+onready var gui = $GUI
+
 enum PODERES {VERMELHO, LARANJA, AZUL, GELO, AMARELO, ROXO, VERDE, ESPINHO}
 # Declare member variables here. Examples:
 # var a = 2
@@ -21,6 +25,11 @@ func _process(delta):
 		espinho.z_index = 2
 		espinho.poder = PODERES.ESPINHO
 		self.add_child(espinho)
+
+	if(player1.vida <= 0):
+		get_tree().change_scene("res://MainMenu.tscn")
+	elif(player2.vida <= 0):
+		get_tree().change_scene("res://MainMenu.tscn")
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 #func _process(delta):

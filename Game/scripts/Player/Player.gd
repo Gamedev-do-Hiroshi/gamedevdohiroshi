@@ -2,7 +2,7 @@ extends KinematicBody2D
 
 export var player = 1
 
-enum PODERES {VERMELHO, LARANJA, AZUL, GELO, AMARELO, ROXO, VERDE, ESPINH, ROXO}
+enum PODERES {VERMELHO, LARANJA, AZUL, GELO, AMARELO, ROXO, VERDE, ESPINHO}
 
 export(PODERES) var poder = PODERES.VERMELHO
 
@@ -95,10 +95,10 @@ func _process(delta):
 	if vida <= 0:
 		$Sprite.play("Dead")
 	
-	mana += TAXA_MANA * delta
+	mana += TAXA_MANA*10 * delta
 	
-	if mana > 100:
-		mana = 100
+	if mana > 1000:
+		mana = 1000
 	
 	if player == 1:
 		self.get_parent().get_node("GUI").p1_energy_bar.value = mana
@@ -435,14 +435,14 @@ func control_vinicola(delta):
 # ------------------------------------------------------> PODERES <-----------------------------------------------------
 func ativar_poder():
 	
-	if mana < 100:
+	if mana < 1000:
 		return
-	mana -= 100
+	mana -= 1000
 	
 	if player == 1:
-		self.get_parent().get_node("GUI").p1_energy_bar.value -= 100
+		self.get_parent().get_node("GUI").p1_energy_bar.value -= 1000
 	elif player == 2:
-		self.get_parent().get_node("GUI").p2_energy_bar.value -= 100
+		self.get_parent().get_node("GUI").p2_energy_bar.value -= 1000
 	
 	cena_poder = load("res://Poderes.tscn")
 	novo_poder = cena_poder.instance()
@@ -452,7 +452,7 @@ func ativar_poder():
 	novo_poder.angulo = self.rotation
 	
 	if poder == PODERES.VERMELHO:
-		novo_poder.position = position +  Vector2(sentido*30, -10).rotated(self.rotation)
+		novo_poder.position = position +  Vector2(sentido*50, -10).rotated(self.rotation)
 		self.get_parent().add_child(novo_poder)
 	elif poder == PODERES.AZUL:
 		novo_poder.position = position +  Vector2(sentido*50, -10).rotated(self.rotation)

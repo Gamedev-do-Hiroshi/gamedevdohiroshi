@@ -1,5 +1,9 @@
 extends Node2D
 
+onready var player1 = $"Player 1"
+onready var player2 = $"Player 2"
+onready var gui = $GUI
+
 const GRAVIDADE = 70.0
 const CENTRO = Vector2(640, 360)
 const VEL_ANG_BACIA = 1.2
@@ -29,5 +33,11 @@ func _physics_process(delta):
 	
 	$Bacia.rotation += VEL_ANG_BACIA * delta
 	$Barril.rotation += VEL_ANG_BARRIL * delta
+	
+	if(player1.vida <= 0):
+		get_tree().change_scene("res://MainMenu.tscn")
+	elif(player2.vida <= 0):
+		get_tree().change_scene("res://MainMenu.tscn")
+	
 	
 	pass
