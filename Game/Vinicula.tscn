@@ -1,9 +1,15 @@
 [gd_scene load_steps=24 format=2]
 
 [ext_resource path="res://scripts/Cenarios/Vinicula.gd" type="Script" id=1]
+<<<<<<< HEAD
 [ext_resource path="res://assets/Cenarios/cenario_vinicola.png" type="Texture" id=2]
 [ext_resource path="res://Player.tscn" type="PackedScene" id=3]
 [ext_resource path="res://assets/Cenarios/Chao_teto.png" type="Texture" id=4]
+=======
+[ext_resource path="res://assets/Cenarios/mogi.png" type="Texture" id=2]
+[ext_resource path="res://Player.tscn" type="PackedScene" id=3]
+[ext_resource path="res://assets/Cenarios/vinicola.png" type="Texture" id=4]
+>>>>>>> 4b08b0dd840d8cdf17cf03c4e092bbbc9f5540c1
 [ext_resource path="res://assets/Cenarios/Bacia.png" type="Texture" id=5]
 [ext_resource path="res://assets/Cenarios/Barril.png" type="Texture" id=6]
 [ext_resource path="res://GUI.tscn" type="PackedScene" id=7]
@@ -62,20 +68,30 @@ extents = Vector2( 18.337, 0.386139 )
 script = ExtResource( 1 )
 
 [node name="Background" type="Sprite" parent="."]
+<<<<<<< HEAD
 scale = Vector2( 10, 10.2 )
+=======
+scale = Vector2( 1.2, 1.2 )
+>>>>>>> 4b08b0dd840d8cdf17cf03c4e092bbbc9f5540c1
 texture = ExtResource( 2 )
 centered = false
 
 [node name="Player 1" parent="." instance=ExtResource( 3 )]
+<<<<<<< HEAD
 position = Vector2( 857.553, 715.354 )
 poder = 2
+=======
+position = Vector2( 855.395, 715.354 )
+poder = 8
+>>>>>>> 4b08b0dd840d8cdf17cf03c4e092bbbc9f5540c1
 
 [node name="Player 2" parent="." instance=ExtResource( 3 )]
 position = Vector2( 397.598, 180.971 )
 player = 2
-poder = 4
+poder = 8
 
 [node name="Area" type="Area2D" parent="."]
+editor/display_folded = true
 visible = false
 collision_layer = 0
 collision_mask = 291
@@ -87,6 +103,7 @@ shape = SubResource( 1 )
 [node name="Plataformas" type="Node2D" parent="." groups=[
 "plataforma",
 ]]
+editor/display_folded = true
 
 [node name="vinicola" type="Sprite" parent="Plataformas"]
 scale = Vector2( 10, 10.2 )
@@ -237,9 +254,10 @@ rotation = -2.35619
 shape = SubResource( 2 )
 
 [node name="Bacia" type="Sprite" parent="." groups=[
-"planeta",
 "plataforma",
+"planeta",
 ]]
+editor/display_folded = true
 position = Vector2( 367.954, 277.962 )
 scale = Vector2( 3, 3 )
 texture = ExtResource( 5 )
@@ -488,9 +506,10 @@ rotation = 0.349066
 shape = SubResource( 12 )
 
 [node name="Barril" type="Sprite" parent="." groups=[
-"planeta",
 "plataforma",
+"planeta",
 ]]
+editor/display_folded = true
 position = Vector2( 959.821, 465.898 )
 scale = Vector2( 3, 3 )
 texture = ExtResource( 6 )
@@ -628,7 +647,7 @@ collision_layer = 16385
 collision_mask = 16385
 
 [node name="Colisao" type="CollisionShape2D" parent="Barril/StaticBody2D15"]
-position = Vector2( 21.7747, -27.8431 )
+position = Vector2( 21.2451, -27.8431 )
 rotation = -5.55887
 shape = SubResource( 11 )
 
@@ -735,7 +754,7 @@ collision_layer = 16385
 collision_mask = 16385
 
 [node name="Colisao" type="CollisionShape2D" parent="Barril/Portal4/Portal2"]
-position = Vector2( 19.6119, -13.5545 )
+position = Vector2( 19.3471, -15.4082 )
 rotation = -0.0344947
 shape = SubResource( 12 )
 

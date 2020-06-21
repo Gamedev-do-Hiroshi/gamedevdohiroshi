@@ -94,8 +94,15 @@ func _input(event):
 #				add_child(basquete)
 				get_tree().change_scene("res://Basquete.tscn")
 			elif state == 1:
+<<<<<<< HEAD
 				get_tree().change_scene("res://Floresta.tscn")
 			elif state == 2:
 				get_tree().change_scene("res://Vinicula.tscn")
+=======
+				get_tree().change_scene("res://Floresta.tscn")	
+			elif state == 2:
+				get_tree().change_scene("res://Vinicula.tscn")			
+	#defstate()
+>>>>>>> 4b08b0dd840d8cdf17cf03c4e092bbbc9f5540c1
 	pass
 

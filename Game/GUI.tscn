@@ -1,24 +1,25 @@
 [gd_scene load_steps=11 format=2]
 
 [ext_resource path="res://scripts/GUI/GUI.gd" type="Script" id=1]
-[ext_resource path="res://assets/GUI/energy_fill.png" type="Texture" id=2]
-[ext_resource path="res://assets/GUI/energy_icon.png" type="Texture" id=3]
-[ext_resource path="res://assets/GUI/energy_bar.png" type="Texture" id=4]
-[ext_resource path="res://assets/GUI/life_icon.png" type="Texture" id=5]
-[ext_resource path="res://assets/GUI/life_fill.png" type="Texture" id=6]
-[ext_resource path="res://assets/GUI/life_bar.png" type="Texture" id=7]
-[ext_resource path="res://assets/GUI/font/DS-DIGIB.TTF" type="DynamicFontData" id=10]
+[ext_resource path="res://assets/GUI/font/DS-DIGIB.TTF" type="DynamicFontData" id=2]
+[ext_resource path="res://assets/GUI/life_icon.png" type="Texture" id=3]
+[ext_resource path="res://assets/GUI/life_bar.png" type="Texture" id=4]
+[ext_resource path="res://assets/GUI/life_fill.png" type="Texture" id=5]
+[ext_resource path="res://assets/GUI/energy_icon.png" type="Texture" id=6]
+[ext_resource path="res://assets/GUI/energy_bar.png" type="Texture" id=7]
+[ext_resource path="res://assets/GUI/energy_fill.png" type="Texture" id=8]
 
 [sub_resource type="DynamicFont" id=1]
 size = 72
 outline_color = Color( 0.901961, 1, 0.0156863, 1 )
-font_data = ExtResource( 10 )
+font_data = ExtResource( 2 )
 
 [sub_resource type="DynamicFont" id=2]
 size = 72
-font_data = ExtResource( 10 )
+font_data = ExtResource( 2 )
 
 [node name="GUI" type="Node2D"]
+editor/display_folded = true
 script = ExtResource( 1 )
 __meta__ = {
 "_edit_vertical_guides_": [ 640.222, 669.688, 609.528 ]
@@ -72,7 +73,7 @@ margin_bottom = 37.0
 [node name="Title" type="TextureRect" parent="HBoxContainer/P1Bars/LifeBar/Count"]
 margin_right = 43.0
 margin_bottom = 37.0
-texture = ExtResource( 5 )
+texture = ExtResource( 3 )
 stretch_mode = 4
 __meta__ = {
 "_edit_use_anchors_": false
@@ -83,8 +84,8 @@ margin_left = 47.0
 margin_right = 256.0
 margin_bottom = 37.0
 value = 100.0
-texture_under = ExtResource( 7 )
-texture_progress = ExtResource( 6 )
+texture_under = ExtResource( 4 )
+texture_progress = ExtResource( 5 )
 
 [node name="EnergyBar" type="HBoxContainer" parent="HBoxContainer/P1Bars"]
 margin_top = 41.0
@@ -98,7 +99,7 @@ margin_bottom = 37.0
 [node name="Title" type="TextureRect" parent="HBoxContainer/P1Bars/EnergyBar/Count"]
 margin_right = 43.0
 margin_bottom = 37.0
-texture = ExtResource( 3 )
+texture = ExtResource( 6 )
 stretch_mode = 4
 __meta__ = {
 "_edit_use_anchors_": false
@@ -109,8 +110,8 @@ margin_left = 47.0
 margin_right = 256.0
 margin_bottom = 37.0
 value = 100.0
-texture_under = ExtResource( 4 )
-texture_progress = ExtResource( 2 )
+texture_under = ExtResource( 7 )
+texture_progress = ExtResource( 8 )
 
 [node name="P2Bars" type="VBoxContainer" parent="HBoxContainer"]
 margin_left = 1024.0
@@ -125,8 +126,8 @@ margin_bottom = 37.0
 margin_right = 209.0
 margin_bottom = 37.0
 value = 100.0
-texture_under = ExtResource( 7 )
-texture_progress = ExtResource( 6 )
+texture_under = ExtResource( 4 )
+texture_progress = ExtResource( 5 )
 
 [node name="Count" type="HBoxContainer" parent="HBoxContainer/P2Bars/LifeBar"]
 margin_left = 213.0
@@ -136,7 +137,7 @@ margin_bottom = 37.0
 [node name="Title" type="TextureRect" parent="HBoxContainer/P2Bars/LifeBar/Count"]
 margin_right = 43.0
 margin_bottom = 37.0
-texture = ExtResource( 5 )
+texture = ExtResource( 3 )
 stretch_mode = 4
 __meta__ = {
 "_edit_use_anchors_": false
@@ -151,8 +152,8 @@ margin_bottom = 78.0
 margin_right = 209.0
 margin_bottom = 37.0
 value = 100.0
-texture_under = ExtResource( 4 )
-texture_progress = ExtResource( 2 )
+texture_under = ExtResource( 7 )
+texture_progress = ExtResource( 8 )
 
 [node name="Count" type="HBoxContainer" parent="HBoxContainer/P2Bars/EnergyBar"]
 margin_left = 213.0
@@ -162,7 +163,7 @@ margin_bottom = 37.0
 [node name="Title" type="TextureRect" parent="HBoxContainer/P2Bars/EnergyBar/Count"]
 margin_right = 43.0
 margin_bottom = 37.0
-texture = ExtResource( 3 )
+texture = ExtResource( 6 )
 stretch_mode = 4
 __meta__ = {
 "_edit_use_anchors_": false
