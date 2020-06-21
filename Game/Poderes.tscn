@@ -343,6 +343,7 @@ texture = ExtResource( 1 )
 position = Vector2( -18, 0 )
 scale = Vector2( 2, 2 )
 frames = SubResource( 7 )
+frame = 2
 playing = true
 
 [node name="Area2D" type="Area2D" parent="Bola"]
