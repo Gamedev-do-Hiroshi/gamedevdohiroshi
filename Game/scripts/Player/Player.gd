@@ -128,10 +128,29 @@ func _physics_process(delta):
 				vel_vinicola = Vector2()
 				#print(vel_vinicola)
 				self.rotation = x.get_node("Colisao").rotation + x.get_parent().rotation
+				print("planeta: ", x.get_node("Colisao").rotation + x.get_parent().rotation )
+				
 				if x.get_parent().get_groups().has("planeta"):
-					position -= 5 * Vector2(0, -1).rotated(self.rotation)
+					motion -= 30 * Vector2(0, -1).rotated(self.rotation)
+				#elif x.get_parent().get_groups().has("limite"):
+				#	motion -= 15 * Vector2(1, 0).rotated(self.rotation)
+					
 		position += vel_vinicola * delta
-	
+		for x in $Fora.get_overlapping_areas():
+			if x.get_groups().has("portal1") and (motion + vel_vinicola).dot(position - x.get_node("Colisao").global_position) < -50:
+				
+				print("PRODUTO: ", (motion + vel_vinicola).dot(position - x.get_node("Colisao").global_position))
+				self.rotation += x.get_parent().get_node("Portal2/Colisao").rotation + x.get_parent().get_parent().rotation
+				motion = motion.length()*Vector2(1,0).rotated(self.rotation + PI/2)
+				position = x.get_parent().get_node("Portal2/Colisao").global_position + motion.normalized()*15
+				
+			elif x.get_groups().has("portal2") and (motion + vel_vinicola).dot(position - x.get_node("Colisao").global_position) < -50:
+				
+				print("PRODUTO: ", (motion + vel_vinicola).dot(position - x.get_node("Colisao").global_position))
+				self.rotation = x.get_parent().get_node("Portal1/Colisao").rotation + x.get_parent().get_parent().rotation
+				motion = motion.length()*Vector2(1,0).rotated(self.rotation - PI/2)
+				position = x.get_parent().get_node("Portal1/Colisao").global_position + motion.normalized()*20
+			
 		
 	if knock_back == 0 and stunado == 0: 
 		socar(delta)
@@ -348,6 +367,7 @@ func control_vinicola(delta):
 				print("OLHA: ", x)
 				if x.get_parent().get_groups().has("plataforma"):
 					motion = JUMP_HEIGHT * Vector2(0, 1).rotated(self.rotation)
+					print(motion, "::", Vector2(0, 1).rotated(self.rotation))
 					print("PULA")
 					return
 		#else:
@@ -392,6 +412,7 @@ func control_vinicola(delta):
 				print("OLHA: ", x)
 				if x.get_parent().get_groups().has("plataforma"):
 					motion = JUMP_HEIGHT * Vector2(0, 1).rotated(self.rotation)
+					print(motion,"<-->" , Vector2(0, 1).rotated(self.rotation))
 					print("PULA")
 					return
 				

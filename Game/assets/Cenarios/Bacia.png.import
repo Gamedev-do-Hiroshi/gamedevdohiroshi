@@ -2,15 +2,15 @@
 
 importer="texture"
 type="StreamTexture"
-path="res://.import/bolaTerra.png-438e10d263e6c688cab93e525c6cb2f6.stex"
+path="res://.import/Bacia.png-c62b62cb6e27aeaa3ba5a7306f97033b.stex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://assets/Poderes/bolaTerra.png"
-dest_files=[ "res://.import/bolaTerra.png-438e10d263e6c688cab93e525c6cb2f6.stex" ]
+source_file="res://assets/Cenarios/Bacia.png"
+dest_files=[ "res://.import/Bacia.png-c62b62cb6e27aeaa3ba5a7306f97033b.stex" ]
 
 [params]
 

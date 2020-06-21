@@ -3,6 +3,7 @@ extends Node2D
 const GRAVIDADE = 70.0
 const CENTRO = Vector2(640, 360)
 const VEL_ANG_BACIA = 1.2
+const VEL_ANG_BARRIL = -0.8
 var area = preload("res://Setor_vinicula.tscn")
 var gravidade
 
@@ -23,9 +24,10 @@ func _physics_process(delta):
 			gravidade = - GRAVIDADE * 1/( (CENTRO - x.position).length() )
 			if x.get_groups().has("player"):
 				x.vel_vinicola += gravidade * (CENTRO - x.position) * delta
-			else:
+			elif !x.get_parent().get_groups().has("limite"):
 				x.linear_velocity += gravidade * (CENTRO - x.position) * delta
 	
 	$Bacia.rotation += VEL_ANG_BACIA * delta
+	$Barril.rotation += VEL_ANG_BARRIL * delta
 	
 	pass

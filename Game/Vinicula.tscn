@@ -1,9 +1,10 @@
-[gd_scene load_steps=13 format=2]
+[gd_scene load_steps=22 format=2]
 
 [ext_resource path="res://scripts/Cenarios/Vinicula.gd" type="Script" id=1]
-[ext_resource path="res://assets/Poderes/pixil-frame-0(22).png" type="Texture" id=2]
+[ext_resource path="res://assets/Cenarios/Bacia.png" type="Texture" id=2]
 [ext_resource path="res://assets/Cenarios/vinicola.png" type="Texture" id=3]
 [ext_resource path="res://Player.tscn" type="PackedScene" id=4]
+[ext_resource path="res://assets/Cenarios/Barril.png" type="Texture" id=5]
 
 [sub_resource type="RectangleShape2D" id=1]
 extents = Vector2( 640, 360 )
@@ -21,25 +22,52 @@ extents = Vector2( 426.757, 18.2782 )
 extents = Vector2( 205.272, 37.7291 )
 
 [sub_resource type="RectangleShape2D" id=6]
-extents = Vector2( 19.71, 1.52774 )
+extents = Vector2( 18.8685, 0.456024 )
 
 [sub_resource type="RectangleShape2D" id=7]
-extents = Vector2( 27.7267, 1.72397 )
+extents = Vector2( 26.9176, 0.292885 )
 
 [sub_resource type="RectangleShape2D" id=8]
-extents = Vector2( 16.0522, 1.39604 )
+extents = Vector2( 15.8086, 0.472031 )
+
+[sub_resource type="RectangleShape2D" id=9]
+extents = Vector2( 0.421844, 3.227 )
+
+[sub_resource type="RectangleShape2D" id=10]
+extents = Vector2( 1.94701, 0.381744 )
+
+[sub_resource type="RectangleShape2D" id=11]
+extents = Vector2( 1.99524, 0.520439 )
+
+[sub_resource type="RectangleShape2D" id=12]
+extents = Vector2( 1.69794, 0.143188 )
+
+[sub_resource type="RectangleShape2D" id=13]
+extents = Vector2( 11.4294, 0.856979 )
+
+[sub_resource type="RectangleShape2D" id=14]
+extents = Vector2( 12.5307, 0.791931 )
+
+[sub_resource type="RectangleShape2D" id=15]
+extents = Vector2( 18.7839, 0.511047 )
+
+[sub_resource type="RectangleShape2D" id=16]
+extents = Vector2( 18.337, 0.386139 )
 
 [node name="Vinicola" type="Node2D" groups=[
 "vinicola",
 ]]
 script = ExtResource( 1 )
 
+[node name="Sprite" type="Sprite" parent="."]
+centered = false
+
 [node name="Player 1" parent="." instance=ExtResource( 4 )]
 position = Vector2( 855.395, 715.354 )
 poder = 8
 
 [node name="Player 2" parent="." instance=ExtResource( 4 )]
-position = Vector2( 559.797, 469.573 )
+position = Vector2( 397.598, 180.971 )
 player = 2
 poder = 8
 
@@ -120,7 +148,7 @@ collision_layer = 16385
 collision_mask = 16385
 
 [node name="Colisao" type="CollisionShape2D" parent="Plataformas/Plataforma14"]
-position = Vector2( 1264.44, 205.963 )
+position = Vector2( 1269.33, 204.566 )
 rotation = 4.31096
 shape = SubResource( 3 )
 
@@ -208,7 +236,7 @@ shape = SubResource( 2 )
 "planeta",
 "plataforma",
 ]]
-position = Vector2( 368.569, 277.962 )
+position = Vector2( 367.954, 277.962 )
 scale = Vector2( 3, 3 )
 texture = ExtResource( 2 )
 
@@ -217,7 +245,7 @@ collision_layer = 16385
 collision_mask = 16385
 
 [node name="Colisao" type="CollisionShape2D" parent="Bacia/StaticBody2D"]
-position = Vector2( 0.577011, 12.9613 )
+position = Vector2( 0.414459, 13.6116 )
 rotation = 3.14159
 shape = SubResource( 6 )
 
@@ -226,7 +254,7 @@ collision_layer = 16385
 collision_mask = 16385
 
 [node name="Colisao" type="CollisionShape2D" parent="Bacia/StaticBody2D2"]
-position = Vector2( 0.144547, -20.2643 )
+position = Vector2( -0.445381, -20.7939 )
 shape = SubResource( 7 )
 
 [node name="StaticBody2D3" type="StaticBody2D" parent="Bacia"]
@@ -234,7 +262,7 @@ collision_layer = 16385
 collision_mask = 16385
 
 [node name="Colisao" type="CollisionShape2D" parent="Bacia/StaticBody2D3"]
-position = Vector2( 26.366, -4.10278 )
+position = Vector2( 25.6049, -2.6593 )
 rotation = 1.8326
 shape = SubResource( 8 )
 
@@ -243,6 +271,466 @@ collision_layer = 16385
 collision_mask = 16385
 
 [node name="Colisao" type="CollisionShape2D" parent="Bacia/StaticBody2D4"]
-position = Vector2( -25.443, -2.32097 )
+position = Vector2( -25.8985, -1.65597 )
 rotation = -1.8326
 shape = SubResource( 8 )
+
+[node name="StaticBody2D5" type="StaticBody2D" parent="Bacia"]
+collision_layer = 16385
+collision_mask = 16385
+
+[node name="Colisao" type="CollisionShape2D" parent="Bacia/StaticBody2D5"]
+position = Vector2( -34.2995, -16.7164 )
+rotation = -1.78722
+shape = SubResource( 9 )
+
+[node name="StaticBody2D12" type="StaticBody2D" parent="Bacia"]
+collision_layer = 16385
+collision_mask = 16385
+
+[node name="Colisao" type="CollisionShape2D" parent="Bacia/StaticBody2D12"]
+position = Vector2( -25.8154, 15.6667 )
+rotation = -1.8326
+shape = SubResource( 9 )
+
+[node name="StaticBody2D6" type="StaticBody2D" parent="Bacia"]
+collision_layer = 16385
+collision_mask = 16385
+
+[node name="Colisao" type="CollisionShape2D" parent="Bacia/StaticBody2D6"]
+position = Vector2( -28.0878, -25.3523 )
+shape = SubResource( 9 )
+
+[node name="StaticBody2D7" type="StaticBody2D" parent="Bacia"]
+collision_layer = 16385
+collision_mask = 16385
+
+[node name="Colisao" type="CollisionShape2D" parent="Bacia/StaticBody2D7"]
+position = Vector2( 28.0781, -25.4589 )
+shape = SubResource( 9 )
+
+[node name="StaticBody2D8" type="StaticBody2D" parent="Bacia"]
+collision_layer = 16385
+collision_mask = 16385
+
+[node name="Colisao" type="CollisionShape2D" parent="Bacia/StaticBody2D8"]
+position = Vector2( 34.0723, -17.8566 )
+rotation = 1.93906
+shape = SubResource( 9 )
+
+[node name="StaticBody2D9" type="StaticBody2D" parent="Bacia"]
+collision_layer = 16385
+collision_mask = 16385
+
+[node name="Colisao" type="CollisionShape2D" parent="Bacia/StaticBody2D9"]
+position = Vector2( 26.4052, 13.9744 )
+rotation = 1.93906
+shape = SubResource( 9 )
+
+[node name="StaticBody2D10" type="StaticBody2D" parent="Bacia"]
+position = Vector2( -5.49675, 4.06281 )
+collision_layer = 16385
+collision_mask = 16385
+
+[node name="Colisao" type="CollisionShape2D" parent="Bacia/StaticBody2D10"]
+position = Vector2( 26.8831, 14.2134 )
+rotation = -3.14159
+shape = SubResource( 9 )
+
+[node name="StaticBody2D11" type="StaticBody2D" parent="Bacia"]
+position = Vector2( -5.49675, 4.06281 )
+collision_layer = 16385
+collision_mask = 16385
+
+[node name="Colisao" type="CollisionShape2D" parent="Bacia/StaticBody2D11"]
+position = Vector2( -15.179, 14.0876 )
+rotation = 3.14159
+shape = SubResource( 9 )
+
+[node name="StaticBody2D13" type="StaticBody2D" parent="Bacia"]
+position = Vector2( -5.49675, 4.06281 )
+collision_layer = 16385
+collision_mask = 16385
+
+[node name="Colisao" type="CollisionShape2D" parent="Bacia/StaticBody2D13"]
+position = Vector2( -20.843, 17.7143 )
+rotation = -2.49757
+shape = SubResource( 10 )
+
+[node name="StaticBody2D14" type="StaticBody2D" parent="Bacia"]
+position = Vector2( -5.49675, 4.06281 )
+collision_layer = 16385
+collision_mask = 16385
+
+[node name="Colisao" type="CollisionShape2D" parent="Bacia/StaticBody2D14"]
+position = Vector2( 32.4431, 15.7616 )
+rotation = -3.94793
+shape = SubResource( 10 )
+
+[node name="StaticBody2D15" type="StaticBody2D" parent="Bacia"]
+position = Vector2( -5.49675, 4.06281 )
+collision_layer = 16385
+collision_mask = 16385
+
+[node name="Colisao" type="CollisionShape2D" parent="Bacia/StaticBody2D15"]
+position = Vector2( 40.8727, -28.7059 )
+rotation = -5.55887
+shape = SubResource( 11 )
+
+[node name="StaticBody2D16" type="StaticBody2D" parent="Bacia"]
+position = Vector2( -5.49675, 4.06281 )
+collision_layer = 16385
+collision_mask = 16385
+
+[node name="Colisao" type="CollisionShape2D" parent="Bacia/StaticBody2D16"]
+position = Vector2( -30.5726, -27.4481 )
+rotation = -1.0472
+shape = SubResource( 11 )
+
+[node name="Portal" type="Node2D" parent="Bacia"]
+
+[node name="Portal1" type="Area2D" parent="Bacia/Portal" groups=[
+"portal1",
+]]
+collision_layer = 16385
+collision_mask = 16385
+
+[node name="Colisao" type="CollisionShape2D" parent="Bacia/Portal/Portal1"]
+position = Vector2( -36.4683, -13.0693 )
+rotation = 2.84489
+shape = SubResource( 12 )
+
+[node name="Portal2" type="Area2D" parent="Bacia/Portal" groups=[
+"portal2",
+]]
+collision_layer = 16385
+collision_mask = 16385
+
+[node name="Colisao" type="CollisionShape2D" parent="Bacia/Portal/Portal2"]
+position = Vector2( -26.1009, -27.7487 )
+rotation = 1.5708
+shape = SubResource( 12 )
+
+[node name="Portal2" type="Node2D" parent="Bacia"]
+
+[node name="Portal1" type="Area2D" parent="Bacia/Portal2" groups=[
+"portal1",
+]]
+collision_layer = 16385
+collision_mask = 16385
+
+[node name="Colisao" type="CollisionShape2D" parent="Bacia/Portal2/Portal1"]
+position = Vector2( -17.0233, 20.2211 )
+rotation = 1.5708
+shape = SubResource( 12 )
+
+[node name="Portal2" type="Area2D" parent="Bacia/Portal2" groups=[
+"portal2",
+]]
+collision_layer = 16385
+collision_mask = 16385
+
+[node name="Colisao" type="CollisionShape2D" parent="Bacia/Portal2/Portal2"]
+position = Vector2( -31.4641, 13.8416 )
+rotation = -0.349066
+shape = SubResource( 12 )
+
+[node name="Portal3" type="Node2D" parent="Bacia"]
+
+[node name="Portal1" type="Area2D" parent="Bacia/Portal3" groups=[
+"portal1",
+]]
+collision_layer = 16385
+collision_mask = 16385
+
+[node name="Colisao" type="CollisionShape2D" parent="Bacia/Portal3/Portal1"]
+position = Vector2( 30.323, 12.252 )
+rotation = 0.349066
+shape = SubResource( 12 )
+
+[node name="Portal2" type="Area2D" parent="Bacia/Portal3" groups=[
+"portal2",
+]]
+collision_layer = 16385
+collision_mask = 16385
+
+[node name="Colisao" type="CollisionShape2D" parent="Bacia/Portal3/Portal2"]
+position = Vector2( 18.3103, 20.722 )
+rotation = -1.5708
+shape = SubResource( 12 )
+
+[node name="Portal4" type="Node2D" parent="Bacia"]
+
+[node name="Portal1" type="Area2D" parent="Bacia/Portal4" groups=[
+"portal1",
+]]
+collision_layer = 16385
+collision_mask = 16385
+
+[node name="Colisao" type="CollisionShape2D" parent="Bacia/Portal4/Portal1"]
+position = Vector2( 24.4939, -27.5218 )
+rotation = -1.5708
+shape = SubResource( 12 )
+
+[node name="Portal2" type="Area2D" parent="Bacia/Portal4" groups=[
+"portal2",
+]]
+collision_layer = 16385
+collision_mask = 16385
+
+[node name="Colisao" type="CollisionShape2D" parent="Bacia/Portal4/Portal2"]
+position = Vector2( 34.9687, -14.4327 )
+rotation = 0.349066
+shape = SubResource( 12 )
+
+[node name="Barril" type="Sprite" parent="." groups=[
+"planeta",
+"plataforma",
+]]
+position = Vector2( 959.821, 465.898 )
+scale = Vector2( 3, 3 )
+texture = ExtResource( 5 )
+
+[node name="StaticBody2D" type="StaticBody2D" parent="Barril"]
+collision_layer = 16385
+collision_mask = 16385
+
+[node name="Colisao" type="CollisionShape2D" parent="Barril/StaticBody2D"]
+position = Vector2( 0.414429, 19.4799 )
+rotation = 3.14159
+shape = SubResource( 13 )
+
+[node name="StaticBody2D2" type="StaticBody2D" parent="Barril"]
+collision_layer = 16385
+collision_mask = 16385
+
+[node name="Colisao" type="CollisionShape2D" parent="Barril/StaticBody2D2"]
+position = Vector2( -1.12983, -19.9383 )
+shape = SubResource( 14 )
+
+[node name="StaticBody2D3" type="StaticBody2D" parent="Barril"]
+collision_layer = 16385
+collision_mask = 16385
+
+[node name="Colisao" type="CollisionShape2D" parent="Barril/StaticBody2D3"]
+position = Vector2( 12.0737, 0.182892 )
+rotation = 1.5588
+shape = SubResource( 15 )
+
+[node name="StaticBody2D4" type="StaticBody2D" parent="Barril"]
+collision_layer = 16385
+collision_mask = 16385
+
+[node name="Colisao" type="CollisionShape2D" parent="Barril/StaticBody2D4"]
+position = Vector2( -13.853, -0.0158539 )
+rotation = -1.58744
+shape = SubResource( 16 )
+
+[node name="StaticBody2D5" type="StaticBody2D" parent="Barril"]
+collision_layer = 16385
+collision_mask = 16385
+
+[node name="Colisao" type="CollisionShape2D" parent="Barril/StaticBody2D5"]
+position = Vector2( -18.2582, -18.1473 )
+rotation = -1.59916
+shape = SubResource( 9 )
+
+[node name="StaticBody2D12" type="StaticBody2D" parent="Barril"]
+collision_layer = 16385
+collision_mask = 16385
+
+[node name="Colisao" type="CollisionShape2D" parent="Barril/StaticBody2D12"]
+position = Vector2( -18.0856, 18.5654 )
+rotation = -1.56701
+shape = SubResource( 9 )
+
+[node name="StaticBody2D6" type="StaticBody2D" parent="Barril"]
+collision_layer = 16385
+collision_mask = 16385
+
+[node name="Colisao" type="CollisionShape2D" parent="Barril/StaticBody2D6"]
+position = Vector2( -14.0981, -24.5634 )
+shape = SubResource( 9 )
+
+[node name="StaticBody2D7" type="StaticBody2D" parent="Barril"]
+collision_layer = 16385
+collision_mask = 16385
+
+[node name="Colisao" type="CollisionShape2D" parent="Barril/StaticBody2D7"]
+position = Vector2( 10.8231, -24.5962 )
+shape = SubResource( 9 )
+
+[node name="StaticBody2D8" type="StaticBody2D" parent="Barril"]
+collision_layer = 16385
+collision_mask = 16385
+
+[node name="Colisao" type="CollisionShape2D" parent="Barril/StaticBody2D8"]
+position = Vector2( 16.5044, -18.0415 )
+rotation = 1.58099
+shape = SubResource( 9 )
+
+[node name="StaticBody2D9" type="StaticBody2D" parent="Barril"]
+collision_layer = 16385
+collision_mask = 16385
+
+[node name="Colisao" type="CollisionShape2D" parent="Barril/StaticBody2D9"]
+position = Vector2( 16.5672, 19.4205 )
+rotation = 1.5602
+shape = SubResource( 9 )
+
+[node name="StaticBody2D10" type="StaticBody2D" parent="Barril"]
+position = Vector2( -5.49675, 4.06281 )
+collision_layer = 16385
+collision_mask = 16385
+
+[node name="Colisao" type="CollisionShape2D" parent="Barril/StaticBody2D10"]
+position = Vector2( 17.4843, 19.6595 )
+rotation = -3.14159
+shape = SubResource( 9 )
+
+[node name="StaticBody2D11" type="StaticBody2D" parent="Barril"]
+position = Vector2( -5.49675, 4.06281 )
+collision_layer = 16385
+collision_mask = 16385
+
+[node name="Colisao" type="CollisionShape2D" parent="Barril/StaticBody2D11"]
+position = Vector2( -5.51666, 19.7972 )
+rotation = 3.14159
+shape = SubResource( 9 )
+
+[node name="StaticBody2D13" type="StaticBody2D" parent="Barril"]
+position = Vector2( -5.49675, 4.06281 )
+collision_layer = 16385
+collision_mask = 16385
+
+[node name="Colisao" type="CollisionShape2D" parent="Barril/StaticBody2D13"]
+position = Vector2( -10.6537, 20.7009 )
+rotation = -2.49757
+shape = SubResource( 10 )
+
+[node name="StaticBody2D14" type="StaticBody2D" parent="Barril"]
+position = Vector2( -5.49675, 4.06281 )
+collision_layer = 16385
+collision_mask = 16385
+
+[node name="Colisao" type="CollisionShape2D" parent="Barril/StaticBody2D14"]
+position = Vector2( 22.605, 19.0995 )
+rotation = -3.94793
+shape = SubResource( 10 )
+
+[node name="StaticBody2D15" type="StaticBody2D" parent="Barril"]
+position = Vector2( -5.49675, 4.06281 )
+collision_layer = 16385
+collision_mask = 16385
+
+[node name="Colisao" type="CollisionShape2D" parent="Barril/StaticBody2D15"]
+position = Vector2( 21.2451, -27.8431 )
+rotation = -5.55887
+shape = SubResource( 11 )
+
+[node name="StaticBody2D16" type="StaticBody2D" parent="Barril"]
+position = Vector2( -5.49675, 4.06281 )
+collision_layer = 16385
+collision_mask = 16385
+
+[node name="Colisao" type="CollisionShape2D" parent="Barril/StaticBody2D16"]
+position = Vector2( -13.9287, -27.674 )
+rotation = -1.0472
+shape = SubResource( 11 )
+
+[node name="Portal" type="Node2D" parent="Barril"]
+
+[node name="Portal1" type="Area2D" parent="Barril/Portal" groups=[
+"portal1",
+]]
+collision_layer = 16385
+collision_mask = 16385
+
+[node name="Colisao" type="CollisionShape2D" parent="Barril/Portal/Portal1"]
+position = Vector2( -21.0058, -15.5832 )
+rotation = 3.16091
+scale = Vector2( 1.13061, 1.02273 )
+shape = SubResource( 12 )
+
+[node name="Portal2" type="Area2D" parent="Barril/Portal" groups=[
+"portal2",
+]]
+collision_layer = 16385
+collision_mask = 16385
+
+[node name="Colisao" type="CollisionShape2D" parent="Barril/Portal/Portal2"]
+position = Vector2( -11.0117, -27.8914 )
+rotation = 1.5708
+shape = SubResource( 12 )
+
+[node name="Portal2" type="Node2D" parent="Barril"]
+
+[node name="Portal1" type="Area2D" parent="Barril/Portal2" groups=[
+"portal1",
+]]
+collision_layer = 16385
+collision_mask = 16385
+
+[node name="Colisao" type="CollisionShape2D" parent="Barril/Portal2/Portal1"]
+position = Vector2( -8.65419, 25.755 )
+rotation = 1.5708
+shape = SubResource( 12 )
+
+[node name="Portal2" type="Area2D" parent="Barril/Portal2" groups=[
+"portal2",
+]]
+collision_layer = 16385
+collision_mask = 16385
+
+[node name="Colisao" type="CollisionShape2D" parent="Barril/Portal2/Portal2"]
+position = Vector2( -21.7139, 16.3889 )
+rotation = -0.0161997
+shape = SubResource( 12 )
+
+[node name="Portal3" type="Node2D" parent="Barril"]
+
+[node name="Portal1" type="Area2D" parent="Barril/Portal3" groups=[
+"portal1",
+]]
+collision_layer = 16385
+collision_mask = 16385
+
+[node name="Colisao" type="CollisionShape2D" parent="Barril/Portal3/Portal1"]
+position = Vector2( 19.4309, 17.2589 )
+rotation = -0.0297895
+shape = SubResource( 12 )
+
+[node name="Portal2" type="Area2D" parent="Barril/Portal3" groups=[
+"portal2",
+]]
+collision_layer = 16385
+collision_mask = 16385
+
+[node name="Colisao" type="CollisionShape2D" parent="Barril/Portal3/Portal2"]
+position = Vector2( 9.07059, 26.4716 )
+rotation = -1.5708
+shape = SubResource( 12 )
+
+[node name="Portal4" type="Node2D" parent="Barril"]
+
+[node name="Portal1" type="Area2D" parent="Barril/Portal4" groups=[
+"portal1",
+]]
+collision_layer = 16385
+collision_mask = 16385
+
+[node name="Colisao" type="CollisionShape2D" parent="Barril/Portal4/Portal1"]
+position = Vector2( 7.63187, -27.3163 )
+rotation = -1.5708
+shape = SubResource( 12 )
+
+[node name="Portal2" type="Area2D" parent="Barril/Portal4" groups=[
+"portal2",
+]]
+collision_layer = 16385
+collision_mask = 16385
+
+[node name="Colisao" type="CollisionShape2D" parent="Barril/Portal4/Portal2"]
+position = Vector2( 19.3471, -15.4082 )
+rotation = -0.0344947
+shape = SubResource( 12 )

@@ -5,7 +5,7 @@
 [ext_resource path="res://assets/Poderes/bola_de_neve.png" type="Texture" id=3]
 [ext_resource path="res://assets/Poderes/bloco_gelo.png" type="Texture" id=4]
 [ext_resource path="res://assets/Poderes/laser.png" type="Texture" id=5]
-[ext_resource path="res://assets/Poderes/espiral1.png" type="Texture" id=6]
+[ext_resource path="res://assets/Poderes/bolaTerra.png" type="Texture" id=6]
 [ext_resource path="res://assets/Poderes/espinhoCrescendo0.png" type="Texture" id=7]
 [ext_resource path="res://assets/Poderes/espinhoCrescendo1.png" type="Texture" id=8]
 [ext_resource path="res://assets/Poderes/espinhoCrescendo2.png" type="Texture" id=9]
@@ -264,16 +264,16 @@ animations = [ {
 "speed": 8.0
 } ]
 
-[sub_resource type="CircleShape2D" id=14]
+[sub_resource type="CircleShape2D" id=8]
 radius = 14.4599
 
-[sub_resource type="CircleShape2D" id=8]
+[sub_resource type="CircleShape2D" id=9]
 radius = 13.5492
 
-[sub_resource type="RectangleShape2D" id=9]
+[sub_resource type="RectangleShape2D" id=10]
 extents = Vector2( 0, 12 )
 
-[sub_resource type="SpriteFrames" id=10]
+[sub_resource type="SpriteFrames" id=11]
 animations = [ {
 "frames": [ ExtResource( 7 ), ExtResource( 8 ), ExtResource( 9 ), ExtResource( 10 ) ],
 "loop": false,
@@ -281,13 +281,13 @@ animations = [ {
 "speed": 8.0
 } ]
 
-[sub_resource type="RectangleShape2D" id=11]
+[sub_resource type="RectangleShape2D" id=12]
 extents = Vector2( 52.2251, 46.926 )
 
-[sub_resource type="RectangleShape2D" id=12]
+[sub_resource type="RectangleShape2D" id=13]
 extents = Vector2( 10, 32.17 )
 
-[sub_resource type="RectangleShape2D" id=13]
+[sub_resource type="RectangleShape2D" id=14]
 extents = Vector2( 10, 32.6384 )
 
 [node name="Poderes" type="Node2D"]
@@ -311,13 +311,13 @@ texture = ExtResource( 1 )
 position = Vector2( -18, 0 )
 scale = Vector2( 2, 2 )
 frames = SubResource( 7 )
-frame = 1
+frame = 2
 playing = true
 
 [node name="Area2D" type="Area2D" parent="Bola"]
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Bola/Area2D"]
-shape = SubResource( 14 )
+shape = SubResource( 8 )
 
 [node name="Bola_de_neve" type="RigidBody2D" parent="." groups=[
 "bola de neve",
@@ -337,7 +337,7 @@ texture = ExtResource( 3 )
 [node name="Area2D" type="Area2D" parent="Bola_de_neve"]
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Bola_de_neve/Area2D"]
-shape = SubResource( 8 )
+shape = SubResource( 9 )
 
 [node name="Gelo" type="Sprite" parent="."]
 modulate = Color( 0.258824, 0.47451, 0.843137, 1 )
@@ -350,7 +350,7 @@ texture = ExtResource( 4 )
 scale = Vector2( 1, 1.25 )
 
 [node name="Colisao" type="CollisionShape2D" parent="Laser"]
-shape = SubResource( 9 )
+shape = SubResource( 10 )
 
 [node name="Sprite" type="Sprite" parent="Laser"]
 texture = ExtResource( 5 )
@@ -379,7 +379,7 @@ texture = ExtResource( 6 )
 scale = Vector2( 1.05, 1.05 )
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Bola_de_terra/Area2D"]
-shape = SubResource( 8 )
+shape = SubResource( 9 )
 
 [node name="Espinhos" type="Area2D" parent="."]
 position = Vector2( 0.880249, 9.03878 )
@@ -387,12 +387,12 @@ position = Vector2( 0.880249, 9.03878 )
 [node name="Area_espinhos" type="AnimatedSprite" parent="Espinhos"]
 position = Vector2( -1.42233, -23.3268 )
 scale = Vector2( 3, 3 )
-frames = SubResource( 10 )
+frames = SubResource( 11 )
 animation = "Grow"
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Espinhos"]
 position = Vector2( -0.88028, -44.893 )
-shape = SubResource( 11 )
+shape = SubResource( 12 )
 
 [node name="Garrafa" type="RigidBody2D" parent="."]
 collision_layer = 16385
@@ -401,7 +401,7 @@ physics_material_override = SubResource( 2 )
 gravity_scale = 5.0
 
 [node name="Colisao" type="CollisionShape2D" parent="Garrafa"]
-shape = SubResource( 12 )
+shape = SubResource( 13 )
 
 [node name="Sprite" type="Sprite" parent="Garrafa"]
 position = Vector2( 0.75, 0 )
@@ -413,4 +413,4 @@ region_rect = Rect2( 25, 10, 15, 34 )
 [node name="Area2D" type="Area2D" parent="Garrafa"]
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Garrafa/Area2D"]
-shape = SubResource( 13 )
+shape = SubResource( 14 )
