@@ -1,5 +1,7 @@
 extends Node2D
 
+onready var gui = $GUI
+
 var pontoPlayer2 = 0
 var pontoPlayer1  = 0
 
@@ -13,6 +15,8 @@ func _ready():
 	$Timer.connect("timeout", Bola, "_on_Timer_timeout")
 	Bola.z_index = 1
 	add_child(Bola)
+	gui.state = 0
+	gui.defstate()
 	
 	print("Comecou")
 	pass

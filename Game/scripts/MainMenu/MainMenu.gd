@@ -4,8 +4,10 @@ onready var seta = $MarginContainer/HBoxContainer/Seta
 onready var new_game = $MarginContainer/HBoxContainer/VBoxContainer/MenuOptions/NewGame
 onready var options = $MarginContainer/HBoxContainer/VBoxContainer/MenuOptions/Options
 onready var credits = $MarginContainer/HBoxContainer/VBoxContainer/MenuOptions/Credits
+onready var quit_game = $MarginContainer/HBoxContainer/VBoxContainer/MenuOptions/QuitGame
 onready var roleta = $Roleta
 var state = 0
+var number_of_options = 4
 # Declare member variables here. Examples:
 # var a = 2
 # var b = "text"
@@ -23,6 +25,8 @@ func defstate():
 		seta.rect_position.y = options.rect_position.y
 	elif(state == 2):
 		seta.rect_position.y = credits.rect_position.y
+	elif(state == 3):
+		seta.rect_position.y = quit_game.rect_position.y
 		
 #	seta.rect_position.y += 24
 	pass
@@ -39,9 +43,11 @@ func _input(event):
 #				var basquete = scene.instance()
 #				add_child(basquete)
 				get_tree().change_scene("res://Basquete.tscn")
-	state = state % 3
+			elif state == 3:
+				get_tree().quit()
+	state = state % number_of_options
 	if(state < 0):
-		state += 3
+		state += number_of_options
 	defstate()
 	pass
 

@@ -80,8 +80,6 @@ poder = 8
 one_shot = true
 
 [node name="GUI" parent="." instance=ExtResource( 5 )]
-margin_right = 1282.0
-margin_bottom = 98.0
 
 [node name="TestQuadra" type="TileMap" parent="."]
 tile_set = ExtResource( 6 )
