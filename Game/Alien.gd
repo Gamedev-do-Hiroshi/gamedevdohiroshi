@@ -192,10 +192,7 @@ func punch():
 		soco = 1
 		tempo_soco = 0.0
 		vel_soco = sentido * VEL_SOCO
-		if player == 1:
-			$Sprite.play("Punch")
-		else:
-			$Sprite.play("alienPunch")
+		$Sprite.play("Punch")
 		var sound = AudioStreamPlayer2D.new();
 		self.add_child(sound);
 		sound.stream = load("res://sounds/Woosh-Mark_DiAngelo-4778593.wav");
@@ -258,11 +255,11 @@ func colide():
 func control(delta):
 	if vida <= 0:
 		$Sprite.play("Dead")
-		return
+		pass
 	
 	#print(lento)
 	
-	if player == 1:
+	if player == 2:
 		if Input.is_action_pressed("ui_right"):
 			motion.x = bebeu * SPEED
 			sentido = 1
@@ -277,7 +274,7 @@ func control(delta):
 			sentido = -1
 			$Sprite.flip_h = false
 			if soco == 0:
-				$Sprite.play("Run")
+				$Sprite.play("alienRun")
 			else:
 				#animação de Run + punch
 				pass
@@ -308,7 +305,7 @@ func control(delta):
 			sentido = 1
 			$Sprite.flip_h = true
 			if soco == 0:
-				$Sprite.play("alienRun")
+				$Sprite.play("Run")
 			else:
 				#animação de Run + punch
 				pass
@@ -317,14 +314,14 @@ func control(delta):
 			sentido = -1
 			$Sprite.flip_h = false
 			if soco == 0:
-				$Sprite.play("alienRun")
+				$Sprite.play("Run")
 			else:
 				#animação de Run + punch
 				pass
 		else:
 			motion.x = 0
 			if soco == 0:
-				$Sprite.play("alienIdle")
+				$Sprite.play("Idle")
 		
 		if is_on_floor():
 			if Input.is_key_pressed(KEY_W):
@@ -342,7 +339,7 @@ func control(delta):
 func control_vinicola(delta):
 	if vida <= 0:
 		$Sprite.play("Dead")
-		return
+		pass
 	
 	#print(lento)
 	
@@ -397,7 +394,7 @@ func control_vinicola(delta):
 			sentido = 1
 			$Sprite.flip_h = true
 			if soco == 0:
-				$Sprite.play("alienRun")
+				$Sprite.play("Run")
 			else:
 				#animação de Run + punch
 				pass
@@ -406,13 +403,13 @@ func control_vinicola(delta):
 			sentido = -1
 			$Sprite.flip_h = false
 			if soco == 0:
-				$Sprite.play("alienRun")
+				$Sprite.play("Run")
 			else:
 				#animação de Run + punch
 				pass
 		else:
 			if soco == 0:
-				$Sprite.play("alienIdle")
+				$Sprite.play("Idle")
 		
 		if Input.is_key_pressed(KEY_W):
 			print("PRESSIONADO")
