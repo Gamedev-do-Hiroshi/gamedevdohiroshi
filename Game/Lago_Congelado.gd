@@ -17,7 +17,7 @@ var ang = 0.0
 var p1 = Vector2(600,300)
 var v1 = Vector2(V,0)
 
-var _prev_mouse_pos = p1
+var _prev_mouse_pos = Vector2(10, 10)
 
 var tam = 0
 
@@ -75,9 +75,11 @@ func _ready():
 	
 	t = 0.0
 	tam = 0
+	
+	get_viewport().warp_mouse(Vector2(50, 10))
 
 
-func _process(delta):
+func _physics_process(delta):
 	t += delta
 	
 	if 2 < t and t < 2 + (3*PI*R)/(2*V):
@@ -95,7 +97,7 @@ func _process(delta):
 		pass
 	
 	_pen.update()
-	if t >= 60:
+	if t >= 1000:
 		data.printa()
 		self.free();
 	
@@ -108,9 +110,9 @@ func _on_draw():
 		data.insere(mouse_pos, _prev_mouse_pos)
 		if data.tam_pol > tam:
 			print("FOI");
-			tam = data.tam_pol
 			print("tamanho: ",tam)
-			var ii = 0
+			var ii = tam
+			tam = data.tam_pol
 			while ii < tam:
 				seila = data.pol(ii)
 				var hir = Sprite.new()
@@ -118,7 +120,7 @@ func _on_draw():
 				hir.scale = Vector2(0.02, 0.02)
 				hir.position = seila[0]
 				board.add_child(hir)
-				print(seila)
+				#print(seila)
 				ii += 1
 			_pen.draw_polygon(seila, PoolColorArray([Color(0,0,1)]))
 			
