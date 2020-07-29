@@ -1,9 +1,10 @@
-[gd_scene load_steps=9 format=2]
+[gd_scene load_steps=10 format=2]
 
 [ext_resource path="res://assets/MainMenu/fonts/power_pixel-7.ttf" type="DynamicFontData" id=1]
 [ext_resource path="res://scripts/Pausa/Pausa.gd" type="Script" id=2]
 [ext_resource path="res://assets/Dialog_box.png" type="Texture" id=3]
-[ext_resource path="res://assets/MainMenu/sprites/pixil-frame-0(11).png" type="Texture" id=4]
+[ext_resource path="res://assets/idle.png" type="Texture" id=4]
+[ext_resource path="res://assets/choose.png" type="Texture" id=5]
 
 [sub_resource type="DynamicFont" id=1]
 size = 40
@@ -75,6 +76,7 @@ margin_right = 74.0
 margin_bottom = -32.5
 rect_clip_content = true
 texture_normal = ExtResource( 4 )
+texture_hover = ExtResource( 5 )
 expand = true
 __meta__ = {
 "_edit_use_anchors_": false
@@ -103,6 +105,7 @@ margin_right = 74.0
 margin_bottom = 17.5
 rect_clip_content = true
 texture_normal = ExtResource( 4 )
+texture_hover = ExtResource( 5 )
 expand = true
 __meta__ = {
 "_edit_use_anchors_": false
@@ -131,6 +134,7 @@ margin_right = 74.0
 margin_bottom = 68.5
 rect_clip_content = true
 texture_normal = ExtResource( 4 )
+texture_hover = ExtResource( 5 )
 expand = true
 __meta__ = {
 "_edit_use_anchors_": false
