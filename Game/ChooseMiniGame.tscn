@@ -35,14 +35,12 @@ align = 1
 valign = 1
 
 [node name="Figuras" type="Node2D" parent="."]
-editor/display_folded = true
 position = Vector2( 0, -14.1203 )
 __meta__ = {
 "_edit_group_": true
 }
 
 [node name="Basquete1" type="Sprite" parent="Figuras"]
-editor/display_folded = true
 position = Vector2( 130, 98.374 )
 scale = Vector2( 0.25, 0.25 )
 texture = ExtResource( 3 )
@@ -54,7 +52,6 @@ texture = ExtResource( 4 )
 centered = false
 
 [node name="Vinicola1" type="Sprite" parent="Figuras"]
-editor/display_folded = true
 position = Vector2( 480, 98.374 )
 scale = Vector2( 0.25, 0.25 )
 texture = ExtResource( 5 )
@@ -66,7 +63,6 @@ texture = ExtResource( 4 )
 centered = false
 
 [node name="Floresta1" type="Sprite" parent="Figuras"]
-editor/display_folded = true
 position = Vector2( 830, 98.374 )
 scale = Vector2( 0.25, 0.25 )
 texture = ExtResource( 6 )
@@ -78,7 +74,6 @@ texture = ExtResource( 4 )
 centered = false
 
 [node name="Basquete3" type="Sprite" parent="Figuras"]
-editor/display_folded = true
 visible = false
 position = Vector2( 126.869, 312.854 )
 scale = Vector2( 0.25, 0.25 )
@@ -91,7 +86,6 @@ texture = ExtResource( 4 )
 centered = false
 
 [node name="Vinicola3" type="Sprite" parent="Figuras"]
-editor/display_folded = true
 visible = false
 position = Vector2( 476.869, 312.854 )
 scale = Vector2( 0.25, 0.25 )
@@ -104,7 +98,6 @@ texture = ExtResource( 4 )
 centered = false
 
 [node name="Floresta3" type="Sprite" parent="Figuras"]
-editor/display_folded = true
 visible = false
 position = Vector2( 826.869, 312.854 )
 scale = Vector2( 0.25, 0.25 )
@@ -117,7 +110,6 @@ texture = ExtResource( 4 )
 centered = false
 
 [node name="Basquete" type="Sprite" parent="Figuras"]
-editor/display_folded = true
 visible = false
 position = Vector2( 130, 525.683 )
 scale = Vector2( 0.25, 0.25 )
@@ -130,7 +122,6 @@ texture = ExtResource( 4 )
 centered = false
 
 [node name="Vinicola" type="Sprite" parent="Figuras"]
-editor/display_folded = true
 visible = false
 position = Vector2( 480, 525.683 )
 scale = Vector2( 0.25, 0.25 )
@@ -143,7 +134,6 @@ texture = ExtResource( 4 )
 centered = false
 
 [node name="Floresta" type="Sprite" parent="Figuras"]
-editor/display_folded = true
 visible = false
 position = Vector2( 830, 525.683 )
 scale = Vector2( 0.25, 0.25 )
@@ -201,7 +191,6 @@ scale = Vector2( 0.2848, 0.496 )
 texture = ExtResource( 8 )
 
 [node name="garrafa" type="Sprite" parent="Poderes"]
-editor/display_folded = true
 position = Vector2( 576.019, 512.224 )
 scale = Vector2( 5, 5 )
 texture = ExtResource( 10 )
@@ -220,7 +209,6 @@ scale = Vector2( 0.2848, 0.496 )
 texture = ExtResource( 8 )
 
 [node name="laser" type="Sprite" parent="Poderes"]
-editor/display_folded = true
 position = Vector2( 893.748, 503.591 )
 scale = Vector2( 5.38979, 3.98294 )
 texture = ExtResource( 11 )
@@ -239,7 +227,6 @@ scale = Vector2( 0.264203, 0.622655 )
 texture = ExtResource( 8 )
 
 [node name="BolaFogo" type="Sprite" parent="Poderes"]
-editor/display_folded = true
 position = Vector2( 1061.94, 457.095 )
 scale = Vector2( 5.04959, 5.19835 )
 texture = ExtResource( 12 )
