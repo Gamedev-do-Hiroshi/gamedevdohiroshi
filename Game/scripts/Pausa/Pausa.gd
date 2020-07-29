@@ -41,7 +41,7 @@ func _input(event):
 			state -= 1
 		elif event.pressed and event.scancode == KEY_DOWN:
 			state += 1
-		elif event.pressed and event.scancode == KEY_ENTER:
+		elif event.pressed and event.scancode == KEY_ENTER and visible:
 			if(state == 0):
 				_on_TextureButton_pressed()
 			elif state == 1:
@@ -71,6 +71,21 @@ func _on_TextureButton2_pressed():
 	print("here 22")
 	
 func _on_TextureButton3_pressed():
-	get_tree().change_scene("res://ChooseMiniGame.tscn")
 	visible = false
 	get_tree().paused = false
+	
+	var root = get_tree().get_root()
+	
+	for x in root.get_children():
+		print("Carai1")
+		print(x.name)
+	
+	var atual = self.get_parent().get_parent()
+	root.remove_child(atual)
+	atual.call_deferred("free")
+
+	# Add the next level
+	var basquete_resource = load("res://ChooseMiniGame.tscn")
+	var basquete = basquete_resource.instance()		
+			
+	root.add_child(basquete)

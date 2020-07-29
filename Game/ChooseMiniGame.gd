@@ -8,7 +8,6 @@ var state = 0
 var number_of_options = 2
 var poder1 = 0
 var poder2 = 0
-
 var poder1Escolhido = -1
 var poder2Escolhido = -1
 # Declare member variables here. Examples:
@@ -19,10 +18,12 @@ var poder2Escolhido = -1
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
+	moveSelectedPower()
 #	seta.rect_scale = Vector2(0.4, 0.4)
 	#defstate()
 	pass # Replace with function body.
 
+var poder_lista = [$Poderes/BolaNeve, $Poderes/BolaTerra, $Poderes/garrafa, $Poderes/laser, $Poderes/BolaFogo]
 
 func moveSelectedPower():
 	if poder1 == 0:
@@ -76,7 +77,6 @@ func moveSelectedPower():
 		$Poderes/BolaFogo/Selected2.visible = false
 		
 	if mapa_escolhido != -1 and poder1Escolhido != -1 and poder2Escolhido != -1:
-		
 		if poder1Escolhido == 0:
 			poder1Escolhido = PODERES.AZUL
 		elif poder1Escolhido == 1:
@@ -101,16 +101,30 @@ func moveSelectedPower():
 		
 		
 		if mapa_escolhido == 0:
-			var scene = load("res://Basquete.tscn")
-		
-			var basquete = scene.instance()
-			get_tree().get_root().add_child(basquete)
-			basquete.player1.poder = poder1Escolhido
-			basquete.player2.poder = poder2Escolhido
-			
-			var atual = get_tree().get_root().get_node("ChooseMiniGame")
-			get_tree().get_root().remove_child(atual)
+			# Remove the current level
+			var root = get_tree().get_root()
+	
+			for x in root.get_children():
+				print(x.name)
+	
+			var atual = root.get_node("ChooseMiniGame")
+			root.remove_child(atual)
 			atual.call_deferred("free")
+
+			for x in root.get_children():
+				print("Carai")
+				print(x.name)
+	
+
+			# Add the next level
+			var basquete_resource = load("res://Basquete.tscn")
+			var basquete = basquete_resource.instance()
+			
+			basquete.get_node("Player 1").poder = poder1Escolhido
+			basquete.get_node("Player 2").poder = poder2Escolhido
+			
+			root.add_child(basquete)
+			
 			#get_tree().change_scene("res://Basquete.tscn")
 			#print(get_tree().get_current_scene())
 			#print("oi")
@@ -123,7 +137,6 @@ func moveSelectedPower():
 			get_tree().get_root().add_child(basquete)
 			basquete.player1.poder = poder1Escolhido
 			basquete.player2.poder = poder2Escolhido
-			
 			
 			var atual = get_tree().get_root().get_node("ChooseMiniGame")
 			get_tree().get_root().remove_child(atual)
