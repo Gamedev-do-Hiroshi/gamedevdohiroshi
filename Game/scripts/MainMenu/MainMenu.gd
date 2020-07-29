@@ -1,11 +1,14 @@
 extends Node2D
 
-onready var seta = $MarginContainer/HBoxContainer/Seta
-onready var new_game = $MarginContainer/HBoxContainer/VBoxContainer/MenuOptions/NewGame
-onready var options = $MarginContainer/HBoxContainer/VBoxContainer/MenuOptions/Options
-onready var credits = $MarginContainer/HBoxContainer/VBoxContainer/MenuOptions/Credits
-onready var quit_game = $MarginContainer/HBoxContainer/VBoxContainer/MenuOptions/QuitGame
+onready var logo = $Logo
+onready var menu = $MarginContainer/MenuOptions
+onready var seta = $Seta
+onready var new_game = $MarginContainer/MenuOptions/NewGame
+onready var options = $MarginContainer/MenuOptions/Options
+onready var credits = $MarginContainer/MenuOptions/Credits
+onready var quit_game = $MarginContainer/MenuOptions/QuitGame
 onready var roleta = $Roleta
+onready var roleta2 = $Roleta2
 var state = 0
 var number_of_options = 4
 # Declare member variables here. Examples:
@@ -14,19 +17,21 @@ var number_of_options = 4
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
-	seta.rect_scale = Vector2(0.4, 0.4)
+	logo.play();
+	seta.rect_position.x = 415
+	seta.rect_position.y = new_game.rect_position.y + menu.rect_position.y
 	defstate()
 	pass # Replace with function body.
 
 func defstate():
 	if(state == 0):
-		seta.rect_position.y = new_game.rect_position.y
+		seta.rect_position.y = new_game.rect_position.y + menu.rect_position.y
 	elif(state == 1):
-		seta.rect_position.y = options.rect_position.y
+		seta.rect_position.y = options.rect_position.y + menu.rect_position.y
 	elif(state == 2):
-		seta.rect_position.y = credits.rect_position.y
+		seta.rect_position.y = credits.rect_position.y + + menu.rect_position.y
 	elif(state == 3):
-		seta.rect_position.y = quit_game.rect_position.y
+		seta.rect_position.y = quit_game.rect_position.y + + menu.rect_position.y
 		
 #	seta.rect_position.y += 24
 	pass
@@ -62,17 +67,7 @@ func _input(event):
 
 
 
-# Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta):
 	roleta.rotation += delta
-#	if Input.is_action_pressed("ui_up"):
-#		state += 1
-#	elif Input.is_action_pressed("ui_down"):
-#		state -= 1
-#	state = state % 3
-#	if(state < 0):
-#		state += 3
-#
-#	defstate()
-	
+	roleta2.rotation += delta
 	pass

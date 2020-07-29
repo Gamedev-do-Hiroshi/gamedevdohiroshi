@@ -35,7 +35,3 @@ func _process(delta):
 		var atual = get_tree().get_root().get_node("Floresta")
 		get_tree().get_root().remove_child(atual)
 		atual.call_deferred("free")
-
-# Called every frame. 'delta' is the elapsed time since the previous frame.
-#func _process(delta):
-#	pass
