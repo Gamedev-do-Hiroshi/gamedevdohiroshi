@@ -69,16 +69,18 @@ __meta__ = {
 }
 
 [node name="ColorRect" type="ColorRect" parent="MarginContainer"]
-anchor_right = 1.0
-anchor_bottom = 1.0
+anchor_left = 0.00185814
+anchor_top = -0.00328058
+anchor_right = 1.00186
+anchor_bottom = 0.996719
 color = Color( 0.247059, 0.360784, 0.505882, 0.572549 )
 __meta__ = {
 "_edit_use_anchors_": false
 }
 
 [node name="Roleta" type="Sprite" parent="MarginContainer"]
-position = Vector2( 626.174, 394.565 )
-scale = Vector2( 0.584453, 0.58111 )
+position = Vector2( 608.571, 354.388 )
+scale = Vector2( 0.848007, 0.830633 )
 texture = ExtResource( 2 )
 
 [node name="MenuOptions" type="VBoxContainer" parent="MarginContainer"]
@@ -150,9 +152,10 @@ __meta__ = {
 }
 
 [node name="AnimatedSprite" type="AnimatedSprite" parent="."]
-position = Vector2( 900.647, 421.564 )
+position = Vector2( 951.371, 402.876 )
 scale = Vector2( 8.30729, 8.75274 )
 frames = SubResource( 4 )
+frame = 1
 playing = true
 
 [node name="AnimatedSprite2" type="AnimatedSprite" parent="."]
@@ -160,7 +163,6 @@ position = Vector2( 64.2297, 214.027 )
 scale = Vector2( 0.965669, 0.921679 )
 frames = SubResource( 4 )
 animation = "New Anim"
-frame = 1
 playing = true
 flip_h = true
 

@@ -44,10 +44,6 @@ func _input(event):
 			state += 1
 		elif event.pressed and event.scancode == KEY_ENTER:
 			if state == 0:
-#				var scene = load("res://Basquete.tscn")
-#				var basquete = scene.instance()
-#				add_child(basquete)
-
 				var scene = load("res://ChooseMiniGame.tscn")
 		
 				var basquete = scene.instance()
@@ -57,6 +53,16 @@ func _input(event):
 				get_tree().get_root().remove_child(atual)
 				atual.call_deferred("free")
 		
+			elif state == 2:
+				var scene = load("res://Creditos.tscn")
+		
+				var creditos = scene.instance()
+				get_tree().get_root().add_child(creditos)
+
+				var atual = get_tree().get_root().get_node("MainMenu")
+				get_tree().get_root().remove_child(atual)
+				atual.call_deferred("free")
+				
 			elif state == 3:
 				get_tree().quit()
 	state = state % number_of_options

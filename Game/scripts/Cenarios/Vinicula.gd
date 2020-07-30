@@ -21,6 +21,7 @@ func _ready():
 
 func _process(delta):
 	if(player1.vida <= 0 or player2.vida <= 0):
+		Physics2DServer.area_set_param(get_world_2d().get_space(),Physics2DServer.AREA_PARAM_GRAVITY_VECTOR, Vector2(0,1))
 		var scene = load("res://MainMenu.tscn")
 		
 		var basquete = scene.instance()

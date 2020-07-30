@@ -287,7 +287,7 @@ func control(delta):
 				$Sprite.play("Idle")
 		
 		if is_on_floor():
-			if Input.is_action_just_pressed("ui_up"):
+			if Input.is_action_pressed("ui_up"):
 				motion.y = JUMP_HEIGHT
 		#else:
 			#$Sprite.play("Jump")
@@ -369,7 +369,7 @@ func control_vinicola(delta):
 			if soco == 0:
 				$Sprite.play("Idle")
 		
-		if Input.is_action_just_pressed("ui_up"):
+		if Input.is_action_pressed("ui_up"):
 			print("PRESSIONADO")
 			for x in $Fora.get_overlapping_bodies():
 				print("OLHA: ", x)

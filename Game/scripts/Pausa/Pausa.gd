@@ -71,6 +71,7 @@ func _on_TextureButton2_pressed():
 	print("here 22")
 	
 func _on_TextureButton3_pressed():
+	Physics2DServer.area_set_param(get_world_2d().get_space(),Physics2DServer.AREA_PARAM_GRAVITY_VECTOR, Vector2(0,1))
 	visible = false
 	get_tree().paused = false
 	
