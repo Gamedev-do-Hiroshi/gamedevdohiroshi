@@ -1,55 +1,64 @@
-[gd_scene load_steps=22 format=2]
+[gd_scene load_steps=25 format=2]
 
 [ext_resource path="res://scripts/MainMenu/MainMenu.gd" type="Script" id=1]
-[ext_resource path="res://sounds/5834464992165888.wav" type="AudioStream" id=2]
-[ext_resource path="res://assets/MainMenu/sprites/roleta.png" type="Texture" id=3]
-[ext_resource path="res://assets/MainMenu/sprites/seta.png" type="Texture" id=4]
-[ext_resource path="res://assets/MainMenu/fonts/power_pixel-7.ttf" type="DynamicFontData" id=5]
-[ext_resource path="res://assets/MainMenu/sprites/hiroshiIdle0.png" type="Texture" id=6]
-[ext_resource path="res://assets/MainMenu/sprites/hiroshiIdle1.png" type="Texture" id=7]
-[ext_resource path="res://assets/logo3.png" type="Texture" id=8]
-[ext_resource path="res://assets/logo7.png" type="Texture" id=9]
-[ext_resource path="res://assets/logo6.png" type="Texture" id=10]
-[ext_resource path="res://assets/logo1.png" type="Texture" id=11]
-[ext_resource path="res://assets/logo2.png" type="Texture" id=12]
-[ext_resource path="res://assets/logo5.png" type="Texture" id=13]
-[ext_resource path="res://assets/logo0.png" type="Texture" id=14]
-[ext_resource path="res://assets/logo4.png" type="Texture" id=15]
-[ext_resource path="res://assets/Player/alienIdle0.png" type="Texture" id=16]
-[ext_resource path="res://assets/Player/alienIdle1.png" type="Texture" id=17]
+[ext_resource path="res://assets/MainMenu/sprites/roleta.png" type="Texture" id=2]
+[ext_resource path="res://assets/MainMenu/fonts/power_pixel-7.ttf" type="DynamicFontData" id=3]
+[ext_resource path="res://assets/logo1.png" type="Texture" id=4]
+[ext_resource path="res://assets/logo2.png" type="Texture" id=5]
+[ext_resource path="res://assets/logo3.png" type="Texture" id=6]
+[ext_resource path="res://assets/logo4.png" type="Texture" id=7]
+[ext_resource path="res://assets/logo5.png" type="Texture" id=8]
+[ext_resource path="res://assets/logo6.png" type="Texture" id=9]
+[ext_resource path="res://assets/logo7.png" type="Texture" id=10]
+[ext_resource path="res://assets/logo0.png" type="Texture" id=11]
+[ext_resource path="res://assets/MainMenu/sprites/seta.png" type="Texture" id=12]
+[ext_resource path="res://assets/MainMenu/sprites/hiroshiIdle0.png" type="Texture" id=13]
+[ext_resource path="res://assets/MainMenu/sprites/hiroshiIdle1.png" type="Texture" id=14]
+[ext_resource path="res://assets/Player/alienIdle0.png" type="Texture" id=15]
+[ext_resource path="res://assets/Player/alienIdle1.png" type="Texture" id=16]
+[ext_resource path="res://sounds/5834464992165888.wav" type="AudioStream" id=17]
+[ext_resource path="res://assets/Player/blackPunch1.png" type="Texture" id=18]
+[ext_resource path="res://assets/Player/blackPunch0.png" type="Texture" id=19]
+[ext_resource path="res://Background.tscn" type="PackedScene" id=20]
 
 [sub_resource type="DynamicFont" id=1]
 size = 48
-font_data = ExtResource( 5 )
+font_data = ExtResource( 3 )
 
 [sub_resource type="DynamicFont" id=2]
-font_data = ExtResource( 5 )
-
-[sub_resource type="SpriteFrames" id=4]
-animations = [ {
-"frames": [ ExtResource( 6 ), ExtResource( 7 ) ],
-"loop": true,
-"name": "default",
-"speed": 5.0
-}, {
-"frames": [ ExtResource( 16 ), ExtResource( 17 ) ],
-"loop": true,
-"name": "alien",
-"speed": 5.0
-} ]
+font_data = ExtResource( 3 )
 
 [sub_resource type="SpriteFrames" id=3]
 resource_local_to_scene = true
 animations = [ {
-"frames": [ ExtResource( 11 ), ExtResource( 12 ), ExtResource( 8 ), ExtResource( 15 ), ExtResource( 13 ), ExtResource( 10 ), ExtResource( 9 ), ExtResource( 14 ) ],
+"frames": [ ExtResource( 4 ), ExtResource( 5 ), ExtResource( 6 ), ExtResource( 7 ), ExtResource( 8 ), ExtResource( 9 ), ExtResource( 10 ), ExtResource( 11 ) ],
 "loop": true,
 "name": "default",
 "speed": 3.0
 } ]
 
+[sub_resource type="SpriteFrames" id=4]
+animations = [ {
+"frames": [ ExtResource( 13 ), ExtResource( 14 ) ],
+"loop": true,
+"name": "default",
+"speed": 5.0
+}, {
+"frames": [ ExtResource( 19 ), ExtResource( 18 ) ],
+"loop": true,
+"name": "New Anim",
+"speed": 5.0
+}, {
+"frames": [ ExtResource( 15 ), ExtResource( 16 ) ],
+"loop": true,
+"name": "alien",
+"speed": 5.0
+} ]
+
 [node name="MainMenu" type="Node2D"]
-position = Vector2( -0.348022, 4.638 )
 script = ExtResource( 1 )
+
+[node name="Background" parent="." instance=ExtResource( 20 )]
 
 [node name="MarginContainer" type="NinePatchRect" parent="."]
 margin_top = -5.0
@@ -62,22 +71,23 @@ __meta__ = {
 [node name="ColorRect" type="ColorRect" parent="MarginContainer"]
 anchor_right = 1.0
 anchor_bottom = 1.0
-margin_left = -3.5636
-margin_right = -3.5636
-color = Color( 0.211765, 0.227451, 0.419608, 1 )
+color = Color( 0.247059, 0.360784, 0.505882, 0.572549 )
 __meta__ = {
 "_edit_use_anchors_": false
 }
 
+[node name="Roleta" type="Sprite" parent="MarginContainer"]
+position = Vector2( 626.174, 394.565 )
+scale = Vector2( 0.584453, 0.58111 )
+texture = ExtResource( 2 )
+
 [node name="MenuOptions" type="VBoxContainer" parent="MarginContainer"]
-anchor_left = 0.5
 anchor_top = 0.5
-anchor_right = 0.5
 anchor_bottom = 0.5
-margin_left = -173.0
-margin_top = -136.5
-margin_right = 173.0
-margin_bottom = 222.5
+margin_left = 100.0
+margin_top = -179.5
+margin_right = 446.0
+margin_bottom = 179.5
 size_flags_vertical = 3
 custom_constants/separation = 30
 alignment = 1
@@ -120,51 +130,42 @@ margin_right = 346.0
 margin_bottom = 343.0
 custom_fonts/font = SubResource( 2 )
 text = "version 1.2"
-align = 1
 
-[node name="Roleta" type="Sprite" parent="."]
-position = Vector2( 1119.94, 100 )
-scale = Vector2( 0.196128, 0.198636 )
-texture = ExtResource( 3 )
-
-[node name="Roleta2" type="Sprite" parent="."]
-position = Vector2( 145.637, 100 )
-scale = Vector2( 0.196, 0.196 )
-texture = ExtResource( 3 )
+[node name="Logo" type="AnimatedSprite" parent="MarginContainer"]
+position = Vector2( 640, 107.018 )
+scale = Vector2( 1.35401, 1.56567 )
+frames = SubResource( 3 )
+frame = 5
 
 [node name="Seta" type="TextureRect" parent="."]
-margin_left = 408.175
-margin_top = 236.65
-margin_right = 448.175
-margin_bottom = 276.65
-texture = ExtResource( 4 )
+visible = false
+margin_left = 34.817
+margin_top = 185.358
+margin_right = 74.817
+margin_bottom = 225.358
+texture = ExtResource( 12 )
 stretch_mode = 3
 __meta__ = {
 "_edit_use_anchors_": false
 }
 
 [node name="AnimatedSprite" type="AnimatedSprite" parent="."]
-position = Vector2( 1046, 443.873 )
+position = Vector2( 900.647, 421.564 )
 scale = Vector2( 8.30729, 8.75274 )
 frames = SubResource( 4 )
 playing = true
 
 [node name="AnimatedSprite2" type="AnimatedSprite" parent="."]
-position = Vector2( 210.596, 429.22 )
-scale = Vector2( 8.30729, 8.75274 )
+position = Vector2( 64.2297, 214.027 )
+scale = Vector2( 0.965669, 0.921679 )
 frames = SubResource( 4 )
-animation = "alien"
+animation = "New Anim"
+frame = 1
 playing = true
 flip_h = true
 
 [node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="."]
-stream = ExtResource( 2 )
+stream = ExtResource( 17 )
 volume_db = -16.545
 pitch_scale = 1.25
 autoplay = true
-
-[node name="Logo" type="AnimatedSprite" parent="."]
-position = Vector2( 640, 102.018 )
-scale = Vector2( 1.35401, 1.56567 )
-frames = SubResource( 3 )
-frame = 5

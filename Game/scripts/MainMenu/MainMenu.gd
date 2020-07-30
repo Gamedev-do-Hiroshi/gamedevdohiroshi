@@ -1,25 +1,24 @@
 extends Node2D
 
-onready var logo = $Logo
+onready var logo = $MarginContainer/Logo
 onready var menu = $MarginContainer/MenuOptions
 onready var seta = $Seta
+onready var sombra = $AnimatedSprite2
 onready var new_game = $MarginContainer/MenuOptions/NewGame
 onready var options = $MarginContainer/MenuOptions/Options
 onready var credits = $MarginContainer/MenuOptions/Credits
 onready var quit_game = $MarginContainer/MenuOptions/QuitGame
-onready var roleta = $Roleta
-onready var roleta2 = $Roleta2
+onready var roleta = $MarginContainer/Roleta
 var state = 0
 var number_of_options = 4
-# Declare member variables here. Examples:
-# var a = 2
-# var b = "text"
+
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
 	logo.play();
-	seta.rect_position.x = 415
+	seta.rect_position.x = new_game.rect_position.x + menu.rect_position.x - 50
 	seta.rect_position.y = new_game.rect_position.y + menu.rect_position.y
+	sombra.position = seta.rect_position
 	defstate()
 	pass # Replace with function body.
 
@@ -32,8 +31,9 @@ func defstate():
 		seta.rect_position.y = credits.rect_position.y + + menu.rect_position.y
 	elif(state == 3):
 		seta.rect_position.y = quit_game.rect_position.y + + menu.rect_position.y
-		
-#	seta.rect_position.y += 24
+	sombra.position = seta.rect_position
+	sombra.position.y += 15
+	sombra.position.x += 10
 	pass
 
 func _input(event):
@@ -69,5 +69,4 @@ func _input(event):
 
 func _process(delta):
 	roleta.rotation += delta
-	roleta2.rotation += delta
 	pass
